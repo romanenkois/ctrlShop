@@ -8,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
+  clothesMenu = false;
 
+  toggleClothesMenu() {
+    this.clothesMenu = !this.clothesMenu;
+  }
 }

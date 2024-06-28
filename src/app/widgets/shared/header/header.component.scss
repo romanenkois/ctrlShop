@@ -1,0 +1,104 @@
+// * {
+//     outline: 1px solid red;
+// }
+
+.wrapper {
+    padding: 13px 26px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    user-select: none;
+
+    .navigation {
+        display: flex;
+        justify-content: center;
+        align-items: baseline;
+        gap: 10px;
+
+        .logo {
+            p {
+                font-size: 32px;
+                font-weight: 400;
+                color: var(--black-color);
+
+                cursor: pointer;
+            }
+        }
+
+        .selections {
+            position: relative;
+            .clothes-button {
+                p {
+                    font-size: 24px;
+                    font-weight: 400;
+                    color: var(--black-color);
+
+                    cursor: pointer;
+                }
+                // p:hover {
+                //     box-shadow: 2px 2px 4px 4px var(--gray-color);
+                // }
+            }
+            .clothes-menu {
+                display: none;
+
+                position: absolute;
+                width: 300px;
+                top: 32px;
+                z-index: 5;
+
+                background-color: var(--white-color);
+                border-radius: 4px;
+
+                box-shadow: 4px 4px 8px 8px var(--light-gray-color);
+
+
+                p {
+                    padding: 8px 16px;
+
+                    font-size: 14px;
+                    font-weight: 400;
+                    color: var(--black-color);
+
+                    cursor: pointer;
+                }
+            }
+            .clothes-menu.visible {
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+                padding: 4px 0px;
+            }
+        }
+    }
+
+    .actions {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        
+        div {
+            button {
+                padding: 5px;
+                background-color: transparent;
+                border: none;
+                cursor: pointer;
+                display: flex;
+
+                img {
+                    width: 28px;
+                    height: 28px;
+                }
+            }
+            button:hover {
+                transition: 0.3s;
+
+                border-radius: 4px;
+                box-shadow: 2px 2px 4px 4px var(--gray-color);
+            }
+        }
+    }
+}

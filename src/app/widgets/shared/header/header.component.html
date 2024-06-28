@@ -1,1 +1,34 @@
-<p>header works!</p>
+<div class="wrapper">
+    <div class="navigation">
+        <div class="logo">
+            <p>ctrlShop</p>
+        </div>
+        <div class="selections">
+            <div class="clothes-button" (click)="toggleClothesMenu()">
+                <p>шмотки</p>
+            </div>
+            <div
+                class="clothes-menu"
+                [class.visible]="clothesMenu">
+                <p>футболки</p>
+                <p>штани</p>
+                <p>шарфи</p>
+                <p>худі</p>
+                <p>светри</p>
+                <p>аксесуари</p>
+            </div>
+        </div>    
+    </div>
+    
+    <div class="actions">
+        <div class="cart">
+            <button><img src="icons/cart.svg"></button>
+        </div>
+        <div class="favorite">
+            <button><img src="icons/heart.svg"></button>
+        </div>
+        <div class="user">
+            <button><img src="icons/user.svg"></button>
+        </div>
+    </div>
+</div>
