@@ -79,11 +79,11 @@
 
                 background-color: var(--white-color);
 
-                box-shadow: var(--small-reverse-shadow), var(--medium-shadow);
+                box-shadow: var(--medium-reverse-shadow), var(--medium-shadow);
 
                 div {
                     p {
-                        padding: 8px 24px;
+                        padding: 10px 24px;
 
                         font-size: 14px;
                         font-weight: 400;
@@ -105,8 +105,6 @@
             .clothes-menu.visible {
                 display: flex;
                 flex-direction: column;
-                gap: 4px;
-                padding: 4px 0px;
             }
         }
     }
