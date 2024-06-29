@@ -162,6 +162,10 @@
 
 @media screen and (max-width: 620px) {
     .wrapper {
+        .header {
+            padding: 13px 13px;
+        }
+        
         .cart-widget {
             width: 100%;
         }
