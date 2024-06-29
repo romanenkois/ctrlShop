@@ -28,9 +28,9 @@
             }
 
             p:hover {
-                transition: 0.8s;
-                transition-delay: 0.2s;
-                background-color: var(--light-gray-color);
+                transition: 0.8s ease-out;
+                transition-delay: 0.3s;
+                background-color: var(--yellow-color);
             }
         }
 
@@ -38,11 +38,34 @@
             position: relative;
             .clothes-button {
                 p {
+                    position: relative;
+
                     font-size: 24px;
                     font-weight: 400;
                     color: var(--black-color);
 
                     cursor: pointer;
+                }
+                p::before {
+                    content: "";
+                    display: block;
+                    position: absolute;
+        
+                    width: 0%;
+                    height: 3px;
+                    
+                    bottom: -2px;
+                    
+                    background-color: var(--yellow-color);
+                    transition: 0.2s ease-in-out;
+                }
+                p:hover::before {
+                    width: 100%;
+                    transition: 0.2s ease-in-out;
+                }
+                p.visible::before {
+                    width: 100%;
+                    transition: 0.2s ease-in-out;
                 }
             }
 
@@ -51,13 +74,13 @@
 
                 position: absolute;
                 width: fit-content;
-                top: 32px;
+                top: 34px;
                 z-index: 5;
 
                 background-color: var(--white-color);
                 border-radius: 4px;
 
-                box-shadow: 4px 4px 8px 8px var(--light-gray-color);
+                box-shadow: var(--medium-shadow);
 
                 div {
                     p {
@@ -71,7 +94,7 @@
                     }
                 }
                 div:hover {
-                    box-shadow: 2px 2px 4px 4px var(--light-gray-color);
+                    box-shadow: var(--small-shadow)
                 }
                 div:active {
                     p {
@@ -114,7 +137,7 @@
                 transition: 0.3s;
 
                 border-radius: 4px;
-                box-shadow: 2px 2px 4px 4px var(--light-gray-color);
+                box-shadow: var(--small-shadow)
             }
             button:active {
                 transform: scale(0.9);

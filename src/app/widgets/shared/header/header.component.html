@@ -4,8 +4,10 @@
             <p>ctrlShop</p>
         </div>
         <div class="selections">
-            <div class="clothes-button" (click)="toggleClothesMenu()">
-                <p>шмотки</p>
+            <div
+                class="clothes-button"
+                (click)="toggleClothesMenu()">
+                <p [class.visible]="clothesMenu">шмотки</p>
             </div>
             <div
                 class="clothes-menu"
@@ -22,13 +24,13 @@
     
     <div class="actions">
         <div class="cart">
-            <button><img src="icons/cart.svg"></button>
+            <button><img src="icons/general/cart.svg"></button>
         </div>
         <div class="favorite">
-            <button><img src="icons/heart.svg"></button>
+            <button><img src="icons/general/heart.svg"></button>
         </div>
         <div class="user">
-            <button><img src="icons/user.svg"></button>
+            <button><img src="icons/general/user.svg"></button>
         </div>
     </div>
 </div>
