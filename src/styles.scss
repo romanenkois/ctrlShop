@@ -2,22 +2,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Podkova:wght@400..800&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 
 :root {
-    --black-color: #392526;
-    --dark-black-color: #121111;
+    --black-color: #0e0e0e;
+    --dark-color: #241d1e;
     --dark-gray-color: #787676;
     --gray-color: #c5c5c5;
-    --light-gray-color: #F2F2F2;
+    --light-gray-color: #e9e9e9;
     --white-color: #fcfcfc;
     --yellow-color: #ffee00;
     --dark-yellow-color: #dbba00;
 
 
     --font-regular: rubik, Arial, Helvetica, sans-serif;
-    --font-highlight: podkova, sans-serif;
+    --font-highlight: podkova, monospace;
 
     --small-shadow: 2px 2px 4px 4px rgba(28, 23, 23, 0.05);
     --medium-shadow: 4px 4px 8px 8px rgba(28, 23, 23, 0.05);
 
+    --small-reverse-shadow: 2px 2px 4px 4px rgba(230, 230, 230, 0.1);
+    --medium-reverse-shadow: 4px 4px 8px 8px rgba(220, 220, 220, 0.1);
 }
 
 ::selection {

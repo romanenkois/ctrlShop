@@ -78,9 +78,8 @@
                 z-index: 5;
 
                 background-color: var(--white-color);
-                border-radius: 4px;
 
-                box-shadow: var(--medium-shadow);
+                box-shadow: var(--small-reverse-shadow), var(--medium-shadow);
 
                 div {
                     p {
@@ -94,7 +93,7 @@
                     }
                 }
                 div:hover {
-                    box-shadow: var(--small-shadow)
+                    box-shadow: var(--small-reverse-shadow), var(--small-shadow)
                 }
                 div:active {
                     p {
@@ -135,8 +134,6 @@
             }
             button:hover {
                 transition: 0.3s;
-
-                border-radius: 4px;
                 box-shadow: var(--small-shadow)
             }
             button:active {
