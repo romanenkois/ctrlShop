@@ -8,11 +8,22 @@
     --gray-color: #c5c5c5;
     --light-gray-color: #F2F2F2;
     --white-color: #fcfcfc;
-    --yellow-color: #fffb00;
+    --yellow-color: #ffee00;
+    --dark-yellow-color: #dbba00;
 
 
     --font-regular: rubik, Arial, Helvetica, sans-serif;
     --font-highlight: podkova, sans-serif;
+
+    --small-shadow: 2px 2px 4px 4px rgba(28, 23, 23, 0.05);
+    --medium-shadow: 4px 4px 8px 8px rgba(28, 23, 23, 0.05);
+
+}
+
+::selection {
+    background-color: var(--yellow-color);
+    color: var(--black-color);
+
 }
 
 body, html {
