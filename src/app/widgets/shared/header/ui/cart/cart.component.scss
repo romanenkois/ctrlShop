@@ -1,0 +1,105 @@
+// * {
+//     outline: 1px red solid;
+// }
+
+.wrapper {
+    min-width: 400px;
+    padding: 14px 24px;
+
+    background-color: var(--white-color);
+    box-shadow: var(--medium-reverse-shadow), var(--medium-shadow);
+
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    .title {
+        p {
+            font-size: 24px;
+            font-weight: 400;
+
+            user-select: none;
+        }
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        .item {
+            display: flex;
+            flex-direction: row;
+            gap: 18px;
+
+            .picture {
+                flex: 1;
+                height: 100%;
+                width: 100%;
+
+                img {
+                    height: 150px;
+                    width: 150px;
+                    
+                    object-fit: cover;
+                    user-select: none;
+                }
+            }
+
+            .info {
+                flex: 2;
+
+                display: flex;
+                flex-wrap: wrap;
+                gap: 4px;
+
+                div {
+                    p {
+                        font-size: 16px;
+                        font-weight: 400;
+                    }
+                }
+                
+            }
+        }
+    }
+
+    .actions {
+        div {
+            flex-direction: column;
+            gap: 14px;
+            display: none;
+
+            p {
+                font-weight: 400;
+                font-size: 16px;
+            }
+            button {
+                width: 100%;
+                padding: 12px 24px;
+
+                font-weight: 600;
+                font-size: 16px;
+
+                color: var(--black-color);
+                background-color: var(--yellow-color);
+
+                border: none;
+                cursor: pointer;
+            }
+            button:hover {
+                transition: 0.3s ease-in;
+                background-color: var(--yellow-hover-color);
+                box-shadow: var(--small-shadow);
+            }
+            button:active {
+                transition: 0.2s;
+                transform: scale(0.98);
+            }
+        }
+
+        div.visibleActions {
+            display: flex;
+        }
+    }
+}

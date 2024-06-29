@@ -1,1 +1,59 @@
-<p>cart works!</p>
+<div class="wrapper">
+    <div class="title">
+        <p>твоя корзина</p>
+    </div>
+    
+    <div class="content">
+        <div class="item">
+            <div class="picture">
+                <img src="clothes-page/reyechka.png">
+            </div>
+            <div class="info">
+                <div class="name">
+                    <p>хікошарф</p>
+                </div>
+                <div class="price">
+                    <p>2999 грн.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="picture">
+                <img src="clothes-page/reyechka.png">
+            </div>
+            <div class="info">
+                <div class="name">
+                    <p>хікошарф</p>
+                </div>
+                <div class="price">
+                    <p>2999 грн.</p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="picture">
+                <img src="clothes-page/reyechka.png">
+            </div>
+            <div class="info">
+                <div class="name">
+                    <p>хікошарф</p>
+                </div>
+                <div class="price">
+                    <p>2999 грн.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="actions">
+        <div [class.visibleActions]="itemsInCart">
+            <p>загальна сума корзини: {{3999}} грн.</p>
+            <button>оплатити</button>
+        </div>
+        <div [class.visibleActions]="!itemsInCart">
+            <p>в твоїй корзині ще нічо немає</p>
+            <button>перейти до шмоток</button>
+        </div>
+    </div>
+</div>
