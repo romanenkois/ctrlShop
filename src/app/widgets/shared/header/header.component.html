@@ -1,6 +1,6 @@
 <div class="wrapper">
     <div class="navigation">
-        <div class="logo">
+        <div class="logo" (click)="redirectTo('home')">
             <p>ctrlShop</p>
         </div>
         <div class="selections">
@@ -10,12 +10,12 @@
             <div
                 class="clothes-menu"
                 [class.visible]="clothesMenu">
-                <p>футболки</p>
-                <p>штани</p>
-                <p>шарфи</p>
-                <p>худі</p>
-                <p>светри</p>
-                <p>аксесуари</p>
+                <div (click)="redirectTo('clothes')"><p>футболки</p></div>
+                <div (click)="redirectTo('clothes')"><p>штани</p></div>
+                <div (click)="redirectTo('clothes')"><p>шарфи</p></div>
+                <div (click)="redirectTo('clothes')"><p>худі</p></div>
+                <div (click)="redirectTo('clothes')"><p>светри</p></div>
+                <div (click)="redirectTo('clothes')"><p>аксесуари</p></div>
             </div>
         </div>    
     </div>

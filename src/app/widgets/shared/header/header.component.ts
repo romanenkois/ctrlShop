@@ -8,6 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
+  redirectTo(url: string) {
+    window.location.href = url;
+  }
   clothesMenu = false;
 
   toggleClothesMenu() {

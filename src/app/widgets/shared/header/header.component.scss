@@ -3,7 +3,7 @@
 // }
 
 .wrapper {
-    padding: 13px 26px;
+    padding: 13px 42px;
 
     display: flex;
     flex-direction: row;
@@ -20,10 +20,17 @@
         .logo {
             p {
                 font-size: 32px;
-                font-weight: 400;
+                font-weight: 300;
                 color: var(--black-color);
 
+                font-family: var(--font-highlight);
                 cursor: pointer;
+            }
+
+            p:hover {
+                transition: 0.8s;
+                transition-delay: 0.2s;
+                background-color: var(--light-gray-color);
             }
         }
 
@@ -37,15 +44,13 @@
 
                     cursor: pointer;
                 }
-                // p:hover {
-                //     box-shadow: 2px 2px 4px 4px var(--gray-color);
-                // }
             }
+
             .clothes-menu {
                 display: none;
 
                 position: absolute;
-                width: 300px;
+                width: fit-content;
                 top: 32px;
                 z-index: 5;
 
@@ -54,15 +59,25 @@
 
                 box-shadow: 4px 4px 8px 8px var(--light-gray-color);
 
+                div {
+                    p {
+                        padding: 8px 24px;
 
-                p {
-                    padding: 8px 16px;
+                        font-size: 14px;
+                        font-weight: 400;
+                        color: var(--black-color);
 
-                    font-size: 14px;
-                    font-weight: 400;
-                    color: var(--black-color);
-
-                    cursor: pointer;
+                        cursor: pointer;
+                    }
+                }
+                div:hover {
+                    box-shadow: 2px 2px 4px 4px var(--light-gray-color);
+                }
+                div:active {
+                    p {
+                        transition: 0.2s;
+                        transform: scale(0.95);
+                    }                
                 }
             }
             .clothes-menu.visible {
@@ -88,6 +103,8 @@
                 cursor: pointer;
                 display: flex;
 
+                background-color: var(--white-color);
+
                 img {
                     width: 28px;
                     height: 28px;
@@ -97,7 +114,10 @@
                 transition: 0.3s;
 
                 border-radius: 4px;
-                box-shadow: 2px 2px 4px 4px var(--gray-color);
+                box-shadow: 2px 2px 4px 4px var(--light-gray-color);
+            }
+            button:active {
+                transform: scale(0.9);
             }
         }
     }

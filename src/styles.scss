@@ -1,4 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Podkova:wght@400..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Podkova:wght@400..800&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 
 :root {
     --black-color: #392526;
@@ -7,11 +8,18 @@
     --gray-color: #c5c5c5;
     --light-gray-color: #F2F2F2;
     --white-color: #fcfcfc;
+    --yellow-color: #fffb00;
+
+
+    --font-regular: rubik, Arial, Helvetica, sans-serif;
+    --font-highlight: podkova, sans-serif;
 }
 
 body, html {
     padding: 0;
     margin: 0;
+
+    font-family: var(--font-regular);
 }
 
 p {
