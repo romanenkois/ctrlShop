@@ -1,36 +1,46 @@
 <div class="wrapper">
-    <div class="navigation">
-        <div class="logo" (click)="redirectTo('home')">
-            <p>ctrlShop</p>
+    <div class="header">
+        <div class="navigation">
+            <div class="logo" (click)="redirectTo('home')">
+                <p>ctrlShop</p>
+            </div>
+            <div class="selections">
+                <div
+                    class="clothes-button"
+                    (click)="toggleClothesMenu()">
+                    <p [class.clothesMenuVisibility]="clothesMenuVisibility">шмотки</p>
+                </div>
+                <div
+                    class="clothes-menu"
+                    [class.clothesMenuVisibility]="clothesMenuVisibility">
+                    <a href="clothes"><div><p>футболки</p></div></a>
+                    <a href="clothes"><div (click)="redirectTo('clothes')"><p>штани</p></div></a>
+                    <a href="clothes"><div (click)="redirectTo('clothes')"><p>шарфи</p></div></a>
+                    <a href="clothes"><div (click)="redirectTo('clothes')"><p>худі</p></div></a>
+                    <a href="clothes"><div (click)="redirectTo('clothes')"><p>светри</p></div></a>
+                    <a href="clothes"><div (click)="redirectTo('clothes')"><p>аксесуари</p></div></a>
+                </div>
+            </div>    
         </div>
-        <div class="selections">
-            <div
-                class="clothes-button"
-                (click)="toggleClothesMenu()">
-                <p [class.visible]="clothesMenu">шмотки</p>
+        
+        <div class="actions">
+            <div class="buttons">
+                <button
+                (click)="togleCart()"
+                [class.visibleCart]="cartVisibility"
+                >
+                    <img src="icons/general/cart.svg">
+                </button>
+                <button><img src="icons/general/heart.svg"></button>
+                <button><img src="icons/general/user.svg"></button>
             </div>
-            <div
-                class="clothes-menu"
-                [class.visible]="clothesMenu">
-                <div (click)="redirectTo('clothes')"><p>футболки</p></div>
-                <div (click)="redirectTo('clothes')"><p>штани</p></div>
-                <div (click)="redirectTo('clothes')"><p>шарфи</p></div>
-                <div (click)="redirectTo('clothes')"><p>худі</p></div>
-                <div (click)="redirectTo('clothes')"><p>светри</p></div>
-                <div (click)="redirectTo('clothes')"><p>аксесуари</p></div>
-            </div>
-        </div>    
+            
+        </div>
     </div>
-    
-    <div class="actions">
-        <div class="cart">
-            <button><img src="icons/general/cart.svg"></button>
-        </div>
-        <div class="favorite">
-            <button><img src="icons/general/heart.svg"></button>
-        </div>
-        <div class="user">
-            <button><img src="icons/general/user.svg"></button>
-        </div>
+
+    <div
+    class="cart-widget"
+    [class.visibleCart]="cartVisibility">
+        <app-cart></app-cart>
     </div>
 </div>

@@ -3,140 +3,165 @@
 // }
 
 .wrapper {
-    padding: 13px 42px;
+    .header {
+        padding: 13px 42px;
 
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-
-    user-select: none;
-
-    .navigation {
         display: flex;
-        justify-content: center;
-        align-items: baseline;
-        gap: 10px;
+        flex-direction: row;
+        justify-content: space-between;
 
-        .logo {
-            p {
-                font-size: 32px;
-                font-weight: 300;
-                color: var(--black-color);
+        user-select: none;
 
-                font-family: var(--font-highlight);
-                cursor: pointer;
-            }
+        .navigation {
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+            gap: 10px;
 
-            p:hover {
-                transition: 0.8s ease-out;
-                transition-delay: 0.3s;
-                background-color: var(--yellow-color);
-            }
-        }
-
-        .selections {
-            position: relative;
-            .clothes-button {
+            .logo {
                 p {
-                    position: relative;
-
-                    font-size: 24px;
-                    font-weight: 400;
+                    font-size: 32px;
+                    font-weight: 300;
                     color: var(--black-color);
 
+                    font-family: var(--font-highlight);
                     cursor: pointer;
                 }
-                p::before {
-                    content: "";
-                    display: block;
-                    position: absolute;
-        
-                    width: 0%;
-                    height: 3px;
-                    
-                    bottom: -2px;
-                    
+
+                p:hover {
+                    transition: 0.8s ease-out;
+                    transition-delay: 0.3s;
                     background-color: var(--yellow-color);
-                    transition: 0.2s ease-in-out;
-                }
-                p:hover::before {
-                    width: 100%;
-                    transition: 0.2s ease-in-out;
-                }
-                p.visible::before {
-                    width: 100%;
-                    transition: 0.2s ease-in-out;
                 }
             }
 
-            .clothes-menu {
-                display: none;
-
-                position: absolute;
-                width: fit-content;
-                top: 34px;
-                z-index: 5;
-
-                background-color: var(--white-color);
-
-                box-shadow: var(--medium-reverse-shadow), var(--medium-shadow);
-
-                div {
+            .selections {
+                position: relative;
+                .clothes-button {
                     p {
-                        padding: 10px 24px;
+                        position: relative;
 
-                        font-size: 14px;
+                        font-size: 24px;
                         font-weight: 400;
                         color: var(--black-color);
 
                         cursor: pointer;
                     }
+                    p::before {
+                        content: "";
+                        display: block;
+                        position: absolute;
+            
+                        width: 0%;
+                        height: 3px;
+                        
+                        bottom: -2px;
+                        
+                        background-color: var(--yellow-color);
+                        transition: 0.2s ease-in-out;
+                    }
+                    p:hover::before {
+                        width: 100%;
+                        transition: 0.2s ease-in-out;
+                    }
+                    p.clothesMenuVisibility::before {
+                        width: 100%;
+                        transition: 0.2s ease-in-out;
+                    }
                 }
-                div:hover {
-                    box-shadow: var(--small-reverse-shadow), var(--small-shadow)
+
+                .clothes-menu {
+                    display: none;
+
+                    position: absolute;
+                    width: fit-content;
+                    top: 34px;
+                    z-index: 5;
+
+                    background-color: var(--white-color);
+
+                    box-shadow: var(--medium-reverse-shadow), var(--medium-shadow);
+
+                    div {
+                        p {
+                            padding: 10px 24px;
+
+                            font-size: 14px;
+                            font-weight: 400;
+                            color: var(--black-color);
+
+                            cursor: pointer;
+                        }
+                    }
+                    div:hover {
+                        box-shadow: var(--small-reverse-shadow), var(--small-shadow)
+                    }
+                    div:active {
+                        p {
+                            transition: 0.2s;
+                            transform: scale(0.95);
+                        }                
+                    }
                 }
-                div:active {
-                    p {
-                        transition: 0.2s;
-                        transform: scale(0.95);
-                    }                
+                .clothes-menu.clothesMenuVisibility {
+                    display: flex;
+                    flex-direction: column;
                 }
             }
-            .clothes-menu.visible {
+        }
+
+        .actions {
+            position: relative;
+
+            .buttons {
                 display: flex;
-                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+
+                button {
+                    padding: 5px;
+                    background-color: transparent;
+                    border: none;
+                    cursor: pointer;
+                    display: flex;
+
+                    background-color: var(--white-color);
+
+                    img {
+                        width: 28px;
+                        height: 28px;
+                    }
+                }
+                button:hover {
+                    transition: 0.3s;
+                    box-shadow: var(--small-shadow)
+                }
+                button:active {
+                    transform: scale(0.9);
+                }
             }
+
+            
         }
     }
 
-    .actions {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        
-        div {
-            button {
-                padding: 5px;
-                background-color: transparent;
-                border: none;
-                cursor: pointer;
-                display: flex;
+    position: relative;
 
-                background-color: var(--white-color);
+    .cart-widget {
+        display: none;
+        position: absolute;
+        right: 0;
+    }
+    .cart-widget.visibleCart {
+        display: block;
+    }
+}
 
-                img {
-                    width: 28px;
-                    height: 28px;
-                }
-            }
-            button:hover {
-                transition: 0.3s;
-                box-shadow: var(--small-shadow)
-            }
-            button:active {
-                transform: scale(0.9);
-            }
+@media screen and (max-width: 620px) {
+    .wrapper {
+        .cart-widget {
+            width: 100%;
         }
     }
 }
