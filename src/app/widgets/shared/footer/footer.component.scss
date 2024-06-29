@@ -1,0 +1,108 @@
+// * {
+//     outline: 1px red solid;
+// }
+
+.wrapper {
+    padding: 20px 42px;
+
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+
+    .links {
+        flex: 1;
+        
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        justify-content: center;
+        
+        div {
+            p {
+                width: fit-content;
+
+                font-size: 16px;
+                font-weight: 400;
+                
+                user-select: none;
+                cursor: pointer;
+    
+                position: relative;
+            }
+            p::before {
+                content: "";
+                display: block;
+                position: absolute;
+    
+                width: 0%;
+                height: 3px;
+                
+                bottom: -4px;
+                
+                background-color: var(--yellow-color);
+                transition: 0.2s ease-in-out;
+            }
+            p:hover::before {
+                width: 100%;
+                transition: 0.2s ease-in-out;
+            }
+        }
+    }
+
+    .general-info {
+        flex: 1;
+        
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        justify-content: center;
+
+        p {
+            font-size: 16px;
+            font-weight: 400;
+        }
+    }
+
+    .social-networks {
+        flex: 1;
+
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+
+        a {
+            div {
+                width: 32px;
+                height: 32px;
+                padding: 5px;
+    
+                border-radius: 4px;
+                background-color: var(--white-color);
+    
+                img {
+                    width: 32px;
+                    height: 32px;
+    
+                    cursor: pointer;
+                    user-select: none;
+                }
+            }
+            div:hover {
+                box-shadow: var(--small-shadow);
+            }
+            div:active {
+                transition: 0.2s;
+                transform: scale(0.9);
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .wrapper {
+        flex-direction: column;
+        gap: 24px;
+    }
+    
+}
