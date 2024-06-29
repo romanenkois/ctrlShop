@@ -1,0 +1,72 @@
+.wrapper {
+    padding: 32px 0px;
+
+    .picture {
+        width: 100%;
+        height: 100vh;
+        position: relative;
+
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .toning {
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 100%;
+            background-color: rgba(10, 10, 10, 0.6);
+        }
+
+        .actions {
+            position: absolute;
+            top: 50%;
+            right: 20%;
+
+            display: flex;
+            flex-direction: row;
+            gap: 8px;
+
+            button {
+                border: none;
+                padding: 16px 32px;
+    
+                font-weight: 600;
+                font-size: 18px;
+                color: var(--black-color);
+    
+                background-color: var(--white-color);
+    
+                box-shadow: 2px 2px 2px 2px rgba(200, 200, 200, 0.2);
+                cursor: pointer;
+
+            }
+            button:hover {
+                background-color: var(--light-gray-color);
+            }
+            button:active {
+                transition: 0.2s;
+                transform: scale(0.95);
+            }
+        
+        }
+    }
+}
+
+@media screen and (max-width: 980px) {
+    .wrapper {
+        .picture {
+            .actions {
+                flex-direction: column;
+                
+                button {
+                    width: 200px;
+                }
+            }
+        }
+    }
+}
