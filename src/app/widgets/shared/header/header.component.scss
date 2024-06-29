@@ -154,6 +154,8 @@
         position: absolute;
         right: 0;
         z-index: 5;
+
+        min-width: 400px;
     }
     .cart-widget.visibleCart {
         display: block;
