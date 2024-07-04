@@ -1,0 +1,28 @@
+.wrapper {
+    padding: 16px 22px;
+    display: flex;
+    flex-direction: row;
+    gap: 22px;
+
+    .sorting {
+        display: flex;
+        gap: 8px;
+
+        cursor: pointer;
+        user-select: none;
+
+        .title {
+            font-size: 16px;
+        }
+
+        .icon {
+            width: 16px;
+            height: 16px;
+
+            img {
+                height: 100%;
+                width: 100%;
+            }
+        }
+    }
+}
