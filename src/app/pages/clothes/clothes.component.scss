@@ -1,0 +1,12 @@
+.wrapper {
+    padding: 32px 0px;
+    
+    display: flex;
+    flex-direction: row;
+
+    min-height: 100vh;
+    
+    .filter {
+        min-height: 100vh;
+    }
+}   
