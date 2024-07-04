@@ -1,0 +1,26 @@
+.wrapper {
+    padding: 12px 24px;
+    height: 100%;
+
+    background-color: var(--dark-color);
+
+    .category-options {    
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+
+        p:first-child {
+            font-weight: 700;
+            color: var(--yellow-color);
+        }
+        p {
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--white-color);
+
+            cursor: pointer;
+            user-select: none;
+        }
+    }
+}
