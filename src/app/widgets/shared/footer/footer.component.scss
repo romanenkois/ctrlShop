@@ -3,7 +3,7 @@
 // }
 
 .wrapper {
-    padding: 20px 42px;
+    padding: 13px 42px;
 
     display: flex;
     flex-direction: row;
@@ -12,39 +12,41 @@
     .links {
         flex: 1;
         
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        justify-content: center;
-        
-        div {
-            p {
-                width: fit-content;
+        .links-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            justify-content: center;
+            
+            div {
+                p {
+                    width: fit-content;
 
-                font-size: 16px;
-                font-weight: 400;
-                
-                user-select: none;
-                cursor: pointer;
-    
-                position: relative;
-            }
-            p::before {
-                content: "";
-                display: block;
-                position: absolute;
-    
-                width: 0%;
-                height: 3px;
-                
-                bottom: -4px;
-                
-                background-color: var(--yellow-color);
-                transition: 0.2s ease-in-out;
-            }
-            p:hover::before {
-                width: 100%;
-                transition: 0.2s ease-in-out;
+                    font-size: 16px;
+                    font-weight: 400;
+                    
+                    user-select: none;
+                    cursor: pointer;
+        
+                    position: relative;
+                }
+                p::before {
+                    content: "";
+                    display: block;
+                    position: absolute;
+        
+                    width: 0%;
+                    height: 3px;
+                    
+                    bottom: -4px;
+                    
+                    background-color: var(--yellow-color);
+                    transition: 0.2s ease-in-out;
+                }
+                p:hover::before {
+                    width: 100%;
+                    transition: 0.2s ease-in-out;
+                }
             }
         }
     }
@@ -66,7 +68,7 @@
 
     .social-networks {
         flex: 1;
-
+    
         display: flex;
         gap: 10px;
         justify-content: center;
@@ -102,7 +104,14 @@
 
 @media screen and (max-width: 768px) {
     .wrapper {
+        padding: 14px;
+
         flex-direction: column;
         gap: 24px;
+
+        .links {
+            display: flex;
+            justify-content: center;
+        }
     }
 }

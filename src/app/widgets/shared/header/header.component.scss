@@ -4,10 +4,12 @@
 
 .wrapper {
     .header {
-        padding: 13px 42px;
+        padding: 14px 42px;
 
         display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
+        gap: 14px;
         justify-content: space-between;
 
         user-select: none;
@@ -76,7 +78,7 @@
                     position: absolute;
                     width: fit-content;
                     top: 34px;
-                    z-index: 5;
+                    z-index: 10;
 
                     background-color: var(--white-color);
 
@@ -162,10 +164,10 @@
     }
 }
 
-@media screen and (max-width: 620px) {
+@media screen and (max-width: 768px) {
     .wrapper {
         .header {
-            padding: 13px 13px;
+            padding: 14px;
         }
         
         .cart-widget {
