@@ -1,12 +1,33 @@
+* {
+    outline: 1px green solid;
+}
+
 .wrapper {
     padding: 32px 0px;
     
     display: flex;
     flex-direction: row;
 
-    min-height: 100vh;
-    
-    .filter {
+
+    height: max-content;
+    div {
         min-height: 100vh;
+
     }
-}   
+
+    .filter {
+        outline: 2px yellow solid;
+        background-color: var(--dark-color);
+        // overflow: hidden;
+    }
+    // .content {
+    //     width: 100%;
+    // }
+
+}
+
+@media screen and (max-width: 768px) {
+    .wrapper {
+        padding: 14px 0px;
+    }
+}
