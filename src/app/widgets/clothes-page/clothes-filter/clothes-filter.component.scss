@@ -1,7 +1,11 @@
+// * {
+//     outline: red solid 1px;
+// }
+
 .wrapper {
     padding: 14px 42px;
 
-    // background-color: var(--dark-color); // MOVED TO CLOTHES PAGE COMPONENT
+    background-color: var(--white-color); // MOVED TO CLOTHES PAGE COMPONENT
 
     .category-options {    
         display: flex;
@@ -9,23 +13,45 @@
         gap: 12px;
 
         
-        p {
-            font-size: 18px;
-            font-weight: 400;
-            color: var(--white-color);
+        div {
+            p {
+                font-size: 18px;
+                font-weight: 400;
+                width: fit-content;
+    
+                cursor: pointer;
+                user-select: none;
 
-            cursor: pointer;
-            user-select: none;
+                position: relative;
+            }
+            p::before {
+                content: "";
+                display: block;
+                position: absolute;
+    
+                width: 0%;
+                height: 3px;
+                
+                bottom: -4px;
+                
+                background-color: var(--yellow-color);
+                transition: 0.2s ease-in-out;
+            }
+            p:hover::before {
+                width: 105%;
+                transition: 0.2s ease-in-out;
+            }
         }
-        p:first-child {
-            font-weight: 700;
-            color: var(--yellow-color);
-        }
+        div:first-child {
+            p {
+                font-weight: 600;
+            }
+        }        
     }
 }
 
 @media screen and (max-width: 768px) {
-    .wrapper {
-        padding: 14px 14px;
-    }
+    // .wrapper {
+    //     padding: 14px 24px;
+    // }
 }

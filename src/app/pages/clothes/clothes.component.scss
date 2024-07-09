@@ -1,33 +1,94 @@
-* {
-    outline: 1px green solid;
-}
+// * {
+//     outline: 1px green solid;
+// }
 
 .wrapper {
+    position: relative;
+
     padding: 32px 0px;
-    
+    height: max-content;
+
     display: flex;
     flex-direction: row;
-
-
-    height: max-content;
-    div {
-        min-height: 100vh;
-
-    }
+    gap: 24px;
 
     .filter {
-        outline: 2px yellow solid;
-        background-color: var(--dark-color);
-        // overflow: hidden;
-    }
-    // .content {
-    //     width: 100%;
-    // }
+        min-height: 100vh;
 
+        position: relative;
+        display: block;
+        box-shadow: var(--big-shadow);
+        background-color: var(--white-color);
+
+        .filter-button {
+            display: none;
+        }
+    }
+    .content {
+        min-height: 100vh;
+        
+        position: relative;
+    }
 }
 
 @media screen and (max-width: 768px) {
     .wrapper {
         padding: 14px 0px;
+
+        .filter {
+            position: absolute;
+            display: block;
+            z-index: 3;
+
+            transition: 0.4s ease-in-out;
+            left: -175px;
+
+            .filter-button {
+                display: block;
+
+                position: absolute;
+                top: 12px;
+                right: -60px;
+
+                // button {
+                //     width: 30px;
+                //     height: 30px;
+                    
+                //     padding: 2px;
+                    
+                //     img {
+                //         height: 100%;
+                //         width: 100%;
+                //     }   
+                // }
+                button {
+                    padding: 5px;
+                    background-color: transparent;
+                    border: none;
+                    cursor: pointer;
+                    display: flex;
+
+                    background-color: var(--white-color);
+                    box-shadow: var(--small-shadow);
+
+                    img {
+                        width: 28px;
+                        height: 28px;
+                    }
+                }
+                button:active {
+                    transition: 0.2s;
+                    transform: scale(0.9);
+                }
+            }
+        }
+        .filter.filterVisibility {
+            left: 0;
+            transition: 0.4s ease-in-out;
+        }
+        .content {
+            padding-top: 42px;
+            position: relative;
+        }
     }
 }

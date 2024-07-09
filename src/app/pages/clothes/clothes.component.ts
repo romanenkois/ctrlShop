@@ -26,6 +26,12 @@ export default class ClothesComponent implements OnInit {
   //   })
   // }
 
+  filterVisibility = false;
+  
+  toggleFilter() {
+    this.filterVisibility = !this.filterVisibility;
+  }
+
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.category.set(params['category']);

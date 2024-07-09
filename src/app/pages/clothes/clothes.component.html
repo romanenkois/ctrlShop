@@ -1,8 +1,18 @@
 <div class="wrapper">
-    <div class="filter">
-        <app-clothes-filter></app-clothes-filter>
+    <div class="filter"
+    [class.filterVisibility]="filterVisibility"
+    >
+        <div class="filter-content">
+            <app-clothes-filter></app-clothes-filter>
+        </div>
+        <div class="filter-button">
+            <button (click)="toggleFilter()">
+                <img src="icons/general/heart.svg">
+            </button>
+        </div>
     </div>
     <div class="content">
+        
         <app-clothes-sorting></app-clothes-sorting>
         <app-clothes-feed></app-clothes-feed>
     </div>
