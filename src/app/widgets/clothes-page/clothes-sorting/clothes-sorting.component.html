@@ -1,5 +1,5 @@
 <div class="wrapper">
-    <div class="sorting" (click)="changeSorting('')">
+    <div class="sorting" (click)="sortingByName()">
         <div class="title">
             <p>за назвою</p>
         </div>
@@ -7,7 +7,7 @@
             <img src="icons/general/heart.svg"/>
         </div>
     </div>
-    <div class="sorting">
+    <div class="sorting" (click)="sortingByPrice()">
         <div class="title">
             <p>за ціною</p>
         </div>
@@ -15,7 +15,7 @@
             <img src="icons/general/heart.svg"/>
         </div>
     </div>
-    <div class="sorting">
+    <div class="sorting" (click)="visibilityOutOfStock()">
         <div class="title">
             <p>показувати відсутні товари</p>
         </div>

@@ -16,18 +16,12 @@ export default class ClothesComponent implements OnInit {
 
   category: WritableSignal<string> = signal('all');
   pageNumber: WritableSignal<number> = signal(1);
-  sortByPrice: WritableSignal<string> = signal('');
   sortByName: WritableSignal<string> = signal('');
-  hideOutOfStock: WritableSignal<boolean> = signal(false);
-
-  // constructor() {
-  //   effect(() => {
-      
-  //   })
-  // }
+  sortByPrice: WritableSignal<string> = signal('');
+  hideOutOfStock: WritableSignal<string> = signal('');
 
   filterVisibility = false;
-  
+
   toggleFilter() {
     this.filterVisibility = !this.filterVisibility;
   }
@@ -36,11 +30,9 @@ export default class ClothesComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.category.set(params['category']);
       this.pageNumber.set(params['pageNumber']);
-      this.sortByPrice.set(params['sortByPrice']);
       this.sortByName.set(params['sortByName']);
+      this.sortByPrice.set(params['sortByPrice']);
       this.hideOutOfStock.set(params['hideOutOfStock']);
-    
-      console.log(this.category())
     })
   }
 }

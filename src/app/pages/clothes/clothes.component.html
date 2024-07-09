@@ -13,7 +13,11 @@
     </div>
     <div class="content">
         
-        <app-clothes-sorting></app-clothes-sorting>
+        <app-clothes-sorting
+        [sortByName]="this.sortByName()"
+        [sortByPrice]="this.sortByPrice()"
+        [hideOutOfStock]="this.hideOutOfStock()"
+        ></app-clothes-sorting>
         <app-clothes-feed></app-clothes-feed>
     </div>
 </div>

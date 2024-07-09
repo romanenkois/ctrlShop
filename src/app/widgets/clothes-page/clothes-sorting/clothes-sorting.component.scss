@@ -26,4 +26,11 @@
             }
         }
     }
+    .sorting:hover {
+        cursor: pointer;
+    }
+    .sorting:active {
+        transition: 0.2s;
+        transform: scaleX(0.98);
+    }
 }
