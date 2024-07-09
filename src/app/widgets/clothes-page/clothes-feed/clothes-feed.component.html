@@ -1,68 +1,15 @@
 <div class="wrapper">
     <div class="clothes-feed">
-        <div class="card">
-            <a href="product">
-                <div class="picture">
-                    <img src="assets/reyechka.png">
-                </div>
-            </a>
-            <div class="info">
-                <p class="name">тянко шарф</p>
-                <p class="category">шарф</p>
-                <p class="price">699 грн.</p>
+        @for (item of this.clothesList(); track $index) {
+            <div class="card">
+                <app-clothes-card
+                [product]="item"
+                >
+                </app-clothes-card>
             </div>
-        </div>
-
-        <div class="card">
-            <div class="picture">
-                <img src="assets/reyechka.png">
-            </div>
-            <div class="info">
-                <p class="name">тянко шарф</p>
-                <p class="category">шарф</p>
-                <p class="price">699 грн.</p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="picture">
-                <img src="assets/reyechka.png">
-            </div>
-            <div class="info">
-                <p class="name">тянко шарф</p>
-                <p class="category">шарф</p>
-                <p class="price">699 грн.</p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="picture">
-                <img src="assets/reyechka.png">
-            </div>
-            <div class="info">
-                <p class="name">тянко шарф</p>
-                <p class="category">шарф</p>
-                <p class="price">699 грн.</p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="picture">
-                <img src="assets/reyechka.png">
-            </div>
-            <div class="info">
-                <p class="name">тянко шарф</p>
-                <p class="category">шарф</p>
-                <p class="price">699 грн.</p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="picture">
-                <img src="assets/reyechka.png">
-            </div>
-            <div class="info">
-                <p class="name">тянко шарф</p>
-                <p class="category">шарф</p>
-                <p class="price">699 грн.</p>
-            </div>
-        </div>
+        }        
+    </div>
+    <div class="pagination">
         
     </div>
 </div>
