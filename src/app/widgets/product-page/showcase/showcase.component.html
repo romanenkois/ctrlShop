@@ -1,12 +1,13 @@
 <div class="wrapper">
     <div class="picture">
-        <img src="assets/reyechka.png">
+        <!-- <img src="assets/reyechka.png"> -->
+        <img [src]="product.image[0]">
     </div>
     <div class="info">
         <div class="info-wrapper">
-            <p>тянкошарф</p>
-            <p>мяу мяу мяу мяу мяу мяу мяу мяу мяу мяу мяу мяу мяу мяу мяу мяу мяу мяу мяу мяу мяу мяу мяу мяу мяу мяу мяу мяу мяу мяу мяу мяу мяу мяу мяу мяу </p>
-            <p>799 грн.</p>
+            <p>{{product.name}}</p>
+            <p>{{product.description}}</p>
+            <p>{{product.price}} грн.</p>
             <button>додати до корзини</button>
         </div>
     </div>
