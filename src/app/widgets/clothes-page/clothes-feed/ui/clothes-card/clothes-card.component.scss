@@ -4,25 +4,27 @@
 
 .card {
     padding: 12px;
-
     display: flex;
     flex-direction: column;
     gap: 12px;
-
     background-color: var(--white-color);
     box-shadow: var(--medium-shadow);
-
     width: 100%;
     height: 100%;
     box-sizing: border-box;
 
     .picture {
         width: 100%;
-        height: 100%;
+        height: 100%; /* Adjust based on your layout needs */
+        box-sizing: border-box;
+        overflow: hidden;
         a {
             width: 100%;
             height: 100%;
-    
+            box-sizing: border-box;
+            // display: flex;
+            // align-items: center;
+            // justify-content: center;
             img {
                 height: 100%;
                 width: 100%;
@@ -36,13 +38,8 @@
         display: flex;
         flex-direction: column;
         gap: 8px;
-
-        .name {
-            font-size: 18px;
-            font-weight: 600;
-        }
-        .price {
-            color: var(--dark-gray-color);
+        .name, .price {
+            text-align: center; /* Optional: Centers the text if needed */
         }
     }
 }
