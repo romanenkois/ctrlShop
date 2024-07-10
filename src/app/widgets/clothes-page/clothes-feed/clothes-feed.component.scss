@@ -16,7 +16,19 @@
             padding: 12px;
 
             width: 40%;
+            min-width: 280px;
             height: 450px;
         }
     }
+}
+
+@media screen and (max-width: 768px) {
+    .wrapper {
+        .clothes-feed {
+            .card {
+                width: 100%;
+            }
+        }
+    }
+    
 }
