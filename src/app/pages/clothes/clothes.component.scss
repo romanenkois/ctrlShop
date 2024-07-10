@@ -37,7 +37,6 @@
 
         .filter {
             min-height: initial;
-            // min-height: 100%;
             padding: 12px 0px 42px;
 
             position: absolute;
@@ -54,17 +53,6 @@
                 top: 12px;
                 right: -60px;
 
-                // button {
-                //     width: 30px;
-                //     height: 30px;
-                    
-                //     padding: 2px;
-                    
-                //     img {
-                //         height: 100%;
-                //         width: 100%;
-                //     }   
-                // }
                 button {
                     padding: 5px;
                     background-color: transparent;
@@ -78,6 +66,7 @@
                     img {
                         width: 28px;
                         height: 28px;
+                        pointer-events: none;
                     }
                 }
                 button:active {

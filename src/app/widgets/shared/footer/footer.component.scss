@@ -89,6 +89,7 @@
     
                     cursor: pointer;
                     user-select: none;
+                    pointer-events: none;
                 }
             }
             div:hover {
