@@ -10,6 +10,13 @@
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 22px;    
+        gap: 22px;
+        
+        .card {
+            padding: 12px;
+
+            width: 40%;
+            height: 450px;
+        }
     }
 }
