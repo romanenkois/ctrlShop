@@ -13,8 +13,8 @@
     --dark-yellow-color: #dbba00;
 
 
-    --font-regular: rubik, Arial, Helvetica, sans-serif;
-    --font-highlight: podkova, monospace;
+    --regular-font: rubik, Arial, Helvetica, sans-serif;
+    --highlight-font: podkova, monospace;
 
     --small-shadow: 2px 2px 4px 4px rgba(28, 23, 23, 0.05);
     --medium-shadow: 4px 4px 8px 8px rgba(28, 23, 23, 0.05);
@@ -34,7 +34,7 @@ body, html {
     padding: 0;
     margin: 0;
 
-    font-family: var(--font-regular);
+    font-family: var(--regular-font);
 }
 
 p {
