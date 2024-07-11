@@ -16,11 +16,13 @@ export class clothesService {
     page?: number,
     sortByName?: string,
     sortByPrice?: string) {
-      return this.http.get(
-        this.BASE_URL + 
-        '/products/' +
-        category
-      )
-  }
 
+    return this.http.get<any>(
+      this.BASE_URL + 
+      '/products/' +
+      category +
+      '/' +
+      page
+    )
+  }
 }

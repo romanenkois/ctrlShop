@@ -19,12 +19,14 @@ export class ClothesFeedComponent implements OnInit {
   hideOutOfStock: InputSignal<string> = input.required();
 
   clothesList: WritableSignal<any> = signal(null);
+  itemsCount: WritableSignal<number> = signal(0);
 
   constructor() {
     effect(() => {
-      this.clothesService.getClothesData(this.category()).subscribe(
+      this.clothesService.getClothesData(this.category(), this.pageNumber()).subscribe(
         response => {
-          this.clothesList.set(response);
+          this.clothesList.set(response['result']);
+          this.itemsCount.set(response['itemsCount']);
           console.log(response);
         }
       )
