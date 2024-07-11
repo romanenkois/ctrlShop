@@ -3,23 +3,34 @@
 // }
 
 .wrapper {
-    padding: 14px 22px;
+    padding: 14px 12px;
 
     .clothes-feed {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: center;
+        // justify-content: center;
         
         .card {
             padding: 12px;
 
-            width: 50%;
+            width: 33%;
             height: 450px;
 
             box-sizing: border-box;
         }
     }
+}
+
+@media screen and (max-width: 1440px) {
+    .wrapper {
+        .clothes-feed {
+            .card {
+                width: 50%;
+            }
+        }
+    }
+    
 }
 
 @media screen and (max-width: 768px) {
