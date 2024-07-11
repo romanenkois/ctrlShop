@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CartComponent } from "./ui/cart/cart.component";
 
 @Component({
@@ -8,7 +8,7 @@ import { CartComponent } from "./ui/cart/cart.component";
     styleUrl: './header.component.scss',
     imports: [CartComponent]
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   redirectTo(url: string) {
     window.location.href = url;
   }
@@ -21,5 +21,17 @@ export class HeaderComponent {
   }
   togleCart() {
     this.cartVisibility = !this.cartVisibility;
+  }
+
+  hideSelections = false;
+  hideCart = false;
+
+  ngOnInit() {
+    if (window.location.href.includes('clothes')) {
+      this.hideSelections = true;
+    }
+    if (window.location.href.includes('cart')) {
+      this.hideCart = true;
+    }
   }
 }

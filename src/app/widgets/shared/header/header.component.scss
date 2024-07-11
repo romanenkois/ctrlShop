@@ -110,6 +110,7 @@
                     flex-direction: column;
                 }
             }
+            
         }
 
         .actions {
@@ -163,6 +164,18 @@
     .cart-widget.visibleCart {
         display: block;
     }
+}
+
+.hideSelections {
+    display: none;
+}
+
+.hideCart {
+    display: none;
+    * {
+        display: none;
+    }
+    
 }
 
 @media screen and (max-width: 768px) {

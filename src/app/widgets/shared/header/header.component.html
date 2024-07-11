@@ -4,7 +4,10 @@
             <div class="logo" (click)="redirectTo('home')">
                 <p>ctrlShop</p>
             </div>
-            <div class="selections">
+            <div
+            class="selections"
+            [class.hideSelections]="hideSelections"
+            >
                 <div
                     class="clothes-button"
                     (click)="toggleClothesMenu()">
@@ -28,7 +31,11 @@
             <div class="buttons">
                 <button
                 (click)="togleCart()"
+                
                 [class.visibleCart]="cartVisibility"
+                [class.hideCart]="hideCart"
+
+                class="hideCart"
                 >
                     <img src="icons/general/cart.svg">
                 </button>
