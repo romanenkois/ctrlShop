@@ -10,6 +10,6 @@ export class productService {
   private BASE_URL: string = 'https://ctrl-shop-back.vercel.app';
 
   getProductData(id: string) {
-    return this.http.get(this.BASE_URL + '/products/' + id)
+    return this.http.get(this.BASE_URL + '/product/' + id)
   }
 }
