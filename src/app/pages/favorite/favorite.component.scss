@@ -1,5 +1,5 @@
 .wrapper {
-    padding: 12px 42px;
+    padding: 14px 42px;
     
     display: flex;
     flex-direction: column;
@@ -39,5 +39,11 @@
                 }
             }
         }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .wrapper {
+        padding: 14px 14px;
     }
 }
