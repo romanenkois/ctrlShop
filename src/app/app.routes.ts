@@ -14,6 +14,10 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/product/product.component')
     },
     {
+        path: 'cart',
+        loadComponent: () => import('./pages/cart/cart.component')
+    },
+    {
         path: 'error404',
         loadComponent: () => import('./pages/error404/error404.component')
     },
