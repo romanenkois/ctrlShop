@@ -18,7 +18,8 @@ export class clothesService {
     sortByPrice?: string) {
       return this.http.get(
         this.BASE_URL + 
-        '/products/'
+        '/products/' +
+        category
       )
   }
 

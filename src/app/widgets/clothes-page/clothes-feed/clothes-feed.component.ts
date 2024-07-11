@@ -1,4 +1,4 @@
-import { Component, inject, input, InputSignal, OnInit, signal, WritableSignal } from '@angular/core';
+import { Component, effect, inject, input, InputSignal, OnInit, signal, WritableSignal } from '@angular/core';
 import { clothesService } from './api/clothes.service';
 import { ClothesCardComponent } from "./ui/clothes-card/clothes-card.component";
 
@@ -20,12 +20,18 @@ export class ClothesFeedComponent implements OnInit {
 
   clothesList: WritableSignal<any> = signal(null);
 
+  constructor() {
+    effect(() => {
+      this.clothesService.getClothesData(this.category()).subscribe(
+        response => {
+          this.clothesList.set(response);
+          console.log(response);
+        }
+      )
+    })
+  }
+
   ngOnInit() {
-    this.clothesService.getClothesData(this.category()).subscribe(
-      response => {
-        this.clothesList.set(response);
-        console.log(response);
-      }
-    )
+    
   }
 }
