@@ -49,11 +49,11 @@
     <div class="actions">
         <div [class.visibleActions]="itemsInCart">
             <p>загальна сума корзини: {{3999}} грн.</p>
-            <button>оплатити</button>
+            <a href="cart"><button>оплатити</button></a>
         </div>
         <div [class.visibleActions]="!itemsInCart">
             <p>в твоїй корзині ще нічо немає</p>
-            <button>перейти до шмоток</button>
+            <a href="clothes"><button>перейти до шмоток</button></a>
         </div>
     </div>
 </div>

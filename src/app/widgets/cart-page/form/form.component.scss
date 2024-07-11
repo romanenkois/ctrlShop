@@ -1,0 +1,14 @@
+.wrapper {
+    padding: 22px 42px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+@media screen and (max-width: 768px) {
+    .wrapper {
+        padding: 22px 12px;
+
+    }
+}
