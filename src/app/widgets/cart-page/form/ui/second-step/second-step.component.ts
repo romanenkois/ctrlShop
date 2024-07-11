@@ -8,5 +8,4 @@ import { Component } from '@angular/core';
   styleUrl: './second-step.component.scss'
 })
 export class SecondStepComponent {
-  hideContent = true;
 }

@@ -3,87 +3,37 @@
 // }
 
 .wrapper {
-    display: flex;
-    flex-direction: column;
-    gap:12px;
-
-    .title {
-        p {
-            font-size: 52px;
-            font-weight: 600;
-            color: var(--light-gray-color);
-        }
-    }
-
-    .content {
+    .cart {
         display: flex;
         flex-direction: column;
-        gap: 22px;
+        gap: 12px;
 
-        .caption {
-            p {
-                font-size: 24px;
-                
-            }
-        }
-        .cart {
+        .item {
             display: flex;
-            flex-direction: column;
-            gap: 12px;
+            gap: 22px;
 
-            .item {
-                display: flex;
-                gap: 22px;
+            background-color: var(--white-color);
 
-                background-color: var(--white-color);
+            .picture {
+                height: 150px;
+                width: 150px;
+                img {
+                    height: 100%;
+                    width: 100%;
 
-                .picture {
-                    height: 150px;
-                    width: 150px;
-                    img {
-                        height: 100%;
-                        width: 100%;
-
-                        object-fit: cover;
-                    }
-                }
-                .info {
-                    p {
-                        font-size: 16px; ////// to be changed
-                    }
+                    object-fit: cover;
                 }
             }
-        }
-
-        .actions {
-            button {
-                padding: 12px 42px;
-
-                border: none;
-                background-color: var(--yellow-color);
-
-                font-weight: 600;
-                font-size: 16px;
-            }
-        }
-    }
-}
-
-
-@media screen and (max-width: 768px) {
-    .wrapper {
-        .title {
-            p {
-                font-size: 36px;
-            }
-        }
-
-        .content {
-            .caption {
+            .info {
                 p {
-                    font-size: 20px;
+                    font-size: 16px; ////// to be changed
                 }
             }
         }
     }
 }
+
+
+// @media screen and (max-width: 768px) {
+    
+// }

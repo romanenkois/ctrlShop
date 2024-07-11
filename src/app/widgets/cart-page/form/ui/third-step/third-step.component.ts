@@ -7,6 +7,5 @@ import { Component } from '@angular/core';
   templateUrl: './third-step.component.html',
   styleUrl: './third-step.component.scss'
 })
-export class ThirdStepComponent {
-  hideContent = true;
+export class ThirdStepComponent {  
 }

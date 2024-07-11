@@ -1,14 +1,86 @@
 <div class="wrapper">
-    <div class="first-step">
-        <app-first-step></app-first-step>
+    <div class="step first-step">
+        <div class="title">
+            <p>перший крок</p>
+        </div>
+    
+        <div class="content">
+            <div class="caption">
+                <p>перевірте вашу корзину</p>
+            </div>
+            <div class="form-wrapper">
+                <app-first-step></app-first-step>
+            </div>
+            <div class="actions">
+                <button
+                (click)="openNextStep()"
+                >далі</button>
+            </div>
+        </div>
+        
     </div>
-    <div class="second-step">
-        <app-second-step></app-second-step>
+    <div class="step second-step">
+        <div class="title">
+            <p>другий крок</p>
+        </div>
+    
+        <div
+        class="content"
+        [class.hideStep]="hideSecondStep">
+            <div class="caption">
+                <p>введіть дані для відправки</p>
+            </div>
+            <div class="form-wrapper">
+                <app-second-step></app-second-step>
+            </div>
+            <div class="actions">
+                <button
+                (click)="openNextStep()"
+                >далі</button>
+            </div>
+        </div>
     </div>
-    <div class="third-step">
-        <app-third-step></app-third-step>
+    <div class="step third-step">
+        <div class="title">
+            <p>третій крок</p>
+        </div>
+    
+        <div
+        class="content"
+        [class.hideStep]="hideThirdStep">
+            <div class="caption">
+                <p>введіть дані оплати</p>
+            </div>
+            <div class="form-wrapper">
+                <app-third-step></app-third-step>
+            </div>
+            <div class="actions">
+                <button
+                (click)="openNextStep()"
+                >далі</button>
+            </div>
+        </div>
     </div>
-    <div class="fourth-step">
-        <app-fourth-step></app-fourth-step>
+    <div class="step fourth-step">
+        <div class="title">
+            <p>четвертий крок</p>
+        </div>
+    
+        <div
+        class="content"
+        [class.hideStep]="hideFourthStep">
+            <div class="caption">
+                <p>ви можете ввести додаткові дані</p>
+            </div>
+            <div class="form-wrapper">
+                <app-fourth-step></app-fourth-step>
+            </div>
+            <div class="actions">
+                <button
+                (click)="createOrder()"
+                >оформити замовлення</button>
+            </div>
+        </div>
+       
     </div>
 </div>
