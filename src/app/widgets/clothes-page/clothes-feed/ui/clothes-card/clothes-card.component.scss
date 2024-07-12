@@ -44,21 +44,22 @@
 
             button {
                 padding: 4px;
-                background-color: transparent;
-                border: none;
-                cursor: pointer;
+                box-sizing: border-box;
                 display: flex;
 
                 background-color: var(--white-color);
 
                 box-shadow: var(--small-reverse-shadow);
                 box-shadow: var(--small-shadow);
-
+                
+                border: none;
                 border-radius: 1px;
+                
+                cursor: pointer;
 
                 img {
-                    width: 24px;
-                    height: 24px;
+                    width: 28px;
+                    height: 28px;
                     pointer-events: none;
                 }
             }
