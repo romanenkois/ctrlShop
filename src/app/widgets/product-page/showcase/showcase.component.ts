@@ -1,6 +1,7 @@
 import { Component, inject, input, InputSignal, OnInit } from '@angular/core';
 import { productService } from './api/product.service';
 import { ActivatedRoute } from '@angular/router';
+import { CartService } from '../../../shared/cart/cart.service';
 
 @Component({
   selector: 'app-showcase',
@@ -12,8 +13,13 @@ import { ActivatedRoute } from '@angular/router';
 export class ShowcaseComponent implements OnInit {
   private productService: productService = inject(productService);
   private router: ActivatedRoute = inject(ActivatedRoute);
+  private cartService: CartService = inject(CartService);
+  
+  product: any = [];
 
-  product: any;
+  addToCart(productId: any) {
+    this.cartService.addToCart(productId);
+  }
 
   ngOnInit() {
     this.router.url.subscribe(url => {

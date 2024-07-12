@@ -1,14 +1,16 @@
 <div class="wrapper">
     <div class="picture">
-        <!-- <img src="assets/reyechka.png"> -->
-        <img [src]="product.image[0]">
+        <img src="assets/reyechka.png">
+        <!-- <img [src]="product.image[0]"> -->
     </div>
     <div class="info">
         <div class="info-wrapper">
             <p>{{product.name}}</p>
             <p>{{product.description}}</p>
             <p>{{product.price}} грн.</p>
-            <button>додати до корзини</button>
+            <button 
+            (click)="addToCart(product._id)"
+            >додати до корзини</button>
         </div>
     </div>
 </div>
