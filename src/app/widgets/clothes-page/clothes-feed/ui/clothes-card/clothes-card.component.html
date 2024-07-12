@@ -4,11 +4,23 @@
             <img [src]="this.product().image[0]"> 
             <!-- <img src="assets/reyechka.png"> -->
         </a>
+        <div class="actions">
+            <button>
+                <img src="icons/general/heart.svg">
+            </button>
+            <button>
+                <img src="icons/general/cart.svg">
+            </button>
+        </div>
     </div>
     <div class="info">
-        <p class="name">{{this.product().name}}</p>
-        <p class="category">{{this.product().category}}</p>
-        <p class="price">{{this.product().price}} грн.</p>
+        <div class="name">
+            <p>{{this.product().name}}</p>
+        </div>
+        <div class="other">
+            <p class="category">{{this.product().category}}</p>
+            <p class="price">{{this.product().price}} грн.</p>
+        </div>
     </div>
 </div>
 
