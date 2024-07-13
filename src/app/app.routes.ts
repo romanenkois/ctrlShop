@@ -18,7 +18,7 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/cart/cart.component')
     },
     {
-        path: 'favorite',
+        path: 'favorites',
         loadComponent: () => import('./pages/favorites/favorites.component')
     },
     {
