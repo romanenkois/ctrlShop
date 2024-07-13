@@ -19,7 +19,7 @@ export const routes: Routes = [
     },
     {
         path: 'favorite',
-        loadComponent: () => import('./pages/favorite/favorite.component')
+        loadComponent: () => import('./pages/favorites/favorites.component')
     },
     {
         path: 'user',
