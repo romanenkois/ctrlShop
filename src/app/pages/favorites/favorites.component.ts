@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { FavoritesListComponent } from "../../widgets/favorites-page/favorites-list/favorites-list.component";
 
 @Component({
   selector: 'app-favorites',
   standalone: true,
-  imports: [],
+  imports: [FavoritesListComponent],
   templateUrl: './favorites.component.html',
   styleUrl: './favorites.component.scss'
 })

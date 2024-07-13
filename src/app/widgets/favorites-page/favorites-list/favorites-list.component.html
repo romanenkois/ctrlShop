@@ -1,0 +1,74 @@
+<div class="wrapper">
+    <div class="title">
+        <p>тут знаходяться ваші збережені шмотки</p>
+        <p>ми сповістимо вас, якщо збережений одяг, якого зараз немає в наявності, з'явиться на складі</p>
+    </div>
+    <div class="favorite-list">
+        @for (item of this.favoritesList(); track $index) {
+            <div class="item">
+                <div class="picture">
+                    <a href="product/{{item.productId}}">
+                        <img src="assets/reyechka.png">
+                    </a>
+                </div>
+                <div class="not-picture">
+                    <div class="info">
+                        <p>прікольній шаааарффффф</p>
+                        <p>є в наявності</p>
+                        <p>599 грн.</p>
+                    </div>
+                    <div class="actions">
+                        <button
+                        (click)="removeFromFavorite(item.productId)"
+                        ><p>видалити</p></button>
+                        <button
+                        (click)="addToCart(item.productId)"
+                        ><p>в корзину</p></button>
+                    </div>
+                </div>
+            </div>
+        }
+        
+    
+        <!-- <div class="item">
+            <div class="picture">
+                <img src="assets/reyechka.png">
+            </div>
+            <div class="info">
+                <p>шааааааааааааааааааарф</p>
+            </div>
+        </div>
+        <div class="item">
+            <div class="picture">
+                <img src="assets/reyechka.png">
+            </div>
+            <div class="info">
+                <p>шааааааааааааааааааарф</p>
+            </div>
+        </div>
+        <div class="item">
+            <div class="picture">
+                <img src="assets/reyechka.png">
+            </div>
+            <div class="info">
+                <p>шааааааааааааааааааарф</p>
+            </div>
+        </div>
+        <div class="item">
+            <div class="picture">
+                <img src="assets/reyechka.png">
+            </div>
+            <div class="info">
+                <p>шааааааааааааааааааарф</p>
+            </div>
+        </div>
+        <div class="item">
+            <div class="picture">
+                <img src="assets/reyechka.png">
+            </div>
+            <div class="info">
+                <p>шааааааааааааааааааарф</p>
+            </div>
+        </div> -->
+    </div>
+</div>

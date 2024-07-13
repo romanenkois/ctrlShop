@@ -13,6 +13,10 @@ export class FavoritesService {
     });
   }
 
+  getFavoritesList() {
+    return this.$favoritesList();
+  }
+
   addToFavorites(productId: string) {
     
     const currentList = this.$favoritesList();
@@ -24,10 +28,25 @@ export class FavoritesService {
       for (let i = 0; i < currentList.length; i++) {
         newList[i] = currentList[i];
       }
-      
+
       newList[currentList.length] = {productId: productId};
       this.$favoritesList.set(newList);
     }
     
+  }
+
+  removeFromFavorites(productId: string) {
+    const currentList = this.$favoritesList();
+    const newList: any = [];
+    let j = 0;
+
+    for (let i = 0; i < currentList.length; i++) {
+      if (currentList[i].productId !== productId) {
+        newList[j] = currentList[i];
+        j++;
+      }
+    }
+
+    this.$favoritesList.set(newList);
   }
 }
