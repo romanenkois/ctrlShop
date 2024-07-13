@@ -124,12 +124,12 @@
 
                 button {
                     padding: 5px;
-                    background-color: transparent;
-                    border: none;
-                    cursor: pointer;
                     display: flex;
 
+                    border: none;
                     background-color: var(--white-color);
+                    
+                    cursor: pointer;
 
                     img {
                         width: 28px;
@@ -139,7 +139,7 @@
                 }
                 button:hover {
                     transition: 0.3s;
-                    box-shadow: var(--small-shadow)
+                    box-shadow: var(--small-shadow);
                 }
                 button:active {
                     transition: 0.2s;
