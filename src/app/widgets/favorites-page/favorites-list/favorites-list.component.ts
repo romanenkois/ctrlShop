@@ -31,6 +31,7 @@ export class FavoritesListComponent implements OnInit {
 
   removeFromFavorite(productID: any) {
     this.favoritesService.removeFromFavorites(productID);
+    location.reload();
   }
 
   ngOnInit() {
