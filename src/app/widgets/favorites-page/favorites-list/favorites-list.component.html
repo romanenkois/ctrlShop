@@ -3,7 +3,9 @@
         <p>тут знаходяться ваші збережені шмотки</p>
         <p>ми сповістимо вас, якщо збережений одяг, якого зараз немає в наявності, з'явиться на складі</p>
     </div>
-    <div class="favorite-list">
+    
+    @if (this.favoritesList().length > 0) {
+        <div class="favorite-list">
         @for (item of this.favoritesList(); track $index) {
             <div class="item">
                 <div class="picture">
@@ -28,47 +30,13 @@
                 </div>
             </div>
         }
-        
+        </div>
+    }
+    @else if (this.favoritesList().length === 0) {
+        <div class="empty-list">
+            <p>ви ще не зберегли жодного товару</p>
+            <a href="clothes"><button>подивитися одяг</button></a>
+        </div>
+    }
     
-        <!-- <div class="item">
-            <div class="picture">
-                <img src="assets/reyechka.png">
-            </div>
-            <div class="info">
-                <p>шааааааааааааааааааарф</p>
-            </div>
-        </div>
-        <div class="item">
-            <div class="picture">
-                <img src="assets/reyechka.png">
-            </div>
-            <div class="info">
-                <p>шааааааааааааааааааарф</p>
-            </div>
-        </div>
-        <div class="item">
-            <div class="picture">
-                <img src="assets/reyechka.png">
-            </div>
-            <div class="info">
-                <p>шааааааааааааааааааарф</p>
-            </div>
-        </div>
-        <div class="item">
-            <div class="picture">
-                <img src="assets/reyechka.png">
-            </div>
-            <div class="info">
-                <p>шааааааааааааааааааарф</p>
-            </div>
-        </div>
-        <div class="item">
-            <div class="picture">
-                <img src="assets/reyechka.png">
-            </div>
-            <div class="info">
-                <p>шааааааааааааааааааарф</p>
-            </div>
-        </div> -->
-    </div>
 </div>

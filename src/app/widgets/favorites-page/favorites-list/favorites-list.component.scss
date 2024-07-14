@@ -12,8 +12,8 @@
     .title {
         p:first-child {
             font-size: 24px;
-            font-weight: 300;
-            font-family: var(--highlight-font);
+            font-weight: 600;
+            // font-family: var(--highlight-font);
         }
         p:last-child {
             font-size: 18px;
@@ -110,6 +110,40 @@
                         background-color: var(--yellow-hover-color);
                     }
                 }
+            }
+        }
+    }
+
+    .empty-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        p {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        a {
+            button {
+                width: max-content;
+                padding: 8px 12px;                       
+                
+                font-size: 16px;
+                font-weight: 600;
+                color: var(--black-color);
+                background-color: var(--yellow-color);
+
+                border: none;
+                cursor: pointer;
+            }
+            button:hover {
+                transition: 0.3s;
+                box-shadow: var(--medium-shadow);
+            }
+            button:active {
+                transition: 0.2s;
+                transform: scale(0.95);
             }
         }
     }

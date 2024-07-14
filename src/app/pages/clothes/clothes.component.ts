@@ -28,8 +28,12 @@ export default class ClothesComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      this.category.set(params['category']);
-      this.pageNumber.set(params['pageNumber']);
+      if (params['category']) {
+        this.category.set(params['category']);
+      }
+      if (params['pageNumber']) {
+        this.pageNumber.set(params['pageNumber']);
+      }
       this.sortByName.set(params['sortByName']);
       this.sortByPrice.set(params['sortByPrice']);
       this.hideOutOfStock.set(params['hideOutOfStock']);
