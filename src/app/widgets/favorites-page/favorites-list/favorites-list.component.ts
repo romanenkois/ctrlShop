@@ -18,6 +18,7 @@ export class FavoritesListComponent {
   constructor() {
     effect(() => {
       this.favoritesList = this.favoritesService.$favoritesList;
+      console.log(this.favoritesService.getFavoritesData());
     })
   }
 

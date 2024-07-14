@@ -9,7 +9,7 @@ export class CartService {
   
   constructor() {
     effect(() => {
-      console.log(this.$cart());
+      // console.log(this.$cart());
       localStorage.setItem('cart', JSON.stringify(this.$cart()));
     })
   }

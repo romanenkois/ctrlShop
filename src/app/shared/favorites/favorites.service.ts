@@ -1,9 +1,12 @@
-import { effect, Injectable, signal, WritableSignal } from '@angular/core';
+import { effect, inject, Injectable, signal, WritableSignal } from '@angular/core';
+import { FavoritesApiService } from './api/favorites-api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FavoritesService {
+  private dataService: FavoritesApiService = inject(FavoritesApiService);
+
   $favoritesList: WritableSignal<any> = signal(JSON.parse(localStorage.getItem('favorites') || '[]'));
 
   constructor() {
@@ -15,6 +18,10 @@ export class FavoritesService {
 
   getFavoritesList() {
     return this.$favoritesList();
+  }
+
+  getFavoritesData() {
+    return this.dataService.getProducts(this.$favoritesList());
   }
 
   addToFavorites(productId: string) {

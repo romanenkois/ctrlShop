@@ -8,8 +8,6 @@ export class clothesService {
   private http: HttpClient = inject(HttpClient);
 
   private BASE_URL: string = 'https://ctrl-shop-back.vercel.app';
-  // private BASE_URL: string = 'localhost:3000/'
-
 
   getClothesData(
     category: string,
