@@ -1,6 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -8,9 +7,35 @@ import { catchError, map } from 'rxjs/operators';
 export class FavoritesApiService {
   private http: HttpClient = inject(HttpClient);
 
-  private BASE_URL: string = 'https://ctrl-shop-back.vercel.app';
+  private BASE_URL: string = 'https://ctrl-shop-back.vercel.app/';
 
   getProducts(productIds: any): any {
-    return 1;
+    let result: any = [];
+
+    for (let i = 0; i < productIds.length; i++) {
+      let id = productIds[i].productId;
+      console.log(id);
+
+      this.http.get(this.BASE_URL + 'product/' + id).subscribe((res) => {
+        result.push(res);
+      });
+      
+      // const res = this.http.get(this.BASE_URL + 'product/' + id);
+      // result.push(res);
+    }
+
+    console.log(result);
+    return result;
   }
+
+  // getProducts(productIds: any): any {
+  //   const headers = new HttpHeaders({
+  //     'Content-Type': 'application/json'
+  //   });
+
+  //   return this.http.request<any>('GET', this.BASE_URL, {
+  //     headers: headers,
+  //     body: productIds
+  //   });
+  // }
 }

@@ -1,4 +1,4 @@
-import { Component, effect, inject, signal, WritableSignal } from '@angular/core';
+import { Component, effect, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { FavoritesService } from '../../../shared/favorites/favorites.service';
 import { CartService } from '../../../shared/cart/cart.service';
 
@@ -9,16 +9,19 @@ import { CartService } from '../../../shared/cart/cart.service';
   templateUrl: './favorites-list.component.html',
   styleUrl: './favorites-list.component.scss'
 })
-export class FavoritesListComponent {
+export class FavoritesListComponent implements OnInit {
   private favoritesService: FavoritesService = inject(FavoritesService)
   private cartService: CartService = inject(CartService);
 
-  favoritesList: WritableSignal<any> = signal([]);
+  // favoritesList: WritableSignal<any> = signal([]);
+  favoritesData: WritableSignal<any> = signal([]);
 
   constructor() {
     effect(() => {
-      this.favoritesList = this.favoritesService.$favoritesList;
-      console.log(this.favoritesService.getFavoritesData());
+      // this.favoritesList = this.favoritesService.$favoritesList;
+      // this.favoritesData = this.favoritesService.getFavoritesData();
+
+      console.log(this.favoritesData());
     })
   }
 
@@ -28,5 +31,9 @@ export class FavoritesListComponent {
 
   removeFromFavorite(productID: any) {
     this.favoritesService.removeFromFavorites(productID);
+  }
+
+  ngOnInit() {
+    this.favoritesData.set(this.favoritesService.getFavoritesData());
   }
 }

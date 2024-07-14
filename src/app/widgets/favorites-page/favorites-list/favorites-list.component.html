@@ -4,27 +4,28 @@
         <p>ми сповістимо вас, якщо збережений одяг, якого зараз немає в наявності, з'явиться на складі</p>
     </div>
     
-    @if (this.favoritesList().length > 0) {
+    @if (this.favoritesData().length > 0) {
+
         <div class="favorite-list">
-        @for (item of this.favoritesList(); track $index) {
+        @for (item of this.favoritesData(); track $index) {
             <div class="item">
                 <div class="picture">
-                    <a href="product/{{item.productId}}">
-                        <img src="assets/reyechka.png">
+                    <a href="product/{{item._id}}">
+                        <img [src]="item.image[0]">
                     </a>
                 </div>
                 <div class="not-picture">
                     <div class="info">
-                        <p>прікольній шаааарффффф</p>
+                        <p>{{item.name}}</p>
                         <p>є в наявності</p>
-                        <p>599 грн.</p>
+                        <p>{{item.price}} грн.</p>
                     </div>
                     <div class="actions">
                         <button
-                        (click)="removeFromFavorite(item.productId)"
+                        (click)="removeFromFavorite(item._id)"
                         ><p>видалити</p></button>
                         <button
-                        (click)="addToCart(item.productId)"
+                        (click)="addToCart(item._id)"
                         ><p>в корзину</p></button>
                     </div>
                 </div>
@@ -32,7 +33,7 @@
         }
         </div>
     }
-    @else if (this.favoritesList().length === 0) {
+    @if (this.favoritesData().length === 0) {
         <div class="empty-list">
             <p>ви ще не зберегли жодного товару</p>
             <a href="clothes"><button>подивитися одяг</button></a>
