@@ -127,7 +127,7 @@
         a {
             button {
                 width: max-content;
-                padding: 8px 12px;                       
+                padding: 12px 28px;                       
                 
                 font-size: 16px;
                 font-weight: 600;
@@ -172,6 +172,14 @@
                         flex-direction: row;
                         justify-content: center;
                     }
+                }
+            }
+        }
+
+        .empty-list {
+            a {
+                button {
+                    width: 100%;
                 }
             }
         }
