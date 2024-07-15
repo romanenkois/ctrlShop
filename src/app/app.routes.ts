@@ -26,6 +26,22 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/user/user.component')
     },
     {
+        path: 'about-us',
+        loadComponent: () => import('./pages/about-us/about-us.component')
+    },
+    {
+        path: 'return-policy',
+        loadComponent: () => import('./pages/return-policy/return-policy.component')
+    },
+    {
+        path: 'contacts',
+        loadComponent: () => import('./pages/contacts/contacts.component')
+    },
+    {
+        path: 'privacy-policy',
+        loadComponent: () => import('./pages/privacy-policy/privacy-policy.component')
+    },
+    {
         path: 'error404',
         loadComponent: () => import('./pages/error404/error404.component')
     },
