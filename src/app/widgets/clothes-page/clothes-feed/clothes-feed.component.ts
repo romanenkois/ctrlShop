@@ -27,7 +27,7 @@ export class ClothesFeedComponent implements OnInit {
         response => {
           this.clothesList.set(response['result']);
           this.itemsCount.set(response['itemsCount']);
-          console.log(response);
+          // console.log(response);
         }
       )
     })

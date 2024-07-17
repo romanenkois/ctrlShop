@@ -1,7 +1,8 @@
-import { Component, inject, input, InputSignal, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { productService } from './api/product.service';
 import { ActivatedRoute } from '@angular/router';
 import { CartService } from '../../../shared/cart/cart.service';
+
 
 @Component({
   selector: 'app-showcase',
@@ -26,6 +27,9 @@ export class ShowcaseComponent implements OnInit {
       this.productService.getProductData(url[1].path).subscribe(
         response => {
           this.product = response;
+        },
+        error => {
+          window.location.href = 'error404';
         }
       )
     });
