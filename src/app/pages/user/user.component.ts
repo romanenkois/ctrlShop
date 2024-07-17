@@ -8,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './user.component.scss'
 })
 export default class UserComponent {
-
+  clearCache() {
+    localStorage.clear();
+    sessionStorage.clear();
+    window.location.reload();
+  }
 }

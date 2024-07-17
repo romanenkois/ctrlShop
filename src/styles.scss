@@ -51,3 +51,27 @@ a {
 button {
     cursor: pointer;
 }
+
+// Premade styles
+
+// Text button
+.text-button {
+    width: max-content;
+    padding: 12px 28px;                       
+    
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--black-color);
+    background-color: var(--yellow-color);
+
+    border: none;
+    cursor: pointer;
+}
+.text-button:hover {
+    transition: 0.3s;
+    box-shadow: var(--medium-shadow);
+}
+.text-button:active {
+    transition: 0.2s;
+    transform: scale(0.95);
+}
