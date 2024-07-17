@@ -5,12 +5,23 @@
     </div>
     <div class="info">
         <div class="info-wrapper">
-            <p>{{product.name}}</p>
-            <p>{{product.description}}</p>
-            <p>{{product.price}} грн.</p>
-            <button 
-            (click)="addToCart(product._id)"
-            >додати до корзини</button>
+            <div class="data">
+                <p>{{product.name}}</p>
+                <p>{{product.description}}</p>
+                <p>{{product.price}} грн.</p>
+            </div>
+            <div class="actions">
+                <button (click)="addToCart(product._id, cartButton)">
+                    <p #cartButton>додати до корзини</p>
+                </button>
+
+                <button
+                #favoritesButton
+                (click)="addToFavorites(product._id, favoritesButton)"
+                >
+                    <img src="icons/general/heart.svg">
+                </button>
+            </div>
         </div>
     </div>
 </div>

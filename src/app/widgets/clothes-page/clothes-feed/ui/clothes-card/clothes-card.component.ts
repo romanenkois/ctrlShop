@@ -19,7 +19,8 @@ export class ClothesCardComponent {
 
   addToCart(productId: any, button: HTMLElement) {
     this.cartService.addToCart(productId);
-  
+
+    // Apply slyles to the button after action has been indeed done
     this.renderer.setStyle(button, 'transition', 'background 0.5s ease-out');
     this.renderer.setStyle(button, 'background', 'var(--yellow-color)');
     setTimeout(() => {
@@ -30,6 +31,7 @@ export class ClothesCardComponent {
   addToFavorites(productId: any, button: HTMLElement) {
     this.favoritesService.addToFavorites(productId);
 
+    // Apply slyles to the button after action has been indeed done
     this.renderer.setStyle(button, 'transition', 'background 0.5s ease-out');
     this.renderer.setStyle(button, 'background', 'var(--yellow-color)');
     setTimeout(() => {
