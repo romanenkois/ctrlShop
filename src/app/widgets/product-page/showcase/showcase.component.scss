@@ -1,6 +1,6 @@
-* {
-    outline: 1px red solid;
-}
+// * {
+//     outline: 1px red solid;
+// }
 
 .wrapper {
     padding: 14px 0px;
@@ -41,7 +41,6 @@
             width: 100%;
             box-sizing: border-box;
 
-            outline: 2px solid blue;
             .data {
                 display: flex;
                 flex-direction: column;
@@ -73,8 +72,6 @@
 
                 width: 100%;
                 box-sizing: border-box;
-
-                outline: 4px solid green;
 
                 .cartButton {
                     width: 250px;
