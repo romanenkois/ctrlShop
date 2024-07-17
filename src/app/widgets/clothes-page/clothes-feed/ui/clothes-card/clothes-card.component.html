@@ -1,8 +1,8 @@
 <div class="card">
     <div class="picture">
         <a href="product/{{this.product()._id}}">
-            <!-- <img [src]="this.product().image[0]">  -->
-            <img src="assets/reyechka.png">
+            <img [src]="this.product().image[0]"> 
+            <!-- <img src="assets/reyechka.png"> -->
         </a>
         <div class="actions">
             <button (click)="addToFavorites(this.product()._id)">
@@ -23,5 +23,3 @@
         </div>
     </div>
 </div>
-
-<!-- http://localhost:4200/product/668c09a5c0e1256172e557a9 -->
