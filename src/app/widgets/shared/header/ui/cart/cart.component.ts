@@ -13,7 +13,7 @@ export class CartComponent implements OnInit {
 
   itemsInCart = false;
 
-  cartList: any = this.cartService.$cart();
+  cartList: any = this.cartService.$cart;
 
   ngOnInit() {
     console.log(this.cartService.$cart.length);

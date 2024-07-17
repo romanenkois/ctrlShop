@@ -1,21 +1,15 @@
 import { effect, Injectable, signal, WritableSignal } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
 
-  $cart: WritableSignal<any> = signal(JSON.parse(localStorage.getItem('cart') || '[]'));
-  
-  constructor() {
-    effect(() => {
-      // this doesn't seem to work as intended
-      localStorage.setItem('cart', JSON.stringify(this.$cart()));
-    })
-  }
+  $cart: any = new BehaviorSubject(JSON.parse(localStorage.getItem('cart') || '[]'));
 
   addToCart(productId: string) {
-    const currentList = this.$cart();
+    const currentList: any = this.$cart.value;
     const productInCart = currentList.find((product: any) => product.productId === productId);
 
     if (!productInCart) {
@@ -29,8 +23,9 @@ export class CartService {
         productId: productId,
         productQuantity: 1
       };
-      this.$cart.set(newList);
-      console.log(this.$cart())
+
+      this.$cart = [];
+      this.$cart = newList;
     } else {
       const newList: any = [];
 
@@ -41,19 +36,21 @@ export class CartService {
         }
       }
 
-      this.$cart.set(currentList);
+      this.$cart = [];
+      this.$cart = newList;
     }
-    localStorage.setItem('cart', JSON.stringify(this.$cart()));
+    
+    localStorage.setItem('cart', JSON.stringify(this.$cart));
   }
 
   removeFromCart(productId: string) {
-    const currentList = this.$cart();
+    const currentList = this.$cart;
     const productInCart = currentList.find((product: any) => product.productId === productId);
 
     if (!productInCart) {
       console.log('ERROR ', productId, ' couldn`t be found in cart')
     } else {
-      
+      console.log('REMOVING ', productId, ' from cart')
     }
   }
 }
