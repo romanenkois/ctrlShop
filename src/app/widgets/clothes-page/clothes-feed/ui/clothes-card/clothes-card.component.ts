@@ -17,9 +17,31 @@ export class ClothesCardComponent {
 
   addToCart(productId: any) {
     this.cartService.addToCart(productId);
+
+    setTimeout(() => {
+      const cartButton = document.getElementById('cart-button');
+      if (cartButton) {
+        cartButton.style.transition = 'background 0.5s ease-out';
+        cartButton.style.background = 'var(--yellow-color)';
+        setTimeout(() => {
+          cartButton.style.background = '';
+        }, 1000);
+      }
+    }, 0);
   }
 
   addToFavorites(productId: any) {
     this.favoritesService.addToFavorites(productId);
+
+    setTimeout(() => {
+      const cartButton = document.getElementById('favorites-button');
+      if (cartButton) {
+        cartButton.style.transition = 'background 0.5s ease-out';
+        cartButton.style.background = 'var(--yellow-color)';
+        setTimeout(() => {
+          cartButton.style.background = '';
+        }, 1000);
+      }
+    }, 0);
   }
 }

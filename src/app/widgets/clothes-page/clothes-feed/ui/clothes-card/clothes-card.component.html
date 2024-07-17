@@ -5,10 +5,10 @@
             <!-- <img src="assets/reyechka.png"> -->
         </a>
         <div class="actions">
-            <button (click)="addToFavorites(this.product()._id)">
+            <button id="favorites-button" (click)="addToFavorites(this.product()._id)">
                 <img src="icons/general/heart.svg">
             </button>
-            <button (click)="addToCart(this.product()._id)">
+            <button id="cart-button" (click)="addToCart(this.product()._id)">
                 <img src="icons/general/cart.svg">
             </button>
         </div>
