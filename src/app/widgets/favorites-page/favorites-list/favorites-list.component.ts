@@ -37,8 +37,8 @@ export class FavoritesListComponent implements OnInit {
     // this.favoritesData.set(this.favoritesService.getFavoritesData());
     this.favoritesService.$favoritesList.subscribe((favorites: any) => {
       this.favoritesList = favorites;
-      this.favoritesData = favorites;
-      console.log(favorites);
+
+      this.favoritesData = this.favoritesService.getFavoritesData(favorites);
     });
   }
 }

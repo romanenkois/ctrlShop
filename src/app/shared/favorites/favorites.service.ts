@@ -19,24 +19,20 @@ export class FavoritesService {
     this.favoritesObject.next(newList);
     localStorage.setItem('favorites', JSON.stringify(newList));
   }
-
-  getFavoritesList() {
-    return this.favoritesObject.value;
-  }
   
-  getFavoritesData() {
+  getFavoritesData(favorites: any) {
     let result: any = [];
 
-    // for (let i = 0; i < this.favoritesObject.length; i++) {
-    //   let id: any = this.favoritesObject[i].productId;
-    //   console.log(id);
+    for (let i = 0; i < favorites.length; i++) {
+      let id: any = favorites[i].productId;
+      console.log(id);
     
-    //   this.http.get(this.BASE_URL + 'product/' + id).subscribe((res) => {
-    //     result.push(res);
-    //   });
-    // }
+      this.http.get(this.BASE_URL + 'product/' + id).subscribe((res) => {
+        result.push(res);
+      });
+    }
 
-    // console.log(result);
+    console.log(result);
     return result;
   }
 
