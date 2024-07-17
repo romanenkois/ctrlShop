@@ -188,6 +188,9 @@
         
         .cart-widget {
             width: 100%;
+            min-width: initial;
+
+            box-sizing: border-box;
         }
     }
 }

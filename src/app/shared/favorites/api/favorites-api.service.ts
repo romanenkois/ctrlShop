@@ -19,23 +19,9 @@ export class FavoritesApiService {
       this.http.get(this.BASE_URL + 'product/' + id).subscribe((res) => {
         result.push(res);
       });
-      
-      // const res = this.http.get(this.BASE_URL + 'product/' + id);
-      // result.push(res);
     }
 
     console.log(result);
     return result;
   }
-
-  // getProducts(productIds: any): any {
-  //   const headers = new HttpHeaders({
-  //     'Content-Type': 'application/json'
-  //   });
-
-  //   return this.http.request<any>('GET', this.BASE_URL, {
-  //     headers: headers,
-  //     body: productIds
-  //   });
-  // }
 }

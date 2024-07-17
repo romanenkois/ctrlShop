@@ -4,46 +4,21 @@
     </div>
     
     <div class="content">
-        <div class="item">
-            <div class="picture">
-                <img src="assets/reyechka.png">
-            </div>
-            <div class="info">
-                <div class="name">
-                    <p>хікошарф</p>
+        @for (item of cartList; track $index) {
+            <div class="item">
+                <div class="picture">
+                    <img src="assets/reyechka.png">
                 </div>
-                <div class="price">
-                    <p>2999 грн.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="item">
-            <div class="picture">
-                <img src="assets/reyechka.png">
-            </div>
-            <div class="info">
-                <div class="name">
-                    <p>хікошарф</p>
-                </div>
-                <div class="price">
-                    <p>2999 грн.</p>
+                <div class="info">
+                    <div class="name">
+                        <p>хікошарф</p>
+                    </div>
+                    <div class="price">
+                        <p>2999 грн.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="item">
-            <div class="picture">
-                <img src="assets/reyechka.png">
-            </div>
-            <div class="info">
-                <div class="name">
-                    <p>хікошарф</p>
-                </div>
-                <div class="price">
-                    <p>2999 грн.</p>
-                </div>
-            </div>
-        </div>
+        }
     </div>
 
     <div class="actions">
