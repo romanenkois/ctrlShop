@@ -1,4 +1,4 @@
-import { Component, inject, input, Input, InputSignal } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, inject, input, Input, InputSignal, Renderer2 } from '@angular/core';
 import { CartService } from '../../../../../shared/cart/cart.service';
 import { FavoritesService } from '../../../../../shared/favorites/favorites.service';
 
@@ -10,38 +10,30 @@ import { FavoritesService } from '../../../../../shared/favorites/favorites.serv
   styleUrl: './clothes-card.component.scss'
 })
 export class ClothesCardComponent {
+  private renderer: Renderer2 = inject(Renderer2);
+
   private cartService: CartService = inject(CartService);
   private favoritesService: FavoritesService = inject(FavoritesService); 
 
   product: InputSignal<any> = input.required();
 
-  addToCart(productId: any) {
+  addToCart(productId: any, button: HTMLElement) {
     this.cartService.addToCart(productId);
-
+  
+    this.renderer.setStyle(button, 'transition', 'background 0.5s ease-out');
+    this.renderer.setStyle(button, 'background', 'var(--yellow-color)');
     setTimeout(() => {
-      const cartButton = document.getElementById('cart-button');
-      if (cartButton) {
-        cartButton.style.transition = 'background 0.5s ease-out';
-        cartButton.style.background = 'var(--yellow-color)';
-        setTimeout(() => {
-          cartButton.style.background = '';
-        }, 1000);
-      }
-    }, 0);
+      this.renderer.setStyle(button, 'background', '');
+    }, 1000);
   }
 
-  addToFavorites(productId: any) {
+  addToFavorites(productId: any, button: HTMLElement) {
     this.favoritesService.addToFavorites(productId);
 
+    this.renderer.setStyle(button, 'transition', 'background 0.5s ease-out');
+    this.renderer.setStyle(button, 'background', 'var(--yellow-color)');
     setTimeout(() => {
-      const cartButton = document.getElementById('favorites-button');
-      if (cartButton) {
-        cartButton.style.transition = 'background 0.5s ease-out';
-        cartButton.style.background = 'var(--yellow-color)';
-        setTimeout(() => {
-          cartButton.style.background = '';
-        }, 1000);
-      }
-    }, 0);
+      this.renderer.setStyle(button, 'background', '');
+    }, 1000);
   }
 }
