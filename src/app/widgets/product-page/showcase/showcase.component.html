@@ -11,12 +11,15 @@
                 <p>{{product.price}} грн.</p>
             </div>
             <div class="actions">
-                <button (click)="addToCart(product._id, cartButton)">
+                <button
+                class="cartButton"
+                (click)="addToCart(product._id, cartButton)">
                     <p #cartButton>додати до корзини</p>
                 </button>
 
                 <button
                 #favoritesButton
+                class="favoritesButton"
                 (click)="addToFavorites(product._id, favoritesButton)"
                 >
                     <img src="icons/general/heart.svg">

@@ -4,7 +4,6 @@ import { ActivatedRoute } from '@angular/router';
 import { CartService } from '../../../shared/cart/cart.service';
 import { FavoritesService } from '../../../shared/favorites/favorites.service';
 
-
 @Component({
   selector: 'app-showcase',
   standalone: true,
