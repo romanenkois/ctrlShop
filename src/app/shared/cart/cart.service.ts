@@ -1,4 +1,4 @@
-import { effect, Injectable, signal, WritableSignal } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -6,51 +6,41 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class CartService {
 
-  $cart: any = new BehaviorSubject(JSON.parse(localStorage.getItem('cart') || '[]'));
+  private cartSubject = new BehaviorSubject<any[]>(JSON.parse(localStorage.getItem('cart') || '[]'));
+  $cart = this.cartSubject.asObservable();
 
   addToCart(productId: string) {
-    const currentList: any = this.$cart.value;
+    const currentList = this.cartSubject.value;
     const productInCart = currentList.find((product: any) => product.productId === productId);
 
     if (!productInCart) {
-      const newList: any = [];
-
-      for (let i = 0; i < currentList.length; i++) {
-        newList[i] = currentList[i];
-      }
-
-      newList[currentList.length] = {
-        productId: productId,
-        productQuantity: 1
-      };
-
-      this.$cart = [];
-      this.$cart = newList;
+      const newList = [...currentList, { productId, productQuantity: 1 }];
+      this.updateCart(newList);
     } else {
-      const newList: any = [];
-
-      for (let i = 0; i < currentList.length; i++) {
-        newList[i] = currentList[i];
-        if (currentList[i].productId === productId) {
-          newList[i].productQuantity += 1;
-        }
-      }
-
-      this.$cart = [];
-      this.$cart = newList;
+      const newList = currentList.map((product: any) =>
+        product.productId === productId
+          ? { ...product, productQuantity: product.productQuantity + 1 }
+          : product
+      );
+      this.updateCart(newList);
     }
-    
-    localStorage.setItem('cart', JSON.stringify(this.$cart));
   }
 
   removeFromCart(productId: string) {
-    const currentList = this.$cart;
+    const currentList = this.cartSubject.value;
     const productInCart = currentList.find((product: any) => product.productId === productId);
 
     if (!productInCart) {
-      console.log('ERROR ', productId, ' couldn`t be found in cart')
+      console.log('ERROR', productId, 'couldn`t be found in cart');
     } else {
-      console.log('REMOVING ', productId, ' from cart')
+      const newList = currentList.filter((product: any) => product.productId !== productId);
+      this.updateCart(newList);
+      console.log('REMOVING', productId, 'from cart');
     }
+  }
+
+  private updateCart(newList: any[]) {
+    this.cartSubject.next(newList);
+    localStorage.setItem('cart', JSON.stringify(newList));
   }
 }

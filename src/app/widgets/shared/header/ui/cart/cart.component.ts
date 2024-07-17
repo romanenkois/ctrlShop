@@ -13,17 +13,12 @@ export class CartComponent implements OnInit {
 
   itemsInCart = false;
 
-  cartList: any = this.cartService.$cart;
+  cartList: any = [];
 
   ngOnInit() {
-    console.log(this.cartService.$cart.length);
-
-    if (this.cartService.$cart.length > 0) {
-      this.itemsInCart = true;
-    }
-
-    this.cartList.subscribe((cart: any) => {
+    this.cartService.$cart.subscribe((cart: any) => {
       this.cartList = cart;
-    })
+      this.itemsInCart = cart.length > 0;
+    });
   }
 }
