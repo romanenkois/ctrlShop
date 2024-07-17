@@ -13,17 +13,17 @@ export class FavoritesListComponent implements OnInit {
   private favoritesService: FavoritesService = inject(FavoritesService)
   private cartService: CartService = inject(CartService);
 
-  // favoritesList: WritableSignal<any> = signal([]);
-  favoritesData: WritableSignal<any> = signal([]);
+  favoritesList: any = [];
+  favoritesData: any = [];
 
-  constructor() {
-    effect(() => {
-      // this.favoritesList = this.favoritesService.$favoritesList;
-      // this.favoritesData = this.favoritesService.getFavoritesData();
+  // constructor() {
+  //   effect(() => {
+  //     // this.favoritesList = this.favoritesService.$favoritesList;
+  //     // this.favoritesData = this.favoritesService.getFavoritesData();
 
-      console.log(this.favoritesData());
-    })
-  }
+  //     console.log(this.favoritesData());
+  //   })
+  // }
 
   addToCart(productId: any) {
     this.cartService.addToCart(productId);
@@ -31,10 +31,14 @@ export class FavoritesListComponent implements OnInit {
 
   removeFromFavorite(productID: any) {
     this.favoritesService.removeFromFavorites(productID);
-    location.reload();
   }
 
   ngOnInit() {
-    this.favoritesData.set(this.favoritesService.getFavoritesData());
+    // this.favoritesData.set(this.favoritesService.getFavoritesData());
+    this.favoritesService.$favoritesList.subscribe((favorites: any) => {
+      this.favoritesList = favorites;
+      this.favoritesData = favorites;
+      console.log(favorites);
+    });
   }
 }
