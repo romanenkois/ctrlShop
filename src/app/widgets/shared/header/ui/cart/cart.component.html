@@ -23,13 +23,13 @@
                         </div>
                     </div>
                     <div class="item-actions">
-                        <button>
+                        <button (click)="addToCart(item._id)">
                             <img src="icons/general/plus.svg">
                         </button>
-                        <button>
+                        <button (click)="removeOneFromCart(item._id)">
                             <img src="icons/general/dash.svg">
                         </button>
-                        <button>
+                        <button (click)="removeFromCart(item._id)">
                             <img src="icons/general/delete.svg">
                         </button>
                     </div>

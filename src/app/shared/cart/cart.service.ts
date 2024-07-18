@@ -50,6 +50,33 @@ export class CartService {
     }
   }
 
+  removeOneFromCart(productId: string) {
+    console.log(productId);
+    const currentList = this.cartObject.value;
+    const productInCart = currentList.find((product: any) => product.productId === productId);
+
+    if (!productInCart) {
+      console.log('ERROR', productId, 'couldn`t be found in cart');
+    } else {
+      let newList: any[] = [];
+
+      currentList.forEach(product => {
+        console.log(product);
+        if (product.productId === productId) {
+          if (product.productQuantity > 1) {
+            console.log('REMOVING ONE', productId, 'from cart');
+            newList.push({ ...product, productQuantity: product.productQuantity - 1 });
+            console.log({ ...product, productQuantity: product.productQuantity - 1 });
+          }          
+        } else {
+          newList.push(product);
+        }
+      });
+
+      this.updateCart(newList);
+    }    
+  }
+
   getCartData(cartData: any) {
     const currentList = cartData;
     let result: any = [];

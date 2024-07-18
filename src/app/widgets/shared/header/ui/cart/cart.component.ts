@@ -14,6 +14,18 @@ export class CartComponent implements OnInit {
   itemsInCart = true;
   cartList: any = [];
 
+  addToCart(item: any) {
+    this.cartService.addToCart(item);
+  }
+
+  removeFromCart(item: any) {
+    this.cartService.removeFromCart(item);
+  }
+
+  removeOneFromCart(item: any) {
+    this.cartService.removeOneFromCart(item);
+  }
+
   getTotal(items: any): number {
     return this.cartService.getTotalCartPrice(items);
   }
@@ -21,7 +33,8 @@ export class CartComponent implements OnInit {
   ngOnInit() {
     this.cartService.$cart.subscribe((cart: any) => {
       this.itemsInCart = cart.length > 0;
-      this.cartList = this.cartService.getCartData(cart);          
+      this.cartList = this.cartService.getCartData(cart);
+      console.log(this.cartList);    
     }); 
   }
 }
