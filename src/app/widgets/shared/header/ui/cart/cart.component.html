@@ -7,14 +7,18 @@
         @for (item of cartList; track $index) {
             <div class="item">
                 <div class="picture">
-                    <img src="assets/reyechka.png">
+                    <!-- <img src="assets/reyechka.png"> -->
+                    <img [src]="item.image[0]">
                 </div>
                 <div class="info">
                     <div class="name">
-                        <p>хікошарф</p>
+                        <p>{{item.name}}</p>
                     </div>
                     <div class="price">
-                        <p>2999 грн.</p>
+                        <p>{{item.price}} грн.</p>
+                    </div>
+                    <div class="quantity">
+                        <p>{{item.quantity}} шт.</p>
                     </div>
                 </div>
             </div>

@@ -47,17 +47,33 @@
             }
 
             .info {
+                padding: 8px 0px;
+
                 display: flex;
                 flex-wrap: wrap;
-                gap: 4px;
+                flex-direction: column;
+                gap: 6px;
 
                 div {
                     p {
-                        font-size: 16px;
-                        font-weight: 400;
+                        font-size: 18px;
+                        font-weight: 600;
                     }
                 }
-                
+                .price {
+                    p {
+                        font-size: 16px;
+                        font-weight: 400;
+                        color: var(--dark-gray-color);
+                    }
+                }
+                .quantity {
+                    p {
+                        font-size: 16px;
+                        font-weight: 400;
+                        color: var(--dark-gray-color);
+                    }
+                }                
             }
         }
     }

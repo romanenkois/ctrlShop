@@ -1,13 +1,19 @@
-import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
+  private http: HttpClient = inject(HttpClient);
+
+  private BASE_URL: string = 'https://ctrl-shop-back.vercel.app/';
 
   private cartObject = new BehaviorSubject<any[]>(JSON.parse(localStorage.getItem('cart') || '[]'));
   $cart = this.cartObject.asObservable();
+
+  // cartData = new BehaviorSubject<any[]>([]);
 
   private updateCart(newList: any[]) {
     this.cartObject.next(newList);
@@ -42,5 +48,24 @@ export class CartService {
       this.updateCart(newList);
       console.log('REMOVING', productId, 'from cart');
     }
+  }
+
+  getCartData() {
+    const currentList = this.cartObject.value;
+    let result: any = [];
+
+    for (let i = 0; i < currentList.length; i++) {
+      let id: any = currentList[i].productId;
+      console.log(id);
+
+      this.http.get(this.BASE_URL + 'product/' + id).subscribe((res: any) => {
+        console.log(res);
+        res['quantity'] = currentList[i].productQuantity;
+        console.log(res);
+        result.push(res);
+      });
+    }
+
+    return result;
   }
 }

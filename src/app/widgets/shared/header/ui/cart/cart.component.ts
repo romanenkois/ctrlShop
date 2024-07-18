@@ -11,14 +11,16 @@ import { CartService } from '../../../../../shared/cart/cart.service';
 export class CartComponent implements OnInit {
   private cartService: CartService = inject(CartService);
 
-  itemsInCart = false;
+  itemsInCart = true;
 
   cartList: any = [];
 
   ngOnInit() {
     this.cartService.$cart.subscribe((cart: any) => {
-      this.cartList = cart;
+      // this.cartList = cart;
       this.itemsInCart = cart.length > 0;
+      this.cartList = this.cartService.getCartData();
     });
+    
   }
 }
