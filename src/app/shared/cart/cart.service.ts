@@ -70,11 +70,9 @@ export class CartService {
     let total = 0;
     
     for (let i = 0; i < cartData.length; i++) {
-      console.log('PRICE', cartData[i].price, 'QUANTITY', cartData[i].quantity);
       total += cartData[i].price * cartData[i].quantity;
     }
 
-    console.log('TOTAL PRICE', total);
     return total;
   }
 }
