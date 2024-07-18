@@ -50,22 +50,31 @@ export class CartService {
     }
   }
 
-  getCartData() {
-    const currentList = this.cartObject.value;
+  getCartData(cartData: any) {
+    const currentList = cartData;
     let result: any = [];
 
     for (let i = 0; i < currentList.length; i++) {
       let id: any = currentList[i].productId;
-      console.log(id);
 
       this.http.get(this.BASE_URL + 'product/' + id).subscribe((res: any) => {
-        console.log(res);
         res['quantity'] = currentList[i].productQuantity;
-        console.log(res);
         result.push(res);
       });
     }
 
     return result;
+  }
+
+  getTotalCartPrice(cartData: any): number {
+    let total = 0;
+    
+    for (let i = 0; i < cartData.length; i++) {
+      console.log('PRICE', cartData[i].price, 'QUANTITY', cartData[i].quantity);
+      total += cartData[i].price * cartData[i].quantity;
+    }
+
+    console.log('TOTAL PRICE', total);
+    return total;
   }
 }

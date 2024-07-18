@@ -4,7 +4,7 @@
     </div>
     
     <div class="content">
-        @for (item of cartList; track $index) {
+        @for (item of this.cartList; track $index) {
             <div class="item">
                 <div class="picture">
                     <!-- <img src="assets/reyechka.png"> -->
@@ -27,7 +27,7 @@
 
     <div class="actions">
         <div [class.visibleActions]="itemsInCart">
-            <p>загальна сума корзини: {{3999}} грн.</p>
+            <p>загальна сума корзини: {{this.getTotal(this.cartList)}} грн.</p>
             <a href="cart"><button>оплатити</button></a>
         </div>
         <div [class.visibleActions]="!itemsInCart">
