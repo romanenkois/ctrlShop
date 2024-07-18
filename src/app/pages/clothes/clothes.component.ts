@@ -21,9 +21,11 @@ export default class ClothesComponent implements OnInit {
   hideOutOfStock: WritableSignal<string> = signal('');
 
   filterVisibility = false;
+  togleButtonImage = 'icons/general/chevron_right.svg';
 
   toggleFilter() {
     this.filterVisibility = !this.filterVisibility;
+    this.togleButtonImage = this.filterVisibility ? 'icons/general/chevron_left.svg' : 'icons/general/chevron_right.svg';
   }
 
   ngOnInit(): void {

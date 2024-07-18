@@ -31,6 +31,7 @@
         .item {
             display: flex;
             flex-direction: row;
+            justify-content:space-between;
             gap: 18px;
 
             .picture {
@@ -74,6 +75,38 @@
                         color: var(--dark-gray-color);
                     }
                 }                
+            }
+
+            .item-actions {
+                padding: 8px 0px;
+
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+
+                button {
+                    padding: 5px;
+                    display: flex;
+
+                    border: none;
+                    background-color: var(--white-color);
+                    
+                    cursor: pointer;
+
+                    img {
+                        width: 28px;
+                        height: 28px;
+                        pointer-events: none;
+                    }
+                }
+                button:hover {
+                    transition: 0.3s;
+                    box-shadow: var(--small-shadow);
+                }
+                button:active {
+                    transition: 0.2s;
+                    transform: scale(0.9);
+                }
             }
         }
     }

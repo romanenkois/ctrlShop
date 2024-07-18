@@ -4,7 +4,7 @@
             <p>за назвою</p>
         </div>
         <div class="icon">
-            <img src="icons/general/heart.svg"/>
+            <img [src]="sortByNameImage"/>
         </div>
     </div>
     <div class="sorting" (click)="sortingByPrice()">
@@ -12,7 +12,7 @@
             <p>за ціною</p>
         </div>
         <div class="icon">
-            <img src="icons/general/heart.svg"/>
+            <img [src]="sortByPriceImage"/>
         </div>
     </div>
     <div class="sorting" (click)="visibilityOutOfStock()">
@@ -20,7 +20,7 @@
             <p>показувати відсутні товари</p>
         </div>
         <div class="icon">
-            <img src="icons/general/heart.svg"/>
+            <img [src]="hideOutOfStockImage"/>
         </div>
     </div>
 </div>
