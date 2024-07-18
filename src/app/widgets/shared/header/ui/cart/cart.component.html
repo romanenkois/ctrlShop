@@ -10,28 +10,30 @@
                     <!-- <img src="assets/reyechka.png"> -->
                     <img [src]="item.image[0]">
                 </div>
-                <div class="info">
-                    <div class="name">
-                        <p>{{item.name}}</p>
+                <div class="other">
+                    <div class="info">
+                        <div class="name">
+                            <p>{{item.name}}</p>
+                        </div>
+                        <div class="price">
+                            <p>{{item.price}} грн.</p>
+                        </div>
+                        <div class="quantity">
+                            <p>{{item.quantity}} шт.</p>
+                        </div>
                     </div>
-                    <div class="price">
-                        <p>{{item.price}} грн.</p>
+                    <div class="item-actions">
+                        <button>
+                            <img src="icons/general/plus.svg">
+                        </button>
+                        <button>
+                            <img src="icons/general/dash.svg">
+                        </button>
+                        <button>
+                            <img src="icons/general/delete.svg">
+                        </button>
                     </div>
-                    <div class="quantity">
-                        <p>{{item.quantity}} шт.</p>
-                    </div>
-                </div>
-                <div class="item-actions">
-                    <button>
-                        <img src="icons/general/heart.svg">
-                    </button>
-                    <button>
-                        <img src="icons/general/heart.svg">
-                    </button>
-                    <button>
-                        <img src="icons/general/heart.svg">
-                    </button>
-                </div>
+                </div>   
             </div>
         }
     </div>
