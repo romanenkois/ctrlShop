@@ -16,9 +16,9 @@
                 (click)="openNextStep()"
                 >далі</button>
             </div>
-        </div>
-        
+        </div>    
     </div>
+
     <div class="step second-step">
         <div class="title">
             <p>другий крок</p>
@@ -28,7 +28,7 @@
         class="content"
         [class.hideStep]="hideSecondStep">
             <div class="caption">
-                <p>введіть дані для відправки</p>
+                <p>введіть контактну інформацію</p>
             </div>
             <div class="form-wrapper">
                 <app-second-step></app-second-step>
@@ -40,6 +40,7 @@
             </div>
         </div>
     </div>
+
     <div class="step third-step">
         <div class="title">
             <p>третій крок</p>
@@ -49,7 +50,7 @@
         class="content"
         [class.hideStep]="hideThirdStep">
             <div class="caption">
-                <p>введіть дані оплати</p>
+                <p>введіть дані доставки</p>
             </div>
             <div class="form-wrapper">
                 <app-third-step></app-third-step>
@@ -61,6 +62,7 @@
             </div>
         </div>
     </div>
+
     <div class="step fourth-step">
         <div class="title">
             <p>четвертий крок</p>
@@ -70,10 +72,32 @@
         class="content"
         [class.hideStep]="hideFourthStep">
             <div class="caption">
-                <p>ви можете ввести додаткові дані</p>
+                <p>введіть дані оплати</p>
             </div>
             <div class="form-wrapper">
                 <app-fourth-step></app-fourth-step>
+            </div>
+            <div class="actions">
+                <button
+                (click)="openNextStep()"
+                >далі</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="step fourth-step">
+        <div class="title">
+            <p>п'ятий крок</p>
+        </div>
+    
+        <div
+        class="content"
+        [class.hideStep]="hideFifthStep">
+            <div class="caption">
+                <p>ви можете ввести додаткові дані</p>
+            </div>
+            <div class="form-wrapper">
+                <app-fifth-step></app-fifth-step>
             </div>
             <div class="actions">
                 <button
@@ -81,6 +105,5 @@
                 >оформити замовлення</button>
             </div>
         </div>
-       
     </div>
 </div>
