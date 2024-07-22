@@ -35,6 +35,9 @@ export class CartService {
       );
       this.updateCart(newList);
     }
+
+    console.log(this.cartObject.value);
+    console.log(JSON.stringify(this.cartObject.value));
   }
 
   removeFromCart(productId: string) {
@@ -101,5 +104,9 @@ export class CartService {
     }
 
     return total;
+  }
+
+  clerCart() {
+    this.updateCart([]);
   }
 }
