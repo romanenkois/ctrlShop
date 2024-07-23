@@ -8,12 +8,12 @@
             <div class="caption">
                 <p>перевірте вашу корзину</p>
             </div>
-            <div class="form-wrapper">
+            <div class="cart-wrapper">
                 <app-first-step></app-first-step>
             </div>
             <div class="actions">
                 <button
-                (click)="openNextStep()"
+                (click)="openNextStep(2)"
                 >далі</button>
             </div>
         </div>    
@@ -30,23 +30,23 @@
             <div class="caption">
                 <p>введіть контактну інформацію</p>
             </div>
-            <div class="form-wrapper">
+            <form class="form-wrapper">
                 <div class="form">
                     <p>і'мя та прізвище</p>
-                    <input type="text" name="name" required>
+                    <input type="text" name="name" formControlName="inputName">
                 </div>
                 <div class="form">
                     <p>емейл</p>
-                    <input type="text" name="name" required>
+                    <input type="text" name="email" formControlName="inputName">
                 </div>
                 <div class="form">
                     <p>номер телефону</p>
-                    <input type="text" name="name" required>
+                    <input type="text" name="phone" formControlName="inputName">
                 </div>
-            </div>
+            </form>
             <div class="actions">
                 <button
-                (click)="openNextStep()"
+                (click)="openNextStep(3)"
                 >далі</button>
             </div>
         </div>
@@ -63,7 +63,7 @@
             <div class="caption">
                 <p>введіть дані доставки</p>
             </div>
-            <div class="form-wrapper">
+            <form class="form-wrapper">
                 <div class="form">
                     <p>країна</p>
                     <input type="text" name="name" required>
@@ -76,10 +76,10 @@
                     <p>номер відділення</p>
                     <input type="text" name="name" required>
                 </div>
-            </div>
+            </form>
             <div class="actions">
                 <button
-                (click)="openNextStep()"
+                (click)="openNextStep(4)"
                 >далі</button>
             </div>
         </div>
@@ -96,10 +96,10 @@
             <div class="caption">
                 <p>введіть дані оплати</p>
             </div>
-            <div class="form-wrapper">
+            <form class="form-wrapper">
                 <div class="form">
                     <p>номер картки</p>
-                    <input type="text" name="name" required>
+                    <input type="text" name="name">
                 </div>
                 <div class="form">
                     <p>термін дії</p>
@@ -109,10 +109,10 @@
                     <p>cvc код</p>
                     <input type="text" name="name" required>
                 </div>
-            </div>
+            </form>
             <div class="actions">
                 <button
-                (click)="openNextStep()"
+                (click)="openNextStep(5)"
                 >далі</button>
             </div>
         </div>
@@ -129,7 +129,7 @@
             <div class="caption">
                 <p>ви можете ввести додаткові дані</p>
             </div>
-            <div class="form-wrapper">
+            <form class="form-wrapper">
                 <div class="form">
                     <p>промокод</p>
                     <input type="text" name="name" required>
@@ -138,7 +138,7 @@
                     <p>коментар/побажання</p>
                     <input type="text" name="name" required>
                 </div>
-            </div>
+            </form>
             <div class="actions">
                 <button
                 (click)="createOrder()"

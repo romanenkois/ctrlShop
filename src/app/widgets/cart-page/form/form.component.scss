@@ -12,22 +12,22 @@
     .step {
         display: flex;
         flex-direction: column;
-
-        padding: 12px;
-
         gap:12px;
+
+        padding: 12px;        
 
         background-color: var(--white-color);
         box-shadow: var(--medium-shadow);
 
         .title {
             p {
+                padding-left: 24px;
+
                 font-size: 52px;
                 font-weight: 600;
                 color: var(--light-gray-color);
 
                 user-select: none;
-                // cursor: pointer;
             }
         }
 
@@ -38,15 +38,19 @@
 
             .caption {
                 p {
+                    padding-left: 24px;
+
                     font-size: 24px;
                     font-weight: 600;
-                    
                 }
+            }
+            .cart-wrapper {
+                padding: 0px 24px;
             }
             .form-wrapper {
                 display: flex;
                 flex-direction: row;
-                justify-content: space-between;
+                justify-content: space-around;
                 flex-wrap: wrap;
 
                 .form {
@@ -81,8 +85,9 @@
                     }
                 }
             }
-
             .actions {
+                padding: 0px 24px;
+
                 button {
                     padding: 12px 42px;
 
@@ -141,24 +146,37 @@
 
 @media screen and (max-width: 768px) {
     .wrapper {
+        padding: 12px 12px;
+        gap: 12px;
+
         .step {
             .title {
                 p {
+                    padding-left: 0px;
+
                     font-size: 36px;
                 }
             }
             .content {
                 .caption {
                     p {
+                        padding-left: 0px;
+
                         font-size: 20px;
                     }
+                }
+                .cart-wrapper {
+                    padding: 0px;
                 }
                 .form-wrapper {
                     .form {
                         padding: 12px 0px;
                     }
                 }
-            }
+                .actions {
+                    padding: 0px;
+                }
+            }            
         }
     }
 }
