@@ -92,6 +92,10 @@ export class CartService {
     return result;
   }
 
+  getSimpleCartData() {
+    return this.cartObject.value;
+  }
+
   getTotalCartPrice(cartData: any): number {
     let total = 0;
     

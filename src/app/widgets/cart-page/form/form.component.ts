@@ -29,6 +29,8 @@ export class FormComponent implements OnInit {
   completedThirdStep: WritableSignal<boolean> = signal(false);
   completedFourthStep: WritableSignal<boolean> = signal(!false);
 
+  notSendingOrder: WritableSignal<boolean> = signal(true);
+
   customerData: FormGroup = this.fb.group({
     inputName: ['', Validators.required],
     inputEmail: ['', Validators.required],
@@ -82,32 +84,21 @@ export class FormComponent implements OnInit {
     this.completedFirstStep()
     && this.completedSecondStep()
     && this.completedThirdStep()
-    && this.completedFourthStep()){
+    && this.completedFourthStep()
+    && this.notSendingOrder()) {
 
-      // console.log(new Date().toISOString())
-      // console.log('1')
-      // console.log(this.cartService.$cart)
-      // console.log(typeof this.cartService.$cart)
-      // console.log(this.customerData.value)
-      // console.log(typeof this.customerData.value)
-      // console.log(this.deliveryData.value)
-      // console.log(typeof this.deliveryData.value)
-      // console.log(this.extraData.value)
-      // console.log(typeof this.extraData.value)
+      this.notSendingOrder.set(false);
 
-      this.cartService.$cart.subscribe((cart) => {
-        this.uploadService.uploadOrder(
-          new Date().toISOString(),
-          '1',
-          cart,
-          this.customerData.value,
-          this.deliveryData.value,
-          this.extraData.value ? this.extraData.value : {}
-        ).subscribe(() => {
-          window.alert('замовлення успішно відправлено\nдякуємо!!');
-          this.cartService.clerCart();
-          window.location.href = '/';
-        });
+      this.uploadService.uploadOrder(
+        new Date().toISOString(),
+        '1',
+        this.cartService.getSimpleCartData(),
+        this.customerData.value,
+        this.deliveryData.value,
+        this.extraData.value ? this.extraData.value : {}
+      ).subscribe(() => {
+        this.cartService.clerCart();
+        window.location.href = '/';
       });
 
     } else if (!this.completedFirstStep()) {
