@@ -13,6 +13,7 @@
             </div>
             <div class="actions">
                 <button
+                [class.]
                 (click)="openNextStep(2)"
                 >далі</button>
             </div>
@@ -116,6 +117,9 @@
                     <input class="disabled-form" type="text" name="cardCVC" formControlName="inputCardCVC">
                 </div>
             </form>
+            <div class="payment" style="display: none;">
+                <button>йоооу оплатити</button>
+            </div>
             <div class="actions">
                 <button
                 (click)="openNextStep(5)"

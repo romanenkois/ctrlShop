@@ -1,36 +1,42 @@
 <div class="wrapper">
-    <div class="content">
-        @for (item of this.cartList; track $index) {
-            <div class="item">
-                <div class="picture">
-                    <!-- <img src="assets/reyechka.png"> -->
-                    <img [src]="item.image[0]">
+    @if (this.cartList.length) {
+        <div class="content">
+            @for (item of this.cartList; track $index) {
+                <div class="item">
+                    <div class="picture">
+                        <!-- <img src="assets/reyechka.png"> -->
+                        <img [src]="item.image[0]">
+                    </div>
+                    <div class="other">
+                        <div class="info">
+                            <div class="name">
+                                <p>{{item.name}}</p>
+                            </div>
+                            <div class="price">
+                                <p>{{item.price * item.quantity}} ({{item.price}}) грн.</p>
+                            </div>
+                            <div class="quantity">
+                                <p>{{item.quantity}} шт.</p>
+                            </div>
+                        </div>
+                        <div class="item-actions">
+                            <button (click)="addToCart(item._id)">
+                                <img src="icons/general/plus.svg">
+                            </button>
+                            <button (click)="removeOneFromCart(item._id)">
+                                <img src="icons/general/dash.svg">
+                            </button>
+                            <button (click)="removeFromCart(item._id)">
+                                <img src="icons/general/delete.svg">
+                            </button>
+                        </div>
+                    </div>   
                 </div>
-                <div class="other">
-                    <div class="info">
-                        <div class="name">
-                            <p>{{item.name}}</p>
-                        </div>
-                        <div class="price">
-                            <p>{{item.price * item.quantity}} ({{item.price}}) грн.</p>
-                        </div>
-                        <div class="quantity">
-                            <p>{{item.quantity}} шт.</p>
-                        </div>
-                    </div>
-                    <div class="item-actions">
-                        <button (click)="addToCart(item._id)">
-                            <img src="icons/general/plus.svg">
-                        </button>
-                        <button (click)="removeOneFromCart(item._id)">
-                            <img src="icons/general/dash.svg">
-                        </button>
-                        <button (click)="removeFromCart(item._id)">
-                            <img src="icons/general/delete.svg">
-                        </button>
-                    </div>
-                </div>   
-            </div>
-        }
-    </div>
+            }
+        </div>
+    } @else {
+        <div class="empty-cart">
+            <p>схоже ваш кошик порожній</p>
+        </div>
+    }
 </div>

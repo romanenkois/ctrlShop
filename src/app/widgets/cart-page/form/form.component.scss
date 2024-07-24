@@ -110,6 +110,13 @@
                     transition: 0.2s;
                     transform: scale(0.95);
                 }
+                .inactive-button {
+                    background-color: var(--gray-color);
+                    cursor: not-allowed;
+                }
+                .inactive-button:hover {
+                    background-color: initial;
+                }
             }
         }
 
