@@ -30,18 +30,20 @@
             <div class="caption">
                 <p>введіть контактну інформацію</p>
             </div>
-            <form class="form-wrapper">
+            <form
+            class="form-wrapper"
+            [formGroup]="customerData">
                 <div class="form">
                     <p>і'мя та прізвище</p>
                     <input type="text" name="name" formControlName="inputName">
                 </div>
                 <div class="form">
                     <p>емейл</p>
-                    <input type="text" name="email" formControlName="inputName">
+                    <input type="text" name="email" formControlName="inputEmail">
                 </div>
                 <div class="form">
                     <p>номер телефону</p>
-                    <input type="text" name="phone" formControlName="inputName">
+                    <input type="text" name="phone" formControlName="inputPhone">
                 </div>
             </form>
             <div class="actions">
@@ -63,18 +65,20 @@
             <div class="caption">
                 <p>введіть дані доставки</p>
             </div>
-            <form class="form-wrapper">
+            <form
+            class="form-wrapper"
+            [formGroup]="deliveryData">
                 <div class="form">
                     <p>країна</p>
-                    <input type="text" name="name" required>
+                    <input type="text" name="country" formControlName="inputCountry">
                 </div>
                 <div class="form">
                     <p>місто</p>
-                    <input type="text" name="name" required>
+                    <input type="text" name="city" formControlName="inputCity">
                 </div>
                 <div class="form">
                     <p>номер відділення</p>
-                    <input type="text" name="name" required>
+                    <input type="text" name="postOffice" formControlName="inputPostOffice">
                 </div>
             </form>
             <div class="actions">
@@ -96,18 +100,20 @@
             <div class="caption">
                 <p>введіть дані оплати</p>
             </div>
-            <form class="form-wrapper">
+            <form 
+            class="form-wrapper"
+            [formGroup]="paymentData">
                 <div class="form">
                     <p>номер картки</p>
-                    <input type="text" name="name">
+                    <input class="disabled-form" type="text" name="cardNumber" formControlName="inputCardNumber">
                 </div>
                 <div class="form">
                     <p>термін дії</p>
-                    <input type="text" name="name" required>
+                    <input class="disabled-form" type="text" name="cardExpiration" formControlName="inputCardExpiration" >
                 </div>
                 <div class="form">
                     <p>cvc код</p>
-                    <input type="text" name="name" required>
+                    <input class="disabled-form" type="text" name="cardCVC" formControlName="inputCardCVC">
                 </div>
             </form>
             <div class="actions">
@@ -129,14 +135,16 @@
             <div class="caption">
                 <p>ви можете ввести додаткові дані</p>
             </div>
-            <form class="form-wrapper">
+            <form
+            class="form-wrapper"
+            [formGroup]="extraData">
                 <div class="form">
                     <p>промокод</p>
-                    <input type="text" name="name" required>
+                    <input type="text" name="promoCode" formControlName="inputPromoCode">
                 </div>
                 <div class="form">
                     <p>коментар/побажання</p>
-                    <input type="text" name="name" required>
+                    <input type="text" name="comment" formControlName="inputComment">
                 </div>
             </form>
             <div class="actions">
