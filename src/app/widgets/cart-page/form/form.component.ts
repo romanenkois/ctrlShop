@@ -97,6 +97,7 @@ export class FormComponent implements OnInit {
         this.deliveryData.value,
         this.extraData.value ? this.extraData.value : {}
       ).subscribe(() => {
+        window.alert('ваше замовлення прийнято\nдякуємо!!');
         this.cartService.clerCart();
         window.location.href = '/';
       });
