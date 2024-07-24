@@ -36,8 +36,8 @@ export class CartService {
       this.updateCart(newList);
     }
 
-    console.log(this.cartObject.value);
-    console.log(JSON.stringify(this.cartObject.value));
+    // console.log(this.cartObject.value);
+    // console.log(JSON.stringify(this.cartObject.value));
   }
 
   removeFromCart(productId: string) {
@@ -49,12 +49,11 @@ export class CartService {
     } else {
       const newList = currentList.filter((product: any) => product.productId !== productId);
       this.updateCart(newList);
-      console.log('REMOVING', productId, 'from cart');
     }
   }
 
   removeOneFromCart(productId: string) {
-    console.log(productId);
+    // console.log(productId);
     const currentList = this.cartObject.value;
     const productInCart = currentList.find((product: any) => product.productId === productId);
 
@@ -64,12 +63,9 @@ export class CartService {
       let newList: any[] = [];
 
       currentList.forEach(product => {
-        console.log(product);
         if (product.productId === productId) {
           if (product.productQuantity > 1) {
-            console.log('REMOVING ONE', productId, 'from cart');
             newList.push({ ...product, productQuantity: product.productQuantity - 1 });
-            console.log({ ...product, productQuantity: product.productQuantity - 1 });
           }          
         } else {
           newList.push(product);

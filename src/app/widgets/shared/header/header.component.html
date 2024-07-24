@@ -46,9 +46,11 @@
         </div>
     </div>
 
-    <div
-    class="cart-widget"
-    [class.visibleCart]="cartVisibility">
-        <app-cart></app-cart>
-    </div>
+    @if (!hideCart) {
+        <div
+        class="cart-widget"
+        [class.visibleCart]="cartVisibility">
+            <app-cart></app-cart>
+        </div>
+    }
 </div>
