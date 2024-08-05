@@ -82,9 +82,14 @@
         gap: 8px;
         
         .name {
-            p {
-                text-align: center;
-                font-size: 20px;
+            a {
+                p {
+                    text-align: center;
+                    font-size: 20px;
+                }
+                p:hover {
+                    text-decoration: underline;
+                }
             }
         }
         .other {

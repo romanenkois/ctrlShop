@@ -70,6 +70,13 @@
                             
                         }
                     }
+                    .name {
+                        a {
+                            p:hover {
+                                text-decoration: underline;
+                            }
+                        }
+                    }
                     .price {
                         p {
                             font-size: 16px;

@@ -15,7 +15,9 @@
     </div>
     <div class="info">
         <div class="name">
-            <p>{{this.product().name}}</p>
+            <a href="product/{{this.product()._id}}">
+                <p>{{this.product().name}}</p>
+            </a>
         </div>
         <div class="other">
             <p class="category">{{this.product().category}}</p>

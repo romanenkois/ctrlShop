@@ -10,7 +10,9 @@
                     <div class="other">
                         <div class="info">
                             <div class="name">
-                                <p>{{item.name}}</p>
+                                <a href="products/{{item._id}}">
+                                    <p>{{item.name}}</p>
+                                </a>
                             </div>
                             <div class="price">
                                 <p>{{item.price * item.quantity}} ({{item.price}}) грн.</p>

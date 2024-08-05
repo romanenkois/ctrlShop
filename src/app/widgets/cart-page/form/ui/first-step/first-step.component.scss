@@ -46,8 +46,14 @@
                     div {
                         p {
                             font-size: 18px;
-                            font-weight: 600;
-                            
+                            font-weight: 600;       
+                        }
+                    }
+                    .name {
+                        a {
+                            p:hover {
+                                text-decoration: underline;
+                            }
                         }
                     }
                     .price {
