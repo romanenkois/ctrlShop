@@ -6,12 +6,8 @@ import { FooterComponent } from "./widgets/shared/footer/footer.component";
 @Component({
     selector: 'app-root',
     standalone: true,
-    template: `
-    <app-header></app-header>
-    <router-outlet />
-    <app-footer></app-footer>
-  `,
-    styles: [],
+    templateUrl: 'app.component.html',
+    styleUrl: 'app.component.scss',
     imports: [RouterOutlet, HeaderComponent, FooterComponent]
 })
 export class AppComponent {
