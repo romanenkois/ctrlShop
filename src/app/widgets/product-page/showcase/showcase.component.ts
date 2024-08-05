@@ -3,11 +3,12 @@ import { productService } from './api/product.service';
 import { ActivatedRoute } from '@angular/router';
 import { CartService } from '../../../shared/cart/cart.service';
 import { FavoritesService } from '../../../shared/favorites/favorites.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-showcase',
   standalone: true,
-  imports: [],
+  imports: [ CommonModule ],
   templateUrl: './showcase.component.html',
   styleUrl: './showcase.component.scss'
 })
