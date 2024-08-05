@@ -51,8 +51,26 @@
                     }
                     .name {
                         a {
-                            p:hover {
-                                text-decoration: underline;
+                            p {
+                                position: relative;
+                                width: max-content;
+                            }
+                            p::before {
+                                content: "";
+                                display: block;
+                                position: absolute;
+                    
+                                width: 0%;
+                                height: 3px;
+                                
+                                bottom: -4px;
+                                
+                                background-color: var(--yellow-color);
+                                transition: 0.2s ease-in-out;
+                            }
+                            p:hover::before {
+                                width: 100%;
+                                transition: 0.2s ease-in-out;
                             }
                         }
                     }
