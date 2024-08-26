@@ -4,11 +4,12 @@ import { ActivatedRoute } from '@angular/router';
 import { CartService } from '../../../shared/cart/cart.service';
 import { FavoritesService } from '../../../shared/favorites/favorites.service';
 import { CommonModule } from '@angular/common';
+import { TranslateTypePipe } from "../../../shared/pipes/translate-type.pipe";
 
 @Component({
   selector: 'app-showcase',
   standalone: true,
-  imports: [ CommonModule ],
+  imports: [CommonModule, TranslateTypePipe],
   templateUrl: './showcase.component.html',
   styleUrl: './showcase.component.scss'
 })

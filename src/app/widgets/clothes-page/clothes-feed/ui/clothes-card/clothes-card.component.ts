@@ -1,11 +1,12 @@
 import { ChangeDetectorRef, Component, ElementRef, inject, input, Input, InputSignal, Renderer2 } from '@angular/core';
 import { CartService } from '../../../../../shared/cart/cart.service';
 import { FavoritesService } from '../../../../../shared/favorites/favorites.service';
+import { TranslateTypePipe } from "../../../../../shared/pipes/translate-type.pipe";
 
 @Component({
   selector: 'app-clothes-card',
   standalone: true,
-  imports: [],
+  imports: [TranslateTypePipe],
   templateUrl: './clothes-card.component.html',
   styleUrl: './clothes-card.component.scss'
 })

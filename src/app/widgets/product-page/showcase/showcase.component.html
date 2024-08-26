@@ -6,9 +6,10 @@
     <div class="info">
         <div class="info-wrapper">
             <div class="data">
-                <p>{{product.name}}</p>
-                <p>{{product.description}}</p>
-                <p>{{product.price}} грн.</p>
+                <p>{{ product.name }}</p>
+                <p>{{ product.category | translateType }}</p>
+                <p>{{ product.description }}</p>
+                <p>{{ product.price }} грн.</p>
             </div>
             <div class="actions">
                 <button
