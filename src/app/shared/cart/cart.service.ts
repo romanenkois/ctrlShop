@@ -10,103 +10,102 @@ export class CartService {
 
   private BASE_URL: string = 'https://ctrl-shop-back.vercel.app/';
 
-  private cartObject = new BehaviorSubject<any[]>(JSON.parse(localStorage.getItem('cart') || '[]'));
+  private cartObject = new BehaviorSubject<any[]>([]);
   $cart = this.cartObject.asObservable();
 
-  // cartData = new BehaviorSubject<any[]>([]);
+  private simplifyCart(cartData: any): Array<any> {
+    let simpleCart: Array<any> = [];
 
-  private updateCart(newList: any[]) {
-    this.cartObject.next(newList);
-    localStorage.setItem('cart', JSON.stringify(newList));
-  }
-
-  addToCart(productId: string) {
-    const currentList = this.cartObject.value;
-    const productInCart = currentList.find((product: any) => product.productId === productId);
-
-    if (!productInCart) {
-      const newList = [...currentList, { productId, productQuantity: 1 }];
-      this.updateCart(newList);
-    } else {
-      const newList = currentList.map((product: any) =>
-        product.productId === productId
-          ? { ...product, productQuantity: product.productQuantity + 1 }
-          : product
-      );
-      this.updateCart(newList);
+    for (let index = 0; index < cartData.length; index++) {
+      simpleCart.push({
+        "productId": cartData[index]._id,
+        "productQuantity": cartData[index].quantity
+      })
     }
 
-    // console.log(this.cartObject.value);
-    // console.log(JSON.stringify(this.cartObject.value));
+    return simpleCart;
   }
 
-  removeFromCart(productId: string) {
-    const currentList = this.cartObject.value;
-    const productInCart = currentList.find((product: any) => product.productId === productId);
-
-    if (!productInCart) {
-      console.log('ERROR', productId, 'couldn`t be found in cart');
+  private updateLS() {
+    let cartToSave;
+    if (this.cartObject.value.length === 0) {
+      cartToSave = this.simplifyCart(this.cartObject);
     } else {
-      const newList = currentList.filter((product: any) => product.productId !== productId);
-      this.updateCart(newList);
+      cartToSave = [];
     }
+    
+    localStorage.setItem('cart', JSON.stringify(cartToSave));
   }
 
-  removeOneFromCart(productId: string) {
-    // console.log(productId);
-    const currentList = this.cartObject.value;
-    const productInCart = currentList.find((product: any) => product.productId === productId);
+  private updateCart(newList: any) {
 
-    if (!productInCart) {
-      console.log('ERROR', productId, 'couldn`t be found in cart');
-    } else {
-      let newList: any[] = [];
-
-      currentList.forEach(product => {
-        if (product.productId === productId) {
-          if (product.productQuantity > 1) {
-            newList.push({ ...product, productQuantity: product.productQuantity - 1 });
-          }          
-        } else {
-          newList.push(product);
-        }
-      });
-
-      this.updateCart(newList);
-    }    
   }
 
-  getCartData(cartData: any) {
-    const currentList = cartData;
+  private loadCartData() {
+    let currentList;
     let result: any = [];
 
-    for (let i = 0; i < currentList.length; i++) {
-      let id: any = currentList[i].productId;
+    // loading data from ls, catch for corupted data in ls
+    try {
+      currentList = JSON.parse(localStorage.getItem('cart') || '[]');
+    } catch (e) {
+      console.log('LS parsing error\n', e)
+      currentList = [];
+    }    
 
+    // if local storage cart is empty, so will be the cart object,
+    // so we just skip other part of loading
+    if (currentList.length === 0) {
+      this.cartObject.next(result);
+      return;
+    }
+
+    for (let i = 0; i < currentList.length; i++) {
+      let id = currentList[i].productId
       this.http.get(this.BASE_URL + 'product/' + id).subscribe((res: any) => {
-        res['quantity'] = currentList[i].productQuantity;
         result.push(res);
       });
     }
+  }
 
-    return result;
+  constructor() {
+    this.loadCartData();
+  }
+
+  addToCart(productId: string) {
+    let productInCart = this.cartObject.value.find((product: any) => product._id === productId);
+  
+    if (productInCart) {
+      
+      console.log("1")
+    } else {
+
+      console.log(this.cartObject.value)
+      console.log('2')
+    }
+  }
+
+  removeFromCart(productId: string) {
+
+  }
+
+  removeOneFromCart(productId: string) {
+
+  }  
+
+  getTotalCartPrice(cart?: any) {
+    return 1;
+  }
+
+  getCartData(cart: any) {
+    return [];
   }
 
   getSimpleCartData() {
-    return this.cartObject.value;
+    return [];
   }
 
-  getTotalCartPrice(cartData: any): number {
-    let total = 0;
-    
-    for (let i = 0; i < cartData.length; i++) {
-      total += cartData[i].price * cartData[i].quantity;
-    }
+  clearCart() {
 
-    return total;
-  }
-
-  clerCart() {
-    this.updateCart([]);
   }
 }
