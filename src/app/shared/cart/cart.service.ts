@@ -13,7 +13,7 @@ export class CartService {
   private cartObject = new BehaviorSubject<any[]>([]);
   $cart = this.cartObject.asObservable();
 
-  private simplifyCart(cartData: any): Array<any> {
+  private simplifyCart(cartData: Array<any>): Array<any> {
     let simpleCart: Array<any> = [];
 
     for (let index = 0; index < cartData.length; index++) {
@@ -37,7 +37,7 @@ export class CartService {
     localStorage.setItem('cart', JSON.stringify(cartToSave));
   }
 
-  private updateCart(newList: any) {
+  private updateCart(newList: Array<any>) {
     this.cartObject.next(newList);
     this.updateLS();
   }
@@ -75,11 +75,10 @@ export class CartService {
 
   constructor() {
     this.loadCartData();
-    console.log(this.cartObject.value)
+    console.log("cartlen",this.cartObject.value.length)
   }
 
   addToCart(productId: string) {
-
     let productInCart = this.cartObject.value.find((product: any) => product._id === productId);
     let result = this.cartObject.value;
 
@@ -101,26 +100,57 @@ export class CartService {
   }
 
   removeFromCart(productId: string) {
+    let productInCart = this.cartObject.value.find((product: any) => product._id === productId);
+    let newList: Array<any> = [];
+    if (!productInCart) { return; }
 
+    for (let index = 0; index < this.cartObject.value.length; index++) {
+      if (this.cartObject.value[index]._id != productId) {
+        newList.push(this.cartObject.value[index]);
+      }
+    }
+
+    this.updateCart(newList);
   }
 
   removeOneFromCart(productId: string) {
+    let productInCart = this.cartObject.value.find((product: any) => product._id === productId);
+    let newList: Array<any> = [];
+    if (!productInCart) { return; }
 
+    for (let index = 0; index < this.cartObject.value.length; index++) {
+      if (this.cartObject.value[index]._id != productId) {
+        newList.push(this.cartObject.value[index]);
+      } else {
+        if (this.cartObject.value[index].quantity > 1) {
+          let item = this.cartObject.value[index]
+          item.quantity -= 1;
+          newList.push(item)
+        }
+      }
+    }
+
+    this.updateCart(newList);
   }  
 
   getTotalCartPrice(cart?: any) {
-    return 1;
+    let totalPrice = 0;
+    for (let index = 0; index < this.cartObject.value.length; index++) {
+      totalPrice += this.cartObject.value[index].price * this.cartObject.value[index].quantity;
+    }
+
+    return totalPrice
   }
 
-  getCartData(cart: any) {
-    return [];
+  getCartData() {
+    return this.cartObject.value;
   }
 
   getSimpleCartData() {
-    return [];
+    return this.simplifyCart(this.cartObject.value);
   }
 
   clearCart() {
-
+    this.updateCart([]);
   }
 }
