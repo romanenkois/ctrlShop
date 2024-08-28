@@ -28,14 +28,12 @@ export class CartService {
 
   private updateLS() {
     let cartToSave;
-    console.log(this.cartObject.value.length)
     if (this.cartObject.value.length === 0) {
       cartToSave = [];
     } else {
       cartToSave = this.simplifyCart(this.cartObject.value);
     }
     
-    console.log('updating: ', cartToSave)
     localStorage.setItem('cart', JSON.stringify(cartToSave));
   }
 
@@ -45,8 +43,6 @@ export class CartService {
   }
 
   private loadCartData() {
-    console.log('loadiiiiiiing')
-
     let currentList;
     let result: any = [];
 
@@ -54,7 +50,6 @@ export class CartService {
     try {
       currentList = JSON.parse(localStorage.getItem('cart') || '[]');
     } catch (e) {
-      console.log('LS parsing error\n', e)
       currentList = [];
     }    
 
@@ -65,7 +60,8 @@ export class CartService {
       return;
     }
 
-    console.log('loddd2')
+    // rendering of each product in cart
+    // should be rewriten, when back is ready
     for (let i = 0; i < currentList.length; i++) {
       this.http.get(this.BASE_URL + 'product/' + currentList[i].productId).subscribe((res: any) => {
         res.quantity = currentList[i].productQuantity
@@ -73,21 +69,26 @@ export class CartService {
       });
     }
 
-    console.log('ressssssssssssssssssssult', result);
+    // updating the cart directly, otherwise it would earase data in LS
     this.cartObject.next(result);
-  }
+  }  
 
   constructor() {
     this.loadCartData();
+    console.log(this.cartObject.value)
   }
 
   addToCart(productId: string) {
-    console.log(this.cartObject.value);
 
     let productInCart = this.cartObject.value.find((product: any) => product._id === productId);
     let result = this.cartObject.value;
 
     if (productInCart) {
+      for (let index = 0; index < result.length; index++) {
+        if (result[index]._id === productId) {
+          result[index].quantity += 1;
+        }
+      }
       
     } else {
       this.http.get(this.BASE_URL + 'product/' + productId).subscribe((res: any) => {
@@ -97,7 +98,6 @@ export class CartService {
     }
 
     this.updateCart(result);
-
   }
 
   removeFromCart(productId: string) {
