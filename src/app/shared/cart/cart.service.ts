@@ -28,20 +28,25 @@ export class CartService {
 
   private updateLS() {
     let cartToSave;
+    console.log(this.cartObject.value.length)
     if (this.cartObject.value.length === 0) {
-      cartToSave = this.simplifyCart(this.cartObject);
-    } else {
       cartToSave = [];
+    } else {
+      cartToSave = this.simplifyCart(this.cartObject.value);
     }
     
+    console.log('updating: ', cartToSave)
     localStorage.setItem('cart', JSON.stringify(cartToSave));
   }
 
   private updateCart(newList: any) {
-
+    this.cartObject.next(newList);
+    this.updateLS();
   }
 
   private loadCartData() {
+    console.log('loadiiiiiiing')
+
     let currentList;
     let result: any = [];
 
@@ -60,12 +65,16 @@ export class CartService {
       return;
     }
 
+    console.log('loddd2')
     for (let i = 0; i < currentList.length; i++) {
-      let id = currentList[i].productId
-      this.http.get(this.BASE_URL + 'product/' + id).subscribe((res: any) => {
+      this.http.get(this.BASE_URL + 'product/' + currentList[i].productId).subscribe((res: any) => {
+        res.quantity = currentList[i].productQuantity
         result.push(res);
       });
     }
+
+    console.log('ressssssssssssssssssssult', result);
+    this.cartObject.next(result);
   }
 
   constructor() {
@@ -73,16 +82,22 @@ export class CartService {
   }
 
   addToCart(productId: string) {
+    console.log(this.cartObject.value);
+
     let productInCart = this.cartObject.value.find((product: any) => product._id === productId);
-  
+    let result = this.cartObject.value;
+
     if (productInCart) {
       
-      console.log("1")
     } else {
-
-      console.log(this.cartObject.value)
-      console.log('2')
+      this.http.get(this.BASE_URL + 'product/' + productId).subscribe((res: any) => {
+        res.quantity = 1;
+        result.push(res);
+      });
     }
+
+    this.updateCart(result);
+
   }
 
   removeFromCart(productId: string) {
