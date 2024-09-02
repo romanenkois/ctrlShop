@@ -11,7 +11,7 @@ import { CartService } from '../../../../../shared/cart/cart.service';
 export class CartComponent implements OnInit {
   private cartService: CartService = inject(CartService);
 
-  itemsInCart = true;
+  itemsInCart: boolean = true;
   cartList: any = [];
 
   addToCart(item: any) {
@@ -31,8 +31,10 @@ export class CartComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.cartService.$cart.subscribe((cart: any) => {
-      this.cartList = cart;   
-    }); 
+    this.cartService.getCartData().subscribe((cart: any) => {
+      console.log("caaaaaaa", cart);
+      this.cartList = cart;
+      this.itemsInCart = cart.length > 0;
+    })
   }
 }

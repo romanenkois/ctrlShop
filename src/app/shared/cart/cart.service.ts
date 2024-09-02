@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -82,7 +82,8 @@ export class CartService {
   }
 
   addToCart(productId: string) {
-    // function isnt accesible when user made requaest to add new item, when it wasnt resolved yet
+    // function isnt accesible when user made request
+    // to add new item, when it wasnt resolved yet
     if (this.addingNewItem) {
       return;
     }
@@ -152,8 +153,8 @@ export class CartService {
     return totalPrice
   }
 
-  getCartData() {
-    return this.cartObject.value;
+  getCartData(): Observable<any[]> {
+    return this.cartObject.asObservable();
   }
 
   getSimpleCartData() {
