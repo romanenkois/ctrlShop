@@ -10,6 +10,9 @@ export class CartService {
 
   private BASE_URL: string = 'https://ctrl-shop-back.vercel.app/';
 
+  // used for addNewItem(), so it wouldn`t be accesible until the previous request result
+  private addingNewItem: boolean = false;
+
   private cartObject = new BehaviorSubject<any[]>([]);
   $cart = this.cartObject.asObservable();
 
@@ -36,7 +39,7 @@ export class CartService {
     
     localStorage.setItem('cart', JSON.stringify(cartToSave));
   }
-
+ 
   private updateCart(newList: Array<any>) {
     this.cartObject.next(newList);
     this.updateLS();
@@ -79,6 +82,12 @@ export class CartService {
   }
 
   addToCart(productId: string) {
+    // function isnt accesible when user made requaest to add new item, when it wasnt resolved yet
+    if (this.addingNewItem) {
+      return;
+    }
+    this.addingNewItem = true;
+
     let productInCart = this.cartObject.value.find((product: any) => product._id === productId);
     let result = this.cartObject.value;
 
@@ -97,6 +106,7 @@ export class CartService {
     }
 
     this.updateCart(result);
+    this.addingNewItem = false;
   }
 
   removeFromCart(productId: string) {
