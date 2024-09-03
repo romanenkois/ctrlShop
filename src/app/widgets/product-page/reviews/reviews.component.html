@@ -1,1 +1,56 @@
-<p>reviews works!</p>
+<div class="wrapper">
+    <div class="reviews-data">
+        <div class="reviews-number">
+            <p>{{3}} відгуки</p>
+        </div>
+        <div class="product-rating">
+            <div class="star">
+                *
+            </div>
+            <div class="star">
+                *
+            </div>
+            <div class="star">
+                *
+            </div>
+        </div>
+    </div>
+
+    <div class="new-review">
+        <div class="form">
+            мяууууууууууууууууууууууууууууууууууууууууууу
+        </div>
+    </div>
+
+    <div class="reviews">
+        @for (review of reviews(); track $index) {
+            <div class="review">
+                <div class="user-data">
+                    <div class="picture">
+                        <!-- <img > -->
+                        <div>Л</div>
+                    </div>
+                    <div class="name">
+                        <p>лалка лалка лалка лалка лалка лалка </p>
+                    </div>
+                </div>
+                <div class="review-data">
+                    <div class="review-rating">
+                        <div class="star">
+                            *
+                        </div>
+                        <div class="star">
+                            *
+                        </div>
+                        <div class="star">
+                            *
+                        </div>
+                    </div>
+                    <div class="review-text">
+                        <p>{{review.reviewText}}</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

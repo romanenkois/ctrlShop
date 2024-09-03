@@ -1,0 +1,113 @@
+// * {
+//     outline: 1px red solid
+// }
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    .reviews-data {
+        display: flex;
+        justify-content: space-between;
+
+        .reviews-number {
+            p {
+                font-size: 18px;
+                font-weight: 400;
+            }
+        }
+        .product-rating {
+            display: flex;
+            gap: 4px;
+
+            .star {
+                width: 22px;
+                height: 22px;
+            }
+        }
+    }
+    .new-review {
+
+    }
+    .reviews {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        
+        .review {
+            display: flex;
+            gap: 4px;
+
+            background-color: var(--white-color);
+            box-shadow: var(--medium-shadow);
+
+            .user-data {
+                padding: 11px 0px;
+
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 11px;
+
+                max-width: 88px;
+
+                .picture {
+                    width: 44px;
+                    height: 44px;
+                    background-color: var(--yellow-color);
+
+                    * {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                    div {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        font-weight: 700;
+                        user-select: none;
+                    }
+                }
+                .name {
+                    width: 100%;
+
+                    p {
+                        font-size: 16px;
+                        text-align: center;
+
+                        // white-space: nowrap;
+                        // overflow: hidden;
+                        // text-overflow: ellipsis;
+
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2;
+                        -webkit-box-orient: vertical;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        max-height: 3em; /* Adjust this value based on your line height */
+                        line-height: 1.5em; /* Adjust based on your font size */
+                    }
+                }
+            }
+            .review-data {
+                .review-rating {
+                    display: flex;
+                    gap: 4px;
+
+                    .star {
+                        width: 22px;
+                        height: 22px;
+                    }
+                }
+                .review-text {
+                    p {
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+    }
+}
