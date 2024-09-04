@@ -27,9 +27,65 @@
             }
         }
     }
+    
     .new-review {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
 
+        .form-wrapper {
+            input[type=text] {
+                padding: 16px 16px;
+                width: 100%;
+                box-sizing: border-box;
+
+                transition: all 0.2s ease-out;
+
+                outline: none;
+                border: none;
+                border: 1px solid var(--liught-gray-color);
+                box-shadow: var(--medium-shadow);
+
+                font-size: 16px;
+                font-family: var(--regular-font);
+            }
+            input[type=text]:focus {
+                border: none;
+                border-bottom: 2px solid var(--gray-color);
+            }
+        }
+        .send-review {
+            width: 250px;
+            padding: 8px 22px;
+            box-sizing: border-box;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            border: none;
+            background-color: var(--yellow-color);
+
+            p {
+                width: max-content;
+
+                font-size: 16px;
+                font-weight: 600;
+                color: var(--black-color);
+
+                user-select: none;
+            }
+        }
+        .send-review:hover {
+            box-shadow: var(--small-shadow);
+        }
+        .send-review:active {
+            box-shadow: var(--small-shadow);
+            transition: 0.2s;
+            transform: scale(0.98);
+        }
     }
+
     .reviews {
         display: flex;
         flex-direction: column;
@@ -83,6 +139,7 @@
                         // text-overflow: ellipsis;
 
                         display: -webkit-box;
+                        line-clamp: 2;
                         -webkit-line-clamp: 2;
                         -webkit-box-orient: vertical;
                         overflow: hidden;

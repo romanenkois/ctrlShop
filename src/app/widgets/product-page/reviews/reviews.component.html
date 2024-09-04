@@ -17,9 +17,17 @@
     </div>
 
     <div class="new-review">
-        <div class="form">
-            мяууууууууууууууууууууууууууууууууууууууууууу
-        </div>
+        <form
+        class="form-wrapper"
+        [formGroup]="customerReview">
+            <input type="text" name="review" formControlName="customerReviewText">
+        </form>
+
+        <button
+        class="send-review"
+        (click)="sendReview()">
+            <p>надіслати</p>
+        </button>
     </div>
 
     <div class="reviews">
