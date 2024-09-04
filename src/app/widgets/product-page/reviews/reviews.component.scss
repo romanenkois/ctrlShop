@@ -92,8 +92,9 @@
         gap: 24px;
         
         .review {
+            padding: 0px 11px;
             display: flex;
-            gap: 4px;
+            gap: 18px;
 
             background-color: var(--white-color);
             box-shadow: var(--medium-shadow);
@@ -150,13 +151,27 @@
                 }
             }
             .review-data {
+                padding: 11px 0px;
+
+                display: flex;
+                flex-direction: column;
+                gap: 11px;
+
                 .review-rating {
                     display: flex;
                     gap: 4px;
 
                     .star {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
                         width: 22px;
                         height: 22px;
+
+                        font-size: 18px;
+                        color: var(--yellow-color);
+                        text-shadow: 2px 2px 4px rgba(28, 23, 23, 0.09);                      
                     }
                 }
                 .review-text {

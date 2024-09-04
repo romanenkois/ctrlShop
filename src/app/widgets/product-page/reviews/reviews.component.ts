@@ -3,11 +3,12 @@ import { ReviewsService } from './api/reviews.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-reviews',
   standalone: true,
-  imports: [ ReactiveFormsModule ],
+  imports: [ ReactiveFormsModule, CommonModule ],
   templateUrl: './reviews.component.html',
   styleUrl: './reviews.component.scss'
 })
@@ -20,6 +21,17 @@ throw new Error('Method not implemented.');
   private fb: FormBuilder = inject(FormBuilder);
 
   reviews = computed(() => this.reviewsService.productReviews());
+  reviewsCount = computed(() => this.reviewsService.productReviews().length);
+  reviewsCountString = computed(() => {
+    if (this.reviewsCount() === 0 || this.reviewsCount() >= 5) {
+      return ' відгуків';
+    } else if (this.reviewsCount() === 1) {
+      return ' відгук';
+    } else {
+      return ' відгуки';
+    }
+  });
+
 
   customerReview: FormGroup = this.fb.group({
     customerReviewText: ['', Validators.required],

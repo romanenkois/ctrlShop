@@ -1,7 +1,7 @@
 <div class="wrapper">
     <div class="reviews-data">
         <div class="reviews-number">
-            <p>{{3}} відгуки</p>
+            <p>{{this.reviewsCount()}} {{this.reviewsCountString()}}</p>
         </div>
         <div class="product-rating">
             <div class="star">
@@ -39,20 +39,19 @@
                         <div>Л</div>
                     </div>
                     <div class="name">
-                        <p>лалка лалка лалка лалка лалка лалка </p>
+                        <p>{{review.userName}}</p>
                     </div>
                 </div>
                 <div class="review-data">
                     <div class="review-rating">
-                        <div class="star">
-                            *
-                        </div>
-                        <div class="star">
-                            *
-                        </div>
-                        <div class="star">
-                            *
-                        </div>
+                        <!-- @for (item of review.reviewRating; track $index) {
+                            <div class="star">
+                                *
+                            </div>
+                        } -->
+                        <ng-container *ngFor="let item of [].constructor(+review.reviewRating); let i = index">
+                            <div class="star">&#9733;</div>
+                        </ng-container>
                     </div>
                     <div class="review-text">
                         <p>{{review.reviewText}}</p>
