@@ -31,7 +31,18 @@ throw new Error('Method not implemented.');
       return ' відгуки';
     }
   });
+  productRating = computed(() => {
+    const count = this.reviewsCount();
+    if (count === 0) return 0;
+  
+    const totalRating = this.reviews().reduce((acc: number = 0, review: any) => acc + parseInt(review.reviewRating, 10), 0);
+    return totalRating / count;
+  });
 
+  getRatingArray(): number[] {
+    return Array(Math.floor(this.productRating())).fill(0);
+  }
+  
 
   customerReview: FormGroup = this.fb.group({
     customerReviewText: ['', Validators.required],

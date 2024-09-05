@@ -3,17 +3,12 @@
         <div class="reviews-number">
             <p>{{this.reviewsCount()}} {{this.reviewsCountString()}}</p>
         </div>
-        <div class="product-rating">
-            <div class="star">
-                *
-            </div>
-            <div class="star">
-                *
-            </div>
-            <div class="star">
-                *
-            </div>
-        </div>
+        <div *ngIf="productRating() !== 0" class="product-rating">
+            <ng-container *ngFor="let item of getRatingArray(); let i = index">
+              <div class="star">&#9733;</div>
+            </ng-container>
+        </div>          
+          
     </div>
 
     <div class="new-review">

@@ -9,11 +9,12 @@
 
     .reviews-data {
         display: flex;
-        justify-content: space-between;
+        flex-direction: row;
+        gap: 24px;
 
         .reviews-number {
             p {
-                font-size: 18px;
+                font-size: 22px;
                 font-weight: 400;
             }
         }
@@ -21,9 +22,19 @@
             display: flex;
             gap: 4px;
 
+            user-select: none;
+
             .star {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
                 width: 22px;
                 height: 22px;
+
+                font-size: 18px;
+                color: var(--yellow-color);
+                text-shadow: 2px 2px 4px rgba(28, 23, 23, 0.1);                      
             }
         }
     }
@@ -43,7 +54,7 @@
 
                 outline: none;
                 border: none;
-                border: 1px solid var(--liught-gray-color);
+                
                 box-shadow: var(--medium-shadow);
 
                 font-size: 16px;
@@ -51,8 +62,12 @@
             }
             input[type=text]:focus {
                 border: none;
-                border-bottom: 2px solid var(--gray-color);
+                border-bottom: 1px solid var(--light-gray-color);
             }
+            // input[type=text]:active {
+            //     // border: none;
+            //     border-bottom: 1px solid var(--light-gray-color);
+            // }
         }
         .send-review {
             width: 250px;
@@ -135,18 +150,15 @@
                         font-size: 16px;
                         text-align: center;
 
-                        // white-space: nowrap;
-                        // overflow: hidden;
-                        // text-overflow: ellipsis;
-
+                        // to make text overflow with ellipsis in 2 lines
                         display: -webkit-box;
                         line-clamp: 2;
                         -webkit-line-clamp: 2;
                         -webkit-box-orient: vertical;
                         overflow: hidden;
                         text-overflow: ellipsis;
-                        max-height: 3em; /* Adjust this value based on your line height */
-                        line-height: 1.5em; /* Adjust based on your font size */
+                        max-height: 3em;
+                        line-height: 1.5em;
                     }
                 }
             }
@@ -161,6 +173,8 @@
                     display: flex;
                     gap: 4px;
 
+                    user-select: none;
+
                     .star {
                         display: flex;
                         justify-content: center;
@@ -171,7 +185,7 @@
 
                         font-size: 18px;
                         color: var(--yellow-color);
-                        text-shadow: 2px 2px 4px rgba(28, 23, 23, 0.09);                      
+                        text-shadow: 2px 2px 4px rgba(28, 23, 23, 0.1);                      
                     }
                 }
                 .review-text {
@@ -187,7 +201,7 @@
 @media screen and (max-width: 512px) {
     .wrapper {
         .reviews-data {
-            flex-direction: column;
+            justify-content: space-between;
             gap: 12px;
         }
 

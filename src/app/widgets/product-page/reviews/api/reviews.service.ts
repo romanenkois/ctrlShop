@@ -13,9 +13,6 @@ export class ReviewsService {
 
   getReviewsData(id: string) {
     this.http.get(`${this.BASE_URL}/reviews/${id}`).pipe().subscribe((data: any) => {
-      console.log('121');
-      console.log(data);
-      console.log(`${this.BASE_URL}/reviews/${id}`);
       this.productReviews.set(data);
     });
   }
