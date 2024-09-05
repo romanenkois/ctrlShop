@@ -183,3 +183,19 @@
         }
     }
 }
+
+@media screen and (max-width: 512px) {
+    .wrapper {
+        .reviews-data {
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .new-review {
+            .send-review {
+                width: 100%;
+            }
+        }
+    }
+    
+}
