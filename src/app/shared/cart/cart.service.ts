@@ -98,16 +98,17 @@ export class CartService {
           result[index].quantity += 1;
         }
       }
-      
+      this.addingNewItem = false;      
     } else {
       this.http.get(this.BASE_URL + 'product/' + productId).subscribe((res: any) => {
         res.quantity = 1;
         result.push(res);
+        this.addingNewItem = false;
       });
     }
 
     this.updateCart(result);
-    this.addingNewItem = false;
+    
   }
 
   removeFromCart(productId: string) {
