@@ -41,12 +41,13 @@
     </div>
 
     <div class="actions">
-        <div [class.visibleActions]="itemsInCart">
-            <p>загальна сума корзини: {{this.getTotal(this.cartList)}} грн.</p>
+        <div *ngIf="cartList.length > 0">
+            <p>загальна сума корзини: {{getTotal(cartList)}} грн.</p>
             <a href="cart"><button>оплатити</button></a>
         </div>
-        <div [class.visibleActions]="!itemsInCart">
-            <p>в твоїй корзині ще нічо немає</p>
+        
+        <div *ngIf="cartList.length === 0">
+            <p>в твоїй корзині ще нічого немає</p>
             <a href="clothes"><button>перейти до шмоток</button></a>
         </div>
     </div>
