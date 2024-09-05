@@ -30,11 +30,13 @@
 
 }
 
+* {
+    font-family: var(--regular-font);
+}
+
 body, html {
     padding: 0;
-    margin: 0;
-
-    font-family: var(--regular-font);
+    margin: 0;    
 }
 
 p {
