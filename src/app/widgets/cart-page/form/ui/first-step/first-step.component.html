@@ -4,13 +4,15 @@
             @for (item of this.cartList; track $index) {
                 <div class="item">
                     <div class="picture">
-                        <!-- <img src="assets/reyechka.png"> -->
-                        <img [src]="item.image[0]">
+                        <a href="product/{{item._id}}">
+                            <!-- <img src="assets/reyechka.png"> -->
+                            <img [src]="item.image[0]">
+                        </a>
                     </div>
                     <div class="other">
                         <div class="info">
                             <div class="name">
-                                <a href="products/{{item._id}}">
+                                <a href="product/{{item._id}}">
                                     <p>{{item.name}}</p>
                                 </a>
                             </div>
