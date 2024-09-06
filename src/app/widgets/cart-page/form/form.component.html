@@ -13,7 +13,6 @@
             </div>
             <div class="actions">
                 <button
-                [class.]
                 (click)="openNextStep(2)"
                 >далі</button>
             </div>
@@ -36,11 +35,11 @@
             [formGroup]="customerData">
                 <div class="form">
                     <p>і'мя та прізвище</p>
-                    <input type="text" name="name" formControlName="inputName">
+                    <input type="text" name="name" formControlName="inputName" required>
                 </div>
                 <div class="form">
                     <p>емейл</p>
-                    <input type="text" name="email" formControlName="inputEmail">
+                    <input type="email" name="email" formControlName="inputEmail" required>
                 </div>
                 <div class="form">
                     <p>номер телефону</p>

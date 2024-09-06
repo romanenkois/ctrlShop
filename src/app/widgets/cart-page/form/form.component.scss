@@ -68,7 +68,7 @@
                         font-size: 18px;
                     }
 
-                    input[type=text] {
+                    input {
                         padding: 8px 16px;
                         width: 100%;
                         box-sizing: border-box;
@@ -79,7 +79,7 @@
                         border: none;
                         border-bottom: 2px solid var(--black-color);
                     }
-                    input[type=text]:focus {
+                    input:focus {
                         border: none;
                         border-bottom: 2px solid var(--gray-color);
                     }
