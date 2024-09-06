@@ -13,9 +13,6 @@ import { CommonModule } from '@angular/common';
   styleUrl: './reviews.component.scss'
 })
 export class ReviewsComponent implements OnInit {
-sendReview() {
-throw new Error('Method not implemented.');
-}
   private router: ActivatedRoute = inject(ActivatedRoute);
   private reviewsService: ReviewsService = inject(ReviewsService);
   private fb: FormBuilder = inject(FormBuilder);
@@ -32,21 +29,21 @@ throw new Error('Method not implemented.');
     }
   });
   productRating = computed(() => {
-    const count = this.reviewsCount();
-    if (count === 0) return 0;
-  
+    if (this.reviewsCount() === 0) return 0;
     const totalRating = this.reviews().reduce((acc: number = 0, review: any) => acc + parseInt(review.reviewRating, 10), 0);
-    return totalRating / count;
+    return totalRating / this.reviewsCount();
   });
-
   getRatingArray(): number[] {
     return Array(Math.floor(this.productRating())).fill(0);
   }
-  
 
   customerReview: FormGroup = this.fb.group({
     customerReviewText: ['', Validators.required],
   });
+
+  sendReview() {
+    throw new Error('Method not implemented.');
+    }
 
   ngOnInit() {
     this.router.url.subscribe(url => {
