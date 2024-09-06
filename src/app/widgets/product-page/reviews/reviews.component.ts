@@ -48,8 +48,6 @@ export class ReviewsComponent implements OnInit {
   });
 
   sendReview() {
-    // console.log(this.customerReview.valid);
-    // console.log(!this.sendingReview);
     if (this.customerReview.valid && !this.sendingReview) {
       this.sendingReview = true;
 
@@ -64,6 +62,7 @@ export class ReviewsComponent implements OnInit {
         window.alert('ваш відгук успрішно надіслано!\nвін зв\'явиться на сайті щойно пройде модеріцію')
         this.sendingReview = false;
         this.reviewsService.getReviewsData(this.productId);
+        this.customerReview.reset();
       })
     } else {
       window.alert('будь ласка, заповніть поле відгуку')
