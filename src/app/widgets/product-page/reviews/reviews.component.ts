@@ -17,6 +17,8 @@ export class ReviewsComponent implements OnInit {
   private reviewsService: ReviewsService = inject(ReviewsService);
   private fb: FormBuilder = inject(FormBuilder);
 
+  productId: string = '';
+  // product reviews existing data handling
   reviews = computed(() => this.reviewsService.productReviews());
   reviewsCount = computed(() => this.reviewsService.productReviews().length);
   reviewsCountString = computed(() => {
@@ -33,21 +35,45 @@ export class ReviewsComponent implements OnInit {
     const totalRating = this.reviews().reduce((acc: number = 0, review: any) => acc + parseInt(review.reviewRating, 10), 0);
     return totalRating / this.reviewsCount();
   });
+  
   getRatingArray(): number[] {
     return Array(Math.floor(this.productRating())).fill(0);
   }
+
+  // new review form handling
+  sendingReview = false;
 
   customerReview: FormGroup = this.fb.group({
     customerReviewText: ['', Validators.required],
   });
 
   sendReview() {
-    throw new Error('Method not implemented.');
+    // console.log(this.customerReview.valid);
+    // console.log(!this.sendingReview);
+    if (this.customerReview.valid && !this.sendingReview) {
+      this.sendingReview = true;
+
+      this.reviewsService.sendNewReview(
+        new Date().toISOString(),
+        '1',
+        'джоу доу',
+        this.productId,
+        this.customerReview.get('customerReviewText')?.value,
+        5,
+      ).subscribe((res: any) => {
+        window.alert('ваш відгук успрішно надіслано!\nвін зв\'явиться на сайті щойно пройде модеріцію')
+        this.sendingReview = false;
+        this.reviewsService.getReviewsData(this.productId);
+      })
+    } else {
+      window.alert('будь ласка, заповніть поле відгуку')
     }
+  }
 
   ngOnInit() {
     this.router.url.subscribe(url => {
-      this.reviewsService.getReviewsData(url[1].path);
+      this.productId = url[1].path;
+      this.reviewsService.getReviewsData(this.productId);
     });
   }
 }

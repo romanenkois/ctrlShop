@@ -16,4 +16,24 @@ export class ReviewsService {
       this.productReviews.set(data);
     });
   }
+
+  sendNewReview(
+    date: string,
+    userId: string,
+    UserName: string,
+    productId: string,
+    reviewText: string,
+    reviewRating: number,
+  ) {
+    const formData: FormData = new FormData();
+
+    formData.append('date', date);
+    formData.append('userId', userId);
+    formData.append('UserName', UserName);
+    formData.append('productId', productId);
+    formData.append('reviewText', reviewText);
+    formData.append('reviewRating', reviewRating.toString());
+
+    return this.http.post<any>(this.BASE_URL + '/review', formData);
+  }
 }
