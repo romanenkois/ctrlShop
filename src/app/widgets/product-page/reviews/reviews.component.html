@@ -11,20 +11,6 @@
           
     </div>
 
-    <div class="new-review">
-        <form
-        class="form-wrapper"
-        [formGroup]="customerReview">
-            <input type="text" name="review" formControlName="customerReviewText">
-        </form>
-
-        <button
-        class="send-review"
-        (click)="sendReview()">
-            <p>надіслати</p>
-        </button>
-    </div>
-
     <div class="reviews">
         @for (review of reviews(); track $index) {
             <div class="review">
@@ -54,5 +40,22 @@
                 </div>
             </div>
         }
+    </div>
+
+    <div class="new-review">
+        <p class="title">ваш відгук</p>
+
+        <form
+        class="form-wrapper"
+        [formGroup]="customerReview">
+
+            <input type="text" name="review" formControlName="customerReviewText">
+        </form>
+
+        <button
+        class="send-review"
+        (click)="sendReview()">
+            <p>надіслати</p>
+        </button>
     </div>
 </div>
