@@ -1,3 +1,7 @@
+* {
+    outline: 1px red solid;
+}
+
 .wrapper {
     display: flex;
     flex-direction: column;
@@ -61,7 +65,8 @@
                 align-items: center;
                 gap: 11px;
 
-                max-width: 88px;
+                width: 88px;
+                min-width: 88px;
 
                 .picture {
                     width: 44px;
