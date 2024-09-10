@@ -33,7 +33,7 @@ export class FirstStepComponent {
   ngOnInit() {
     this.cartService.$cart.subscribe((cart: any) => {
       this.itemsInCart = cart.length > 0;
-      this.cartList = this.cartService.getCartData(cart);    
+      this.cartList = cart;
     }); 
   }
 }

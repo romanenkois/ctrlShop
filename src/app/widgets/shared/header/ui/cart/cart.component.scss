@@ -155,7 +155,6 @@
         div {
             flex-direction: column;
             gap: 14px;
-            display: none;
 
             p {
                 font-weight: 400;
@@ -183,10 +182,6 @@
                 transition: 0.2s;
                 transform: scale(0.98);
             }
-        }
-
-        div.visibleActions {
-            display: flex;
         }
     }
 }

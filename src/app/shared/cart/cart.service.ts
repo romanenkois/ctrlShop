@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,103 +10,159 @@ export class CartService {
 
   private BASE_URL: string = 'https://ctrl-shop-back.vercel.app/';
 
-  private cartObject = new BehaviorSubject<any[]>(JSON.parse(localStorage.getItem('cart') || '[]'));
+  // used for addNewItem(), so it wouldn`t be accesible until the previous request result
+  private addingNewItem: boolean = false;
+
+  private cartObject = new BehaviorSubject<any[]>([]);
   $cart = this.cartObject.asObservable();
 
-  // cartData = new BehaviorSubject<any[]>([]);
+  private simplifyCart(cartData: Array<any>): Array<any> {
+    let simpleCart: Array<any> = [];
 
-  private updateCart(newList: any[]) {
+    for (let index = 0; index < cartData.length; index++) {
+      simpleCart.push({
+        "productId": cartData[index]._id,
+        "productQuantity": cartData[index].quantity
+      })
+    }
+
+    return simpleCart;
+  }
+
+  private updateLS() {
+    let cartToSave;
+    if (this.cartObject.value.length === 0) {
+      cartToSave = [];
+    } else {
+      cartToSave = this.simplifyCart(this.cartObject.value);
+    }
+    
+    localStorage.setItem('cart', JSON.stringify(cartToSave));
+  }
+ 
+  private updateCart(newList: Array<any>) {
     this.cartObject.next(newList);
-    localStorage.setItem('cart', JSON.stringify(newList));
+    this.updateLS();
   }
 
-  addToCart(productId: string) {
-    const currentList = this.cartObject.value;
-    const productInCart = currentList.find((product: any) => product.productId === productId);
-
-    if (!productInCart) {
-      const newList = [...currentList, { productId, productQuantity: 1 }];
-      this.updateCart(newList);
-    } else {
-      const newList = currentList.map((product: any) =>
-        product.productId === productId
-          ? { ...product, productQuantity: product.productQuantity + 1 }
-          : product
-      );
-      this.updateCart(newList);
-    }
-
-    // console.log(this.cartObject.value);
-    // console.log(JSON.stringify(this.cartObject.value));
-  }
-
-  removeFromCart(productId: string) {
-    const currentList = this.cartObject.value;
-    const productInCart = currentList.find((product: any) => product.productId === productId);
-
-    if (!productInCart) {
-      console.log('ERROR', productId, 'couldn`t be found in cart');
-    } else {
-      const newList = currentList.filter((product: any) => product.productId !== productId);
-      this.updateCart(newList);
-    }
-  }
-
-  removeOneFromCart(productId: string) {
-    // console.log(productId);
-    const currentList = this.cartObject.value;
-    const productInCart = currentList.find((product: any) => product.productId === productId);
-
-    if (!productInCart) {
-      console.log('ERROR', productId, 'couldn`t be found in cart');
-    } else {
-      let newList: any[] = [];
-
-      currentList.forEach(product => {
-        if (product.productId === productId) {
-          if (product.productQuantity > 1) {
-            newList.push({ ...product, productQuantity: product.productQuantity - 1 });
-          }          
-        } else {
-          newList.push(product);
-        }
-      });
-
-      this.updateCart(newList);
-    }    
-  }
-
-  getCartData(cartData: any) {
-    const currentList = cartData;
+  private loadCartData() {
+    let currentList;
     let result: any = [];
 
-    for (let i = 0; i < currentList.length; i++) {
-      let id: any = currentList[i].productId;
+    // loading data from ls, catch for corupted data in ls
+    try {
+      currentList = JSON.parse(localStorage.getItem('cart') || '[]');
+    } catch (e) {
+      currentList = [];
+    }    
 
-      this.http.get(this.BASE_URL + 'product/' + id).subscribe((res: any) => {
-        res['quantity'] = currentList[i].productQuantity;
+    // if local storage cart is empty, so will be the cart object,
+    // so we just skip other part of loading
+    if (currentList.length === 0) {
+      this.cartObject.next(result);
+      return;
+    }
+
+    // rendering of each product in cart
+    // should be rewriten, when back is ready
+    for (let i = 0; i < currentList.length; i++) {
+      this.http.get(this.BASE_URL + 'product/' + currentList[i].productId).subscribe((res: any) => {
+        res.quantity = currentList[i].productQuantity
         result.push(res);
       });
     }
 
-    return result;
+    // updating the cart directly, otherwise it would earase data in LS
+    this.cartObject.next(result);
+  }  
+
+  constructor() {
+    this.loadCartData();
+    console.log("cartlen",this.cartObject.value.length)
+  }
+
+  addToCart(productId: string) {
+    // function isnt accesible when user made request
+    // to add new item, when it wasnt resolved yet
+    if (this.addingNewItem) {
+      return;
+    }
+    this.addingNewItem = true;
+
+    let productInCart = this.cartObject.value.find((product: any) => product._id === productId);
+    let result = this.cartObject.value;
+
+    if (productInCart) {
+      for (let index = 0; index < result.length; index++) {
+        if (result[index]._id === productId) {
+          result[index].quantity += 1;
+        }
+      }
+      this.addingNewItem = false;      
+    } else {
+      this.http.get(this.BASE_URL + 'product/' + productId).subscribe((res: any) => {
+        res.quantity = 1;
+        result.push(res);
+        this.addingNewItem = false;
+      });
+    }
+
+    this.updateCart(result);
+    
+  }
+
+  removeFromCart(productId: string) {
+    let productInCart = this.cartObject.value.find((product: any) => product._id === productId);
+    let newList: Array<any> = [];
+    if (!productInCart) { return; }
+
+    for (let index = 0; index < this.cartObject.value.length; index++) {
+      if (this.cartObject.value[index]._id != productId) {
+        newList.push(this.cartObject.value[index]);
+      }
+    }
+
+    this.updateCart(newList);
+  }
+
+  removeOneFromCart(productId: string) {
+    let productInCart = this.cartObject.value.find((product: any) => product._id === productId);
+    let newList: Array<any> = [];
+    if (!productInCart) { return; }
+
+    for (let index = 0; index < this.cartObject.value.length; index++) {
+      if (this.cartObject.value[index]._id != productId) {
+        newList.push(this.cartObject.value[index]);
+      } else {
+        if (this.cartObject.value[index].quantity > 1) {
+          let item = this.cartObject.value[index]
+          item.quantity -= 1;
+          newList.push(item)
+        }
+      }
+    }
+
+    this.updateCart(newList);
+  }  
+
+  getTotalCartPrice(cart?: any) {
+    let totalPrice = 0;
+    for (let index = 0; index < this.cartObject.value.length; index++) {
+      totalPrice += this.cartObject.value[index].price * this.cartObject.value[index].quantity;
+    }
+
+    return totalPrice
+  }
+
+  getCartData(): Observable<any[]> {
+    return this.cartObject.asObservable();
   }
 
   getSimpleCartData() {
-    return this.cartObject.value;
+    return this.simplifyCart(this.cartObject.value);
   }
 
-  getTotalCartPrice(cartData: any): number {
-    let total = 0;
-    
-    for (let i = 0; i < cartData.length; i++) {
-      total += cartData[i].price * cartData[i].quantity;
-    }
-
-    return total;
-  }
-
-  clerCart() {
+  clearCart() {
     this.updateCart([]);
   }
 }

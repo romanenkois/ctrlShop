@@ -1,17 +1,16 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, computed, inject, OnInit, Signal } from '@angular/core';
 import { CartService } from '../../../../../shared/cart/cart.service';
-
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [],
+  imports: [ CommonModule],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'
 })
 export class CartComponent implements OnInit {
   private cartService: CartService = inject(CartService);
 
-  itemsInCart = true;
   cartList: any = [];
 
   addToCart(item: any) {
@@ -31,10 +30,8 @@ export class CartComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.cartService.$cart.subscribe((cart: any) => {
-      this.itemsInCart = cart.length > 0;
-      this.cartList = this.cartService.getCartData(cart);
-      console.log(this.cartList);    
-    }); 
+    this.cartService.getCartData().subscribe((cart: any) => {
+      this.cartList = cart;
+    })
   }
 }
