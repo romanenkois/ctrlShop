@@ -20,7 +20,7 @@ export class ReviewsService {
   sendNewReview(
     date: string,
     userId: string,
-    UserName: string,
+    userName: string,
     productId: string,
     reviewText: string,
     reviewRating: number,
@@ -29,7 +29,7 @@ export class ReviewsService {
 
     formData.append('date', date);
     formData.append('userId', userId);
-    formData.append('UserName', UserName);
+    formData.append('userName', userName);
     formData.append('productId', productId);
     formData.append('reviewText', reviewText);
     formData.append('reviewRating', reviewRating.toString());
