@@ -145,9 +145,6 @@
         flex-direction: column;
         gap: 12px;
 
-        .title {
-            font-size: 18px;
-        }
         .form {
             padding: 16px 12px;
 
@@ -157,6 +154,12 @@
 
             box-shadow: var(--medium-shadow);
 
+            .title {
+                font-size: 18px;
+                font-weight: 600;
+
+                user-select: none;
+            }
             .form-wrapper {
                 input[type=text] {
                     padding: 4px 4px;
@@ -167,13 +170,14 @@
     
                     outline: none;
                     border: none;
-                    
+                    border-bottom: 2px solid var(--black-color);
+
                     font-size: 16px;
                     font-family: var(--regular-font);
                 }
                 input[type=text]:focus {
                     border: none;
-                    border-bottom: 1px solid var(--light-gray-color);
+                    border-bottom: 2px solid var(--light-gray-color);
                 }
             }
             .stars-rating {
