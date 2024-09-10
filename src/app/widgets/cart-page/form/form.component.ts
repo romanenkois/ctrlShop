@@ -33,8 +33,8 @@ export class FormComponent implements OnInit {
 
   customerData: FormGroup = this.fb.group({
     inputName: ['', Validators.required],
-    inputEmail: ['', Validators.required],
-    inputPhone: ['', Validators.required],
+    inputEmail: ['', [Validators.required, Validators.email]],
+    inputPhone: [''],
   });
 
   deliveryData: FormGroup = this.fb.group({
@@ -119,7 +119,7 @@ export class FormComponent implements OnInit {
     })
 
     this.customerData.valueChanges.subscribe(() => {
-      if (this.customerData.get('inputName') && this.customerData.get('inputEmail')){
+      if (this.customerData.valid) {
         this.completedSecondStep.set(true);
       } else {
         this.completedSecondStep.set(false);

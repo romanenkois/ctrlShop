@@ -1,7 +1,9 @@
 .wrapper {
     padding: 14px 42px;
 
-    min-height: 75vh;
+    display: flex;
+    flex-direction: column;
+    gap: 42px;
 }
 
 @media screen and (max-width: 768px) {
