@@ -1,0 +1,44 @@
+<div class="wrapper">
+    <div class="reviews-data">
+        <div class="reviews-number">
+            <p>{{this.reviewsCount()}} {{this.reviewsCountString()}}</p>
+        </div>
+        <div *ngIf="productRating() !== 0" class="product-rating">
+            <ng-container *ngFor="let item of getRatingArray(); let i = index">
+              <div class="star">&#9733;</div>
+            </ng-container>
+        </div>          
+          
+    </div>
+
+    <div class="reviews">
+        @for (review of this.reviews(); track $index) {
+            <div class="review">
+                <div class="user-data">
+                    <div class="picture">
+                        <!-- <img > -->
+                        <div>Л</div>
+                    </div>
+                    <div class="name">
+                        <p>{{review.userName}}</p>
+                    </div>
+                </div>
+                <div class="review-data">
+                    <div class="review-rating">
+                        <!-- @for (item of review.reviewRating; track $index) {
+                            <div class="star">
+                                *
+                            </div>
+                        } -->
+                        <ng-container *ngFor="let item of [].constructor(+review.reviewRating); let i = index">
+                            <div class="star">&#9733;</div>
+                        </ng-container>
+                    </div>
+                    <div class="review-text">
+                        <p>{{review.reviewText}}</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

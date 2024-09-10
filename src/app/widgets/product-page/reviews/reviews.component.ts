@@ -4,11 +4,13 @@ import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ProductReviewsComponent } from "./ui/product-reviews/product-reviews.component";
+import { NewReviewComponent } from "./ui/new-review/new-review.component";
 
 @Component({
   selector: 'app-reviews',
   standalone: true,
-  imports: [ ReactiveFormsModule, CommonModule ],
+  imports: [ReactiveFormsModule, CommonModule, ProductReviewsComponent, NewReviewComponent],
   templateUrl: './reviews.component.html',
   styleUrl: './reviews.component.scss'
 })
@@ -18,56 +20,6 @@ export class ReviewsComponent implements OnInit {
   private fb: FormBuilder = inject(FormBuilder);
 
   productId: string = '';
-  // product reviews existing data handling
-  reviews = computed(() => this.reviewsService.productReviews());
-  reviewsCount = computed(() => this.reviewsService.productReviews().length);
-  reviewsCountString = computed(() => {
-    if (this.reviewsCount() === 0 || this.reviewsCount() >= 5) {
-      return ' відгуків';
-    } else if (this.reviewsCount() === 1) {
-      return ' відгук';
-    } else {
-      return ' відгуки';
-    }
-  });
-  productRating = computed(() => {
-    if (this.reviewsCount() === 0) return 0;
-    const totalRating = this.reviews().reduce((acc: number = 0, review: any) => acc + parseInt(review.reviewRating, 10), 0);
-    return totalRating / this.reviewsCount();
-  });
-  
-  getRatingArray(): number[] {
-    return Array(Math.floor(this.productRating())).fill(0);
-  }
-
-  // new review form handling
-  sendingReview = false;
-
-  customerReview: FormGroup = this.fb.group({
-    customerReviewText: ['', Validators.required],
-  });
-
-  sendReview() {
-    if (this.customerReview.valid && !this.sendingReview) {
-      this.sendingReview = true;
-
-      this.reviewsService.sendNewReview(
-        new Date().toISOString(),
-        '1',
-        'джоу доу',
-        this.productId,
-        this.customerReview.get('customerReviewText')?.value,
-        5,
-      ).subscribe((res: any) => {
-        window.alert('ваш відгук успрішно надіслано!\nвін зв\'явиться на сайті щойно пройде модеріцію')
-        this.sendingReview = false;
-        this.reviewsService.getReviewsData(this.productId);
-        this.customerReview.reset();
-      })
-    } else {
-      window.alert('будь ласка, заповніть поле відгуку')
-    }
-  }
 
   ngOnInit() {
     this.router.url.subscribe(url => {
