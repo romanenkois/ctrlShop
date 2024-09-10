@@ -10,11 +10,11 @@
         </form>
 
         <div class="stars-rating">
-            <div  class="star">&#9733;</div>
-            <div class="star">&#9733;</div>
-            <div class="star">&#9733;</div>
-            <div class="star">&#9733;</div>
-            <div class="star">&#9733;</div>
+            <div class="star" (click)="setReviewRating(1)" [ngClass]="{'active-star': reviewRating() >= 1}" #firstStar>&#9733;</div>
+            <div class="star" (click)="setReviewRating(2)" [ngClass]="{'active-star': reviewRating() >= 2}" #secondStar>&#9733;</div>
+            <div class="star" (click)="setReviewRating(3)" [ngClass]="{'active-star': reviewRating() >= 3}" #thirdStar>&#9733;</div>
+            <div class="star" (click)="setReviewRating(4)" [ngClass]="{'active-star': reviewRating() >= 4}" #fourthStar>&#9733;</div>
+            <div class="star" (click)="setReviewRating(5)" [ngClass]="{'active-star': reviewRating() >= 5}" #fifthStar>&#9733;</div>
         </div>
     </div>
 
