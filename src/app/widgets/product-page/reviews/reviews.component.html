@@ -1,71 +1,9 @@
 <div class="wrapper">
-    <div class="reviews-data">
-        <div class="reviews-number">
-            <p>{{this.reviewsCount()}} {{this.reviewsCountString()}}</p>
-        </div>
-        <div *ngIf="productRating() !== 0" class="product-rating">
-            <ng-container *ngFor="let item of getRatingArray(); let i = index">
-              <div class="star">&#9733;</div>
-            </ng-container>
-        </div>          
-          
-    </div>
-
-    <div class="reviews">
-        @for (review of reviews(); track $index) {
-            <div class="review">
-                <div class="user-data">
-                    <div class="picture">
-                        <!-- <img > -->
-                        <div>Л</div>
-                    </div>
-                    <div class="name">
-                        <p>{{review.userName}}</p>
-                    </div>
-                </div>
-                <div class="review-data">
-                    <div class="review-rating">
-                        <!-- @for (item of review.reviewRating; track $index) {
-                            <div class="star">
-                                *
-                            </div>
-                        } -->
-                        <ng-container *ngFor="let item of [].constructor(+review.reviewRating); let i = index">
-                            <div class="star">&#9733;</div>
-                        </ng-container>
-                    </div>
-                    <div class="review-text">
-                        <p>{{review.reviewText}}</p>
-                    </div>
-                </div>
-            </div>
-        }
+    <div class="product-reviews">
+        <app-product-reviews></app-product-reviews>
     </div>
 
     <div class="new-review">
-        <div class="form">
-            <p class="title">залиште ваш відгук</p>
-
-            <form
-            class="form-wrapper"
-            [formGroup]="customerReview">
-
-                <input type="text" name="review" formControlName="customerReviewText">
-            </form>
-
-            <div class="stars-rating">
-                <div  class="star">&#9733;</div>
-                <div class="star">&#9733;</div>
-                <div class="star">&#9733;</div>
-                <div class="star">&#9733;</div>
-                <div class="star">&#9733;</div>
-            </div>
-        </div>
-
-        <button
-        class="send-review"
-        (click)="sendReview()">
-            <p>надіслати</p>
-        </button>
+        <app-new-review [productId]="this.productId"></app-new-review>
     </div>
 </div>

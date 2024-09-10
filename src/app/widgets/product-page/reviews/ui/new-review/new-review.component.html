@@ -1,0 +1,26 @@
+<div class="wrapper">
+    <div class="form">
+        <p class="title">залиште ваш відгук</p>
+
+        <form
+        class="form-wrapper"
+        [formGroup]="customerReview">
+
+            <input type="text" name="review" formControlName="customerReviewText">
+        </form>
+
+        <div class="stars-rating">
+            <div  class="star">&#9733;</div>
+            <div class="star">&#9733;</div>
+            <div class="star">&#9733;</div>
+            <div class="star">&#9733;</div>
+            <div class="star">&#9733;</div>
+        </div>
+    </div>
+
+    <button
+    class="send-review"
+    (click)="this.sendReview()">
+        <p>надіслати</p>
+    </button>
+</div>
