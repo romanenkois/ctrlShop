@@ -1,4 +1,4 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, inject, input, InputSignal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ReviewsService } from '../../api/reviews.service';
@@ -15,7 +15,7 @@ export class NewReviewComponent {
   private reviewsService: ReviewsService = inject(ReviewsService);
   private fb: FormBuilder = inject(FormBuilder);
 
-  productId = input.required();
+  productId: InputSignal<string> = input.required();
 
   sendingReview = false;
 
@@ -31,13 +31,13 @@ export class NewReviewComponent {
         new Date().toISOString(),
         '1',
         'джоу доу',
-        this.productId.toString(),
+        this.productId(),
         this.customerReview.get('customerReviewText')?.value,
         5,
       ).subscribe((res: any) => {
         window.alert('ваш відгук успрішно надіслано!\nвін зв\'явиться на сайті щойно пройде модеріцію')
         this.sendingReview = false;
-        this.reviewsService.getReviewsData(this.productId.toString());
+        this.reviewsService.getReviewsData(this.productId());
         this.customerReview.reset();
       })
     } else {
