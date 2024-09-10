@@ -1,7 +1,5 @@
-import { Component, computed, inject, input, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { Component, computed, inject } from '@angular/core';
 import { ReviewsService } from '../../api/reviews.service';
-import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -11,10 +9,8 @@ import { CommonModule } from '@angular/common';
   templateUrl: './product-reviews.component.html',
   styleUrl: './product-reviews.component.scss'
 })
-export class ProductReviewsComponent implements OnInit {
-  private router: ActivatedRoute = inject(ActivatedRoute);
+export class ProductReviewsComponent {
   private reviewsService: ReviewsService = inject(ReviewsService);
-  private fb: FormBuilder = inject(FormBuilder);
 
   reviews = computed(() => this.reviewsService.productReviews());
   reviewsCount = computed(() => this.reviewsService.productReviews().length);
@@ -36,9 +32,5 @@ export class ProductReviewsComponent implements OnInit {
   
   getRatingArray(): number[] {
     return Array(Math.floor(this.productRating())).fill(0);
-  }
-
-  ngOnInit() {
-
   }
 }
