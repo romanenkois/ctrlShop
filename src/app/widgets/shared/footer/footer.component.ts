@@ -12,4 +12,7 @@ export class FooterComponent {
     window.location.href = url;
   }
 
+  copyText(textToCopy: string) {
+    navigator.clipboard.writeText(textToCopy);
+  }
 }

@@ -64,6 +64,12 @@
             font-size: 16px;
             font-weight: 400;
         }
+        .address {
+            span:hover {
+                text-decoration: underline;
+                cursor: pointer;
+            }
+        }
     }
 
     .social-networks {

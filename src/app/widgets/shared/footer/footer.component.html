@@ -9,7 +9,14 @@
     </div>
     <div class="general-info">
         <p>© ctrlShop, назавжди 2021. Всі права захищені</p>
-        <p>ctrlShop.ink Vorozhnechi street 37/9, Kyiv, Ukraine</p>
+        <p class="address">
+            ctrlShop.ink 
+            <span
+            class="copy-text"
+            (click)="copyText('Vorozhnechi street 37/9, Kyiv, Ukraine')">
+                Vorozhnechi street 37/9, Kyiv, Ukraine
+            </span>
+        </p>
     </div>
     <div class="social-networks">
         <a href="#"><div><img src="icons/social-networks/instagram.svg"></div></a>
