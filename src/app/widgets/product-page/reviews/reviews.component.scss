@@ -46,6 +46,8 @@
 
         max-height: 300px;
         overflow-y: scroll;
+
+        box-shadow: var(--medium-shadow);
         
         .review {
             padding: 0px 11px;
@@ -146,27 +148,61 @@
         .title {
             font-size: 18px;
         }
-        .form-wrapper {
-            input[type=text] {
-                padding: 16px 16px;
-                width: 100%;
-                box-sizing: border-box;
+        .form {
+            padding: 16px 12px;
 
-                transition: all 0.2s ease-out;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
 
-                outline: none;
-                border: none;
+            box-shadow: var(--medium-shadow);
+
+            .form-wrapper {
+                input[type=text] {
+                    padding: 4px 4px;
+                    width: 100%;
+                    box-sizing: border-box;
+    
+                    transition: all 0.2s ease-out;
+    
+                    outline: none;
+                    border: none;
+                    
+                    font-size: 16px;
+                    font-family: var(--regular-font);
+                }
+                input[type=text]:focus {
+                    border: none;
+                    border-bottom: 1px solid var(--light-gray-color);
+                }
+            }
+            .stars-rating {
+                display: flex;
+                gap: 4px;
+
+                user-select: none;
+
+                .star {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    width: 22px;
+                    height: 22px;
+
+                    font-size: 18px;
+                    color: var(--gray-color);
+                    text-shadow: 2px 2px 4px rgba(28, 23, 23, 0.1);
                 
-                box-shadow: var(--medium-shadow);
+                    cursor: pointer;
+                    transition: all 0.2s ease-out;
+                }
 
-                font-size: 16px;
-                font-family: var(--regular-font);
+                .active-star {
+                    color: var(--yellow-color);
+                }
             }
-            input[type=text]:focus {
-                border: none;
-                border-bottom: 1px solid var(--light-gray-color);
-            }
-        }
+        }        
         .send-review {
             width: 250px;
             padding: 8px 22px;
