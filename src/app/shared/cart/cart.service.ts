@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal, WritableSignal } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
@@ -14,7 +14,9 @@ export class CartService {
   private addingNewItem: boolean = false;
 
   private cartObject = new BehaviorSubject<any[]>([]);
+  public cartSignal: WritableSignal<any[]> = signal([]);
   $cart = this.cartObject.asObservable();
+
 
   private simplifyCart(cartData: Array<any>): Array<any> {
     let simpleCart: Array<any> = [];
@@ -42,6 +44,7 @@ export class CartService {
  
   private updateCart(newList: Array<any>) {
     this.cartObject.next(newList);
+    this.cartSignal.set(newList);
     this.updateLS();
   }
 
@@ -74,6 +77,7 @@ export class CartService {
 
     // updating the cart directly, otherwise it would earase data in LS
     this.cartObject.next(result);
+    this.cartSignal.set(result);
   }  
 
   constructor() {
@@ -108,7 +112,6 @@ export class CartService {
     }
 
     this.updateCart(result);
-    
   }
 
   removeFromCart(productId: string) {
