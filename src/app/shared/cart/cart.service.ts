@@ -17,7 +17,6 @@ export class CartService {
   public cartSignal: WritableSignal<any[]> = signal([]);
   $cart = this.cartObject.asObservable();
 
-
   private simplifyCart(cartData: Array<any>): Array<any> {
     let simpleCart: Array<any> = [];
 
@@ -82,7 +81,6 @@ export class CartService {
 
   constructor() {
     this.loadCartData();
-    console.log("cartlen",this.cartObject.value.length)
   }
 
   addToCart(productId: string) {
