@@ -1,18 +1,14 @@
 <div class="wrapper">
-    @defer {
-        <div class="clothes-feed">
-            @for (item of this.clothesList(); track $index) {
-                <div class="card">
-                    <app-clothes-card
-                    [product]="item"
-                    >
-                    </app-clothes-card>
-                </div>
-            }        
-        </div>
-    } @loading {
-        loading...
-    }
+    <div class="clothes-feed">
+        @for (item of this.clothesList(); track $index) {
+            <div class="card">
+                <app-clothes-card
+                [product]="item"
+                >
+                </app-clothes-card>
+            </div>
+        }        
+    </div>
     <div class="pagination">
         
     </div>
