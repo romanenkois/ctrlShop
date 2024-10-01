@@ -1,8 +1,10 @@
-// * {
-//     outline: 1px solid red;
-// }
+* {
+    outline: 1px solid red;
+}
 
 .wrapper {
+    position: relative;
+
     .header {
         padding: 14px 42px;
 
@@ -16,10 +18,9 @@
 
         .navigation {
             display: flex;
-            // justify-content: center;
             align-items: baseline;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
 
             .logo {
                 p {
@@ -150,9 +151,7 @@
 
             
         }
-    }
-
-    position: relative;
+    }    
 
     .cart-widget {
         display: none;
@@ -183,7 +182,6 @@
     .wrapper {
         .header {
             padding: 14px;
-
             gap: 4px
         }
         
@@ -194,4 +192,8 @@
             box-sizing: border-box;
         }
     }
+}
+
+@media screen and (max-width: 512px) {
+    
 }
