@@ -1,4 +1,4 @@
-<div class="card" *ngIf="this.product()">
+<div class="card" *ngIf="this.product() && this.product()._id">
     <div class="picture">
         <a href="product/{{this.product()._id}}">
             <img 
@@ -25,6 +25,24 @@
         <div class="other">
             <p class="category">{{this.product().category | translateType }}</p>
             <p class="price">{{this.product().price}} грн.</p>
+        </div>
+    </div>
+</div>
+<div class="card loading-card" *ngIf="!this.product()._id">
+    <div class="picture">
+        <a>
+            <div class="img-placeholder"></div>
+        </a>
+    </div>
+    <div class="info">
+        <div class="name">
+            <a>
+                <p></p>
+            </a>
+        </div>
+        <div class="other">
+            <p class="category"></p>
+            <p class="price"></p>
         </div>
     </div>
 </div>
