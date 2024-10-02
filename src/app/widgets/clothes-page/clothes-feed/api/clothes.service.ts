@@ -15,14 +15,14 @@ export class clothesService {
     page?: number,
     sorting?: string
     ) {
-    return this.http.get<any>(
-      this.BASE_URL + 
-      '/products/' +
-      category +
-      '/' +
-      page + 
-      '/' +
-      sorting
-    )
+      let urlString: string = `${this.BASE_URL}/products/${category}`;
+      if (page) {
+        urlString += `/${page}`;
+        if (sorting) {
+          urlString += `/${sorting}`;
+        }
+      }
+      
+    return this.http.get<any>(urlString);
   }
 }
