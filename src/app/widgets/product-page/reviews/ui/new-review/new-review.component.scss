@@ -64,43 +64,47 @@
                 color: var(--yellow-color);
             }
         }
-    }        
-    .send-review {
-        width: 250px;
-        padding: 8px 22px;
-        box-sizing: border-box;
 
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        .send-review {
+            width: 250px;
+            padding: 8px 22px;
+            box-sizing: border-box;
+    
+            display: flex;
+            justify-content: center;
+            align-items: center;
+    
+            border: none;
+            background-color: var(--yellow-color);
 
-        border: none;
-        background-color: var(--yellow-color);
-
-        p {
-            width: max-content;
-
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--black-color);
-
-            user-select: none;
+            transition: 0.2s;
+    
+            p {
+                width: max-content;
+    
+                font-size: 16px;
+                font-weight: 600;
+                color: var(--black-color);
+    
+                user-select: none;
+            }
         }
-    }
-    .send-review:hover {
-        box-shadow: var(--small-shadow);
-    }
-    .send-review:active {
-        box-shadow: var(--small-shadow);
-        transition: 0.2s;
-        transform: scale(0.98);
+        .send-review:hover {
+            box-shadow: var(--small-shadow);
+        }
+        .send-review:active {
+            box-shadow: var(--small-shadow);
+            transform: scale(0.98);
+        }
     }
 }
 
 @media screen and (max-width: 512px) {
     .wrapper {
-        .send-review {
-            width: 100%;
-        }
+        .form {
+            .send-review {
+                width: 100%;
+            }
+        }   
     }
 }

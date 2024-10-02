@@ -16,11 +16,11 @@
             <div class="star" (click)="setReviewRating(4)" [ngClass]="{'active-star': reviewRating() >= 4}" #fourthStar>&#9733;</div>
             <div class="star" (click)="setReviewRating(5)" [ngClass]="{'active-star': reviewRating() >= 5}" #fifthStar>&#9733;</div>
         </div>
-    </div>
 
-    <button
-    class="send-review"
-    (click)="this.sendReview()">
-        <p>надіслати</p>
-    </button>
+        <button
+        class="send-review"
+        (click)="this.sendReview()">
+            <p>надіслати</p>
+        </button>
+    </div>
 </div>

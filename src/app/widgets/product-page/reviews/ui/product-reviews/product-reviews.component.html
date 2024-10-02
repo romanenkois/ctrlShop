@@ -16,8 +16,17 @@
             <div class="review">
                 <div class="user-data">
                     <div class="picture">
-                        <!-- <img > -->
-                        <div>Л</div>
+                        <!-- Should be changed -->
+                        <img
+                        *ngIf="review.userPicture && review.userPicture != 'https://ctrl-shop-back.vercel.app/defaultPicture/'"
+                        [src]="review.userPicture"
+                        [alt]="review.userName.charAt(0)">
+
+                        
+                        <div
+                        *ngIf="!review.userPicture">
+                            {{review.userName.charAt(0)}}
+                        </div>
                     </div>
                     <div class="name">
                         <p>{{review.userName}}</p>
@@ -25,11 +34,6 @@
                 </div>
                 <div class="review-data">
                     <div class="review-rating">
-                        <!-- @for (item of review.reviewRating; track $index) {
-                            <div class="star">
-                                *
-                            </div>
-                        } -->
                         <ng-container *ngFor="let item of [].constructor(+review.reviewRating); let i = index">
                             <div class="star">&#9733;</div>
                         </ng-container>

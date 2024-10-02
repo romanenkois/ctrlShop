@@ -24,6 +24,7 @@ export class ReviewsService {
     productId: string,
     reviewText: string,
     reviewRating: number,
+    userPicture?: string,
   ) {
     const formData: FormData = new FormData();
 
@@ -33,6 +34,11 @@ export class ReviewsService {
     formData.append('productId', productId);
     formData.append('reviewText', reviewText);
     formData.append('reviewRating', reviewRating.toString());
+    if (userPicture) {
+      formData.append('userPicture', userPicture);
+    } else {
+      formData.append('userPicture', 'https://ctrl-shop-back.vercel.app/defaultPicture/');
+    }
 
     return this.http.post<any>(this.BASE_URL + '/review', formData);
   }
