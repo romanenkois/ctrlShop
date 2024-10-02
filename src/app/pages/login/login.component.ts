@@ -21,10 +21,10 @@ export default class LoginComponent {
 
     google.accounts.id.renderButton(
       document.getElementById('google-btn'), {
-        theme: 'filled_blue',
+        theme: 'outline',
         size: 'large',
+        text: 'continue_with',
         shape: 'rectangular',
-        width: '240px',
       }
     )
   }
