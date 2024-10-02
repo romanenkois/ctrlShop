@@ -23,7 +23,20 @@ export class ClothesFeedComponent {
 
   constructor() {
     effect(() => {
-      this.clothesService.getClothesData(this.category(), this.pageNumber()).subscribe(
+      let sorting = '';
+      if (this.sortByName() == 'ascending') {
+        sorting = 'name-asc';
+      } else if (this.sortByName() == 'descending') {
+        sorting = 'name-desc';
+      } else if (this.sortByPrice() == 'ascending') {
+        sorting = 'price-asc';
+      } else if (this.sortByPrice() == 'descending') {
+        sorting = 'price-desc';
+      }
+      console.log(sorting)
+      console.log(this.sortByName())
+
+      this.clothesService.getClothesData(this.category(), this.pageNumber(), sorting).subscribe(
         response => {
           this.clothesList.set(response['result']);
           this.itemsCount.set(response['itemsCount']);
