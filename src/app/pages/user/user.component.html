@@ -1,16 +1,20 @@
 <div class="wrapper">
     <div class="user-data">
+        <div class="title">
+            <p>ваш профіль</p>
+        </div>
         <div class="picture">
             <img [src]="userData().picture" alt="user picture">
         </div>
         <div class="info">
-            <p>{{userData().name}}</p>
+            <p class="name">{{userData().name}}</p>
+            <p class="email">{{userData().email}}</p>
         </div>
     </div>
     <div class="actions">
         <div class="sign-out-btn">
             <button (click)="signOut()">
-                sign out
+                <p>вийти з системи</p>
             </button>
         </div>
     </div>
