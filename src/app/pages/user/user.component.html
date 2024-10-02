@@ -1,7 +1,17 @@
 <div class="wrapper">
-    <p>нііі я не хочу робити авторизацію</p>
-    <button 
-    class="text-button"
-    (click)="clearCache()"
-    >очистити кеш</button>
+    <div class="user-data">
+        <div class="picture">
+            <img [src]="userData().picture" alt="user picture">
+        </div>
+        <div class="info">
+            <p>{{userData().name}}</p>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="sign-out-btn">
+            <button (click)="signOut()">
+                sign out
+            </button>
+        </div>
+    </div>
 </div>
