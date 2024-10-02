@@ -1,3 +1,17 @@
 <div class="wrapper">
-    <p> роблю авторизацію</p>
+    <div class="user-data">
+        <div class="picture">
+            <img [src]="userData().picture" alt="user picture">
+        </div>
+        <div class="info">
+            <p>{{userData().name}}</p>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="sign-out-btn">
+            <button (click)="signOut()">
+                sign out
+            </button>
+        </div>
+    </div>
 </div>
