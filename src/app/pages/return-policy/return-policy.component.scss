@@ -1,0 +1,45 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    padding: 14px 42px;
+
+    .title {
+        h1 {
+            font-size: 32px;
+            font-weight: 600;
+            color: var(--black-color);
+        }
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            h2 {
+                font-size: 24px;
+                font-weight: 600;
+                color: var(--black-color);
+            }
+
+            p {
+                font-size: 16px;
+                font-weight: 400;
+                color: var(--black-color);
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .wrapper {
+        padding: 12px;
+    }
+}

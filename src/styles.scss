@@ -3,6 +3,7 @@
 
 :root {
     --black-color: #0e0e0e;
+    --black-hover-color: #242424;
     --dark-color: #241d1e;
     --dark-gray-color: #787676;
     --gray-color: #c5c5c5;
@@ -32,6 +33,7 @@
 
 * {
     font-family: var(--regular-font);
+    // outline: 1px red solid;
 }
 
 body, html {
@@ -46,6 +48,10 @@ p {
     font-size: 16px;
     font-weight: 400;
     color: var(--black-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
 }
 
 a {
