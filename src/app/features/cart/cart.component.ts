@@ -1,5 +1,5 @@
-import { Component, computed, inject, OnInit, Signal } from '@angular/core';
-import { CartService } from '../../../../../shared/cart/cart.service';
+import { Component, computed, inject } from '@angular/core';
+import { CartService } from '../../shared/cart/cart.service';
 import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-cart',
@@ -8,10 +8,10 @@ import { CommonModule } from '@angular/common';
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'
 })
-export class CartComponent implements OnInit {
+export class CartComponent {
   private cartService: CartService = inject(CartService);
 
-  cartList: any = [];
+  cartList = computed(() => this.cartService.getCartData());
 
   addToCart(item: any) {
     this.cartService.addToCart(item);
@@ -27,11 +27,5 @@ export class CartComponent implements OnInit {
 
   getTotal(items: any): number {
     return this.cartService.getTotalCartPrice(items);
-  }
-
-  ngOnInit() {
-    this.cartService.getCartData().subscribe((cart: any) => {
-      this.cartList = cart;
-    })
   }
 }

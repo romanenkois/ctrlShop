@@ -1,7 +1,7 @@
 <div class="wrapper">
-    @if (this.cartList.length) {
+    @if (this.cartList().length) {
         <div class="content">
-            @for (item of this.cartList; track $index) {
+            @for (item of this.cartList(); track $index) {
                 <div class="item">
                     <div class="picture">
                         <a href="product/{{item._id}}">
