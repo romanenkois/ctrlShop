@@ -27,7 +27,7 @@ export class FormComponent {
 
   // used for validation
   completedFirstStep = computed(() => {
-    return this.cartService.cartSignal().length > 0;
+    return this.cartService.getCartData().length > 0;
   });
   completedSecondStep = computed(() => {
     return this.customerData.valid;

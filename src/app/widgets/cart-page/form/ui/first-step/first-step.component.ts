@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { CartService } from '../../../../../shared/cart/cart.service';
 
 @Component({
@@ -11,8 +11,8 @@ import { CartService } from '../../../../../shared/cart/cart.service';
 export class FirstStepComponent {
   private cartService: CartService = inject(CartService);
 
-  itemsInCart = true;
-  cartList: any = [];
+  itemsInCart = computed(() => this.cartService.getCartData().length > 0);
+  cartList = computed(() => this.cartService.getCartData());
 
   addToCart(item: any) {
     this.cartService.addToCart(item);
@@ -28,12 +28,5 @@ export class FirstStepComponent {
 
   getTotal(items: any): number {
     return this.cartService.getTotalCartPrice(items);
-  }
-
-  ngOnInit() {
-    this.cartService.$cart.subscribe((cart: any) => {
-      this.itemsInCart = cart.length > 0;
-      this.cartList = cart;
-    }); 
   }
 }

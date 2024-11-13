@@ -13,9 +13,11 @@ export class CartService {
   // used for addNewItem(), so it wouldn`t be accesible until the previous request result
   private addingNewItem: boolean = false;
 
-  private cartObject = new BehaviorSubject<any[]>([]);
-  public cartSignal: WritableSignal<any[]> = signal([]);
-  $cart = this.cartObject.asObservable();
+  private $cart: WritableSignal<Array<any>> = signal([]);
+
+  public getCartData() {
+    return this.$cart();
+  }
 
   private simplifyCart(cartData: Array<any>): Array<any> {
     let simpleCart: Array<any> = [];
@@ -32,18 +34,17 @@ export class CartService {
 
   private updateLS() {
     let cartToSave;
-    if (this.cartObject.value.length === 0) {
+    if (this.$cart().length === 0) {
       cartToSave = [];
     } else {
-      cartToSave = this.simplifyCart(this.cartObject.value);
+      cartToSave = this.simplifyCart(this.$cart());
     }
     
     localStorage.setItem('cart', JSON.stringify(cartToSave));
   }
  
   private updateCart(newList: Array<any>) {
-    this.cartObject.next(newList);
-    this.cartSignal.set(newList);
+    this.$cart.set(newList);
     this.updateLS();
   }
 
@@ -61,7 +62,7 @@ export class CartService {
     // if local storage cart is empty, so will be the cart object,
     // so we just skip other part of loading
     if (currentList.length === 0) {
-      this.cartObject.next(result);
+      this.$cart.set(result);
       return;
     }
 
@@ -75,8 +76,7 @@ export class CartService {
     }
 
     // updating the cart directly, otherwise it would earase data in LS
-    this.cartObject.next(result);
-    this.cartSignal.set(result);
+    this.$cart.set(result);
   }  
 
   constructor() {
@@ -91,8 +91,8 @@ export class CartService {
     }
     this.addingNewItem = true;
 
-    let productInCart = this.cartObject.value.find((product: any) => product._id === productId);
-    let result = this.cartObject.value;
+    let productInCart = this.$cart().find((product: any) => product._id === productId);
+    let result = this.$cart();
 
     if (productInCart) {
       for (let index = 0; index < result.length; index++) {
@@ -113,13 +113,13 @@ export class CartService {
   }
 
   removeFromCart(productId: string) {
-    let productInCart = this.cartObject.value.find((product: any) => product._id === productId);
+    let productInCart = this.$cart().find((product: any) => product._id === productId);
     let newList: Array<any> = [];
     if (!productInCart) { return; }
 
-    for (let index = 0; index < this.cartObject.value.length; index++) {
-      if (this.cartObject.value[index]._id != productId) {
-        newList.push(this.cartObject.value[index]);
+    for (let index = 0; index < this.$cart().length; index++) {
+      if (this.$cart()[index]._id != productId) {
+        newList.push(this.$cart()[index]);
       }
     }
 
@@ -127,16 +127,16 @@ export class CartService {
   }
 
   removeOneFromCart(productId: string) {
-    let productInCart = this.cartObject.value.find((product: any) => product._id === productId);
+    let productInCart = this.$cart().find((product: any) => product._id === productId);
     let newList: Array<any> = [];
     if (!productInCart) { return; }
 
-    for (let index = 0; index < this.cartObject.value.length; index++) {
-      if (this.cartObject.value[index]._id != productId) {
-        newList.push(this.cartObject.value[index]);
+    for (let index = 0; index < this.$cart().length; index++) {
+      if (this.$cart()[index]._id != productId) {
+        newList.push(this.$cart()[index]);
       } else {
-        if (this.cartObject.value[index].quantity > 1) {
-          let item = this.cartObject.value[index]
+        if (this.$cart()[index].quantity > 1) {
+          let item = this.$cart()[index]
           item.quantity -= 1;
           newList.push(item)
         }
@@ -148,19 +148,15 @@ export class CartService {
 
   getTotalCartPrice(cart?: any) {
     let totalPrice = 0;
-    for (let index = 0; index < this.cartObject.value.length; index++) {
-      totalPrice += this.cartObject.value[index].price * this.cartObject.value[index].quantity;
+    for (let index = 0; index < this.$cart().length; index++) {
+      totalPrice += this.$cart()[index].price * this.$cart()[index].quantity;
     }
 
     return totalPrice
   }
 
-  getCartData(): Observable<any[]> {
-    return this.cartObject.asObservable();
-  }
-
   getSimpleCartData() {
-    return this.simplifyCart(this.cartObject.value);
+    return this.simplifyCart(this.$cart());
   }
 
   clearCart() {
