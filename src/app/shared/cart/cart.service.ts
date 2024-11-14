@@ -100,18 +100,20 @@ export class CartService {
           result[index].quantity += 1;
         }
       }
-      setTimeout(() => {
+
+      this.updateCart(result);
+      setTimeout(() => { // has to do with how signals work, otherwise it woudnt properly notify consumers
         this.addingNewItem.set(false);
       }, 1);    
     } else {
       this.http.get(this.BASE_URL + 'product/' + productId).subscribe((res: any) => {
         res.quantity = 1;
         result.push(res);
+
+        this.updateCart(result);
         this.addingNewItem.set(false);
       });
     }
-
-    this.updateCart(result);
   }
 
   getTotalCartPrice() {
