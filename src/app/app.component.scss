@@ -1,5 +1,9 @@
 .wrapper {
-    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    
+    min-height: 100vh;
+
     .header {
         position: sticky;
         top: 0;
@@ -7,9 +11,8 @@
         background-color: var(--white-color);
     }
     .router-outlet {
-        // height: 100%;
+        flex: 1;
         width: 100%;
-        min-height: 80vh;
         
     }
     // .footer {
