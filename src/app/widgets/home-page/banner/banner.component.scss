@@ -4,6 +4,8 @@
         height: 100vh;
         position: relative;
 
+        box-sizing: border-box;
+
         img {
             height: 100%;
             width: 100%;
@@ -20,41 +22,54 @@
             background-color: rgba(10, 10, 10, 0.75);
         }
 
-        .actions {
+        .on-top-content {
             position: absolute;
-            top: 50%;
-            right: 20%;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+
+            box-sizing: border-box;
 
             display: flex;
-            flex-direction: row;
-            gap: 8px;
+            justify-content: center;
+            align-items: center;
 
-            button {
-                border: none;
-                padding: 16px 32px;
+            .actions {
+                box-sizing: border-box;
+
+                padding-left: 45%;
+
+                display: flex;
+                flex-direction: row;
+                gap: 8px;
     
-                font-weight: 600;
-                font-size: 18px;
-                color: var(--black-color);
-                font-family: var(--highlight-font);
-
-                // background-color: var(--white-color);
-                background-color: var(--yellow-color);
-    
-                box-shadow: 2px 2px 2px 2px rgba(200, 200, 200, 0.2);
-                cursor: pointer;
-
-            }
-            button:hover {
-                transition: 0.2s;
-                // background-color: var(--light-gray-color);
-                background-color: var(--yellow-hover-color);
-            }
-            button:active {
-                transition: 0.2s;
-                transform: scale(0.95);
-            }
+                button {
+                    border: none;
+                    padding: 16px 32px;
         
+                    font-weight: 600;
+                    font-size: 18px;
+                    color: var(--black-color);
+                    font-family: var(--highlight-font);
+    
+                    // background-color: var(--white-color);
+                    background-color: var(--yellow-color);
+        
+                    box-shadow: 2px 2px 2px 2px rgba(200, 200, 200, 0.2);
+                    cursor: pointer;
+    
+                }
+                button:hover {
+                    transition: 0.2s;
+                    // background-color: var(--light-gray-color);
+                    background-color: var(--yellow-hover-color);
+                }
+                button:active {
+                    transition: 0.2s;
+                    transform: scale(0.95);
+                }
+            }
         }
     }
 }
@@ -62,13 +77,18 @@
 @media screen and (max-width: 980px) {
     .wrapper {
         .picture {
-            .actions {
-                flex-direction: column;
-                
-                button {
-                    width: 200px;
+            .on-top-content{
+                .actions {
+                    flex-direction: column;
+
+                    padding-left: 30%;
+                    
+                    button {
+                        width: 200px;
+                    }
                 }
             }
+            
         }
     }
 }
@@ -76,8 +96,10 @@
 @media screen and (max-width: 768px) {
     .wrapper {
         .picture {
-            .actions {
-                left: 40%;
+            .on-top-content {
+                .actions {
+                    padding: 0;
+                }
             }
         }
     }
