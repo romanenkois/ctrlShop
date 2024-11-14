@@ -27,6 +27,19 @@
             }
         }
     }
+
+    .null-placeholder {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+
+        p {
+            font-size: 24px;
+            font-weight: 400;
+        }
+    }
 }
 
 @media screen and (max-width: 1440px) {
