@@ -33,8 +33,8 @@ export class ClothesFeedComponent {
       } else if (this.sortByPrice() == 'descending') {
         sorting = 'price-desc';
       }
-      console.log(sorting)
-      console.log(this.sortByName())
+
+      this.clothesList.set([]); // problem is here
 
       this.clothesService.getClothesData(this.category(), this.pageNumber(), sorting).subscribe(
         response => {
@@ -42,6 +42,6 @@ export class ClothesFeedComponent {
           this.itemsCount.set(response['itemsCount']);
         }
       )
-    })
+    }, { allowSignalWrites: true });
   }
 }
