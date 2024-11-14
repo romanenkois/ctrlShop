@@ -8,10 +8,15 @@
             >
         </a>
         <div class="actions">
-            <button #favoritesButton (click)="addToFavorites(this.product()._id, favoritesButton)">
+            <button
+            #favoritesButton 
+            (click)="addToFavorites(this.product()._id, favoritesButton)"
+            [class.click-animation]="this.productInFavorites()">
                 <img src="icons/general/heart.svg">
             </button>
-            <button #cartButton (click)="addToCart(this.product()._id, cartButton)">
+            <button
+            #cartButton
+            (click)="addToCart(this.product()._id, cartButton)">
                 <img src="icons/general/cart.svg">
             </button>
         </div>

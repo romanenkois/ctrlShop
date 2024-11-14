@@ -1,4 +1,4 @@
-import { Component, inject, input, InputSignal } from '@angular/core';
+import { Component, computed, inject, input, InputSignal } from '@angular/core';
 import { CartService } from '../../../../../shared/cart/cart.service';
 import { FavoritesService } from '../../../../../shared/favorites/favorites.service';
 import { TranslateTypePipe } from "../../../../../shared/pipes/translate-type.pipe";
@@ -16,6 +16,7 @@ export class ClothesCardComponent {
   private favoritesService: FavoritesService = inject(FavoritesService); 
 
   product: InputSignal<any> = input.required();
+  productInFavorites = computed(() => this.favoritesService.isInFavorites(this.product()._id));
 
   addToCart(productId: any, button: HTMLElement) {
     this.cartService.addToCart(productId);
@@ -24,10 +25,15 @@ export class ClothesCardComponent {
     setTimeout(() => button.classList.remove('click-animation'), 1000);
   }
 
+  /**
+   * Func adds product to favorites, if it isnt there
+   * otherwise it removes from it
+   */
   addToFavorites(productId: any, button: HTMLElement) {
-    this.favoritesService.addToFavorites(productId);
-
-    button.classList.add('click-animation');
-    setTimeout(() => button.classList.remove('click-animation'), 1000);
+    if (!this.productInFavorites()) {
+      this.favoritesService.addToFavorites(productId);
+    } else {
+      this.favoritesService.removeFromFavorites(productId);
+    }
   }
 }

@@ -11,25 +11,44 @@ export class FavoritesService {
   private BASE_URL: string = 'https://ctrl-shop-back.vercel.app/';
 
   $favoritesList: WritableSignal<any> = signal([]);
+  $favoritesData: WritableSignal<any> = signal([]);
 
   constructor() {
     this.$favoritesList.set(JSON.parse(localStorage.getItem('favorites') || '[]'))
   }
-
+ 
+  /**
+   * Returns a list of favs, in simple format of 
+   * [{productId: string}, ..]
+   */
   public getFavoritesList() {
     return this.$favoritesList();
   }
 
+  /**
+   * Returns a list of favs, in full format of 
+   * [{_id: string, name: string, ..}, ..]
+   */
   public getFavoritesData() {
     return this.fetchFavoritesData(this.$favoritesList());
   }
 
+  /**
+   * Returns true if the product is in the favorites list
+   */
+  public isInFavorites(productId: string) {
+    const currentList = this.$favoritesList();
+    const productInFavorites = currentList.find((product: any) => product.productId === productId);
+    return !!productInFavorites;
+  }
+
+  // used to set the new value of fav list, and to put it into LS
   private setFavoritesList(newList: any[]) {
-    console.log(newList);
     this.$favoritesList.set(newList);
     localStorage.setItem('favorites', JSON.stringify(newList));
   }
   
+  // used to fetch data from the API of items in the favorites list
   private fetchFavoritesData(favorites: any) {
     let result: any = [];
 
