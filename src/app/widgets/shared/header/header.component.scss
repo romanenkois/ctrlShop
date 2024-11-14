@@ -18,101 +18,106 @@
 
         .navigation {
             display: flex;
-            align-items: baseline;
-            flex-wrap: wrap;
-            gap: 12px;
+            justify-content: center;
+            align-items: center;
 
-            .logo {
-                p {
-                    font-size: 36px;
-                    font-weight: 300;
-                    color: var(--black-color);
+            .links {
+                display: flex;
+                align-items: baseline;
+                flex-wrap: wrap;
+                gap: 16px;
 
-                    font-family: var(--highlight-font);
-                    cursor: pointer;
-                }
-
-                p:hover {
-                    transition: 0.8s ease-out;
-                    transition-delay: 0.3s;
-                    background-color: var(--yellow-color);
-                }
-            }
-
-            .selections {
-                position: relative;
-                .clothes-button {
+                .logo {
                     p {
-                        position: relative;
+                        font-size: 36px;
+                        font-weight: 300;
+                        color: var(--black-color);
 
-                        font-size: 24px;
-                        font-weight: 400;
-                        color: var(--dark-color);
-
+                        font-family: var(--highlight-font);
                         cursor: pointer;
                     }
-                    p::before {
-                        content: "";
-                        display: block;
-                        position: absolute;
-            
-                        width: 0%;
-                        height: 3px;
-                        
-                        bottom: -2px;
-                        
+
+                    p:hover {
+                        transition: 0.8s ease-out;
+                        transition-delay: 0.3s;
                         background-color: var(--yellow-color);
-                        transition: 0.2s ease-in-out;
-                    }
-                    p:hover::before {
-                        width: 100%;
-                        transition: 0.2s ease-in-out;
-                    }
-                    p.clothesMenuVisibility::before {
-                        width: 100%;
-                        transition: 0.2s ease-in-out;
                     }
                 }
 
-                .clothes-menu {
-                    display: none;
-
-                    position: absolute;
-                    width: fit-content;
-                    top: 34px;
-                    z-index: 10;
-
-                    background-color: var(--white-color);
-
-                    box-shadow: var(--medium-reverse-shadow), var(--medium-shadow);
-
-                    div {
+                .selections {
+                    position: relative;
+                    .clothes-button {
                         p {
-                            padding: 10px 24px;
+                            position: relative;
 
-                            font-size: 14px;
+                            font-size: 24px;
                             font-weight: 400;
-                            color: var(--black-color);
+                            color: var(--dark-color);
 
                             cursor: pointer;
                         }
+                        p::before {
+                            content: "";
+                            display: block;
+                            position: absolute;
+                
+                            width: 0%;
+                            height: 3px;
+                            
+                            bottom: -2px;
+                            
+                            background-color: var(--yellow-color);
+                            transition: 0.2s ease-in-out;
+                        }
+                        p:hover::before {
+                            width: 100%;
+                            transition: 0.2s ease-in-out;
+                        }
+                        p.clothesMenuVisibility::before {
+                            width: 100%;
+                            transition: 0.2s ease-in-out;
+                        }
                     }
-                    div:hover {
-                        box-shadow: var(--small-reverse-shadow), var(--small-shadow)
+
+                    .clothes-menu {
+                        display: none;
+
+                        position: absolute;
+                        width: fit-content;
+                        top: 34px;
+                        z-index: 10;
+
+                        background-color: var(--white-color);
+
+                        box-shadow: var(--medium-reverse-shadow), var(--medium-shadow);
+
+                        div {
+                            p {
+                                padding: 10px 24px;
+
+                                font-size: 14px;
+                                font-weight: 400;
+                                color: var(--black-color);
+
+                                cursor: pointer;
+                            }
+                        }
+                        div:hover {
+                            box-shadow: var(--small-reverse-shadow), var(--small-shadow)
+                        }
+                        div:active {
+                            p {
+                                transition: 0.2s;
+                                transform: scale(0.95);
+                            }                
+                        }
                     }
-                    div:active {
-                        p {
-                            transition: 0.2s;
-                            transform: scale(0.95);
-                        }                
+                    .clothes-menu.clothesMenuVisibility {
+                        display: flex;
+                        flex-direction: column;
                     }
                 }
-                .clothes-menu.clothesMenuVisibility {
-                    display: flex;
-                    flex-direction: column;
-                }
-            }
-            
+            }            
         }
 
         .actions {
@@ -195,5 +200,27 @@
 }
 
 @media screen and (max-width: 512px) {
+    .wrapper {
+        .header {
+            .navigation {
+                .links {
+                    gap: 8px;
+
+                    .logo {
+                        p {
+                            font-size: 32px;
+                        }
+                    }
     
+                    .selections {
+                        .clothes-button {
+                            p {
+                                font-size: 24px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

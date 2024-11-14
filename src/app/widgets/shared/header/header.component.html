@@ -1,30 +1,32 @@
 <div class="wrapper">
     <div class="header">
         <div class="navigation">
-            <div class="logo" (click)="redirectTo('home')">
-                <p>ctrlShop</p>
+            <div class="links">
+                <div class="logo" (click)="redirectTo('home')">
+                    <p>ctrlShop</p>
+                </div>
+                <div
+                class="selections"
+                [class.hideSelections]="hideSelections"
+                >
+                    <div
+                        class="clothes-button"
+                        (click)="toggleClothesMenu()">
+                        <p [class.clothesMenuVisibility]="clothesMenuVisibility">ооодяг</p>
+                    </div>
+                    <div
+                        class="clothes-menu"
+                        [class.clothesMenuVisibility]="clothesMenuVisibility">
+                        <a href="clothes?category=all"><div><p>весь одяг</p></div></a>
+                        <a href="clothes?category=tshirt"><div><p>футболки</p></div></a>
+                        <a href="clothes?category=pants"><div><p>штани</p></div></a>
+                        <a href="clothes?category=scarf"><div><p>шарфи</p></div></a>
+                        <a href="clothes?category=hoodie"><div><p>худі</p></div></a>
+                        <a href="clothes?category=sweater"><div><p>светри</p></div></a>
+                        <a href="clothes?category=accessories"><div><p>аксесуари</p></div></a>
+                    </div>
+                </div> 
             </div>
-            <div
-            class="selections"
-            [class.hideSelections]="hideSelections"
-            >
-                <div
-                    class="clothes-button"
-                    (click)="toggleClothesMenu()">
-                    <p [class.clothesMenuVisibility]="clothesMenuVisibility">ооодяг</p>
-                </div>
-                <div
-                    class="clothes-menu"
-                    [class.clothesMenuVisibility]="clothesMenuVisibility">
-                    <a href="clothes?category=all"><div><p>весь одяг</p></div></a>
-                    <a href="clothes?category=tshirt"><div><p>футболки</p></div></a>
-                    <a href="clothes?category=pants"><div><p>штани</p></div></a>
-                    <a href="clothes?category=scarf"><div><p>шарфи</p></div></a>
-                    <a href="clothes?category=hoodie"><div><p>худі</p></div></a>
-                    <a href="clothes?category=sweater"><div><p>светри</p></div></a>
-                    <a href="clothes?category=accessories"><div><p>аксесуари</p></div></a>
-                </div>
-            </div>    
         </div>
         
         <div class="actions">
