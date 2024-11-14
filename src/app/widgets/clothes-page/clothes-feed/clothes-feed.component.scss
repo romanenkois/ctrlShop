@@ -6,14 +6,16 @@
     padding: 14px 12px;
 
     .clothes-feed {
-        display: flex;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
+            
         flex-direction: row;
         flex-wrap: wrap;
         
         .card {
             padding: 12px;
 
-            width: 33%;
+            // width: 33%;
             height: 450px;
 
             box-sizing: border-box;
@@ -42,20 +44,46 @@
     }
 }
 
+@media screen and (max-width: 2420px) {
+    .wrapper {
+        .clothes-feed {
+            grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));   
+        }
+    } 
+}
+
+@media screen and (max-width: 1920px) {
+    .wrapper {
+        .clothes-feed {
+            grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));   
+        }
+    } 
+}
+
 @media screen and (max-width: 1440px) {
     .wrapper {
         .clothes-feed {
-            .card {
-                width: 50%;
-            }
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));   
         }
-    }
-    
+    } 
+}
+
+@media screen and (max-width: 1024px) {
+    .wrapper {
+        .clothes-feed {
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));   
+        }
+    } 
 }
 
 @media screen and (max-width: 768px) {
     .wrapper {
         .clothes-feed {
+            display: flex;
+            flex-direction: column;
+
+            // grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+
             .card {
                 width: 100%;
                 padding: 0px;
