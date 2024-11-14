@@ -3,7 +3,7 @@
         <p>твоя корзина</p>
     </div>
     
-    <div class="content">
+    <div class="content" *ngIf="this.cartList().length > 0">
         @for (item of this.cartList(); track $index) {
             <div class="item">
                 <div class="picture">
@@ -42,12 +42,12 @@
     <div class="actions">
         <div *ngIf="cartList().length > 0">
             <p>загальна сума корзини: {{getTotal(cartList)}} грн.</p>
-            <a href="cart"><button>оплатити</button></a>
+            <a href="cart"><button>замовити</button></a>
         </div>
         
         <div *ngIf="cartList().length === 0">
             <p>в твоїй корзині ще нічого немає</p>
-            <a href="clothes"><button>перейти до шмоток</button></a>
+            <a href="clothes"><button>перейти до одягу</button></a>
         </div>
     </div>
 </div>
