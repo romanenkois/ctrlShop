@@ -26,6 +26,6 @@ export class CartComponent {
   }
 
   getTotal(items: any): number {
-    return this.cartService.getTotalCartPrice(items);
+    return this.cartService.getTotalCartPrice();
   }
 }

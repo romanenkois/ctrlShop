@@ -152,6 +152,11 @@
                     transition: 0.2s;
                     transform: scale(0.9);
                 }
+
+                .highlight-animation {
+                    transition: 0.5s ease-in-out;
+                    background-color: var(--yellow-color);
+                }
             }
 
             

@@ -11,9 +11,13 @@ export class CartService {
   private BASE_URL: string = 'https://ctrl-shop-back.vercel.app/';
 
   // used for addNewItem(), so it wouldn`t be accesible until the previous request result
-  private addingNewItem: boolean = false;
+  public addingNewItem: WritableSignal<boolean> = signal(false);
 
   private $cart: WritableSignal<Array<any>> = signal([]);
+
+  constructor() {
+    this.loadCartData();
+  }
 
   public getCartData() {
     return this.$cart();
@@ -77,19 +81,15 @@ export class CartService {
 
     // updating the cart directly, otherwise it would earase data in LS
     this.$cart.set(result);
-  }  
-
-  constructor() {
-    this.loadCartData();
   }
-
+  
   addToCart(productId: string) {
     // function isnt accesible when user made request
     // to add new item, when it wasnt resolved yet
-    if (this.addingNewItem) {
+    if (this.addingNewItem()) {
       return;
     }
-    this.addingNewItem = true;
+    this.addingNewItem.set(true);
 
     let productInCart = this.$cart().find((product: any) => product._id === productId);
     let result = this.$cart();
@@ -100,16 +100,31 @@ export class CartService {
           result[index].quantity += 1;
         }
       }
-      this.addingNewItem = false;      
+      setTimeout(() => {
+        this.addingNewItem.set(false);
+      }, 1);    
     } else {
       this.http.get(this.BASE_URL + 'product/' + productId).subscribe((res: any) => {
         res.quantity = 1;
         result.push(res);
-        this.addingNewItem = false;
+        this.addingNewItem.set(false);
       });
     }
 
     this.updateCart(result);
+  }
+
+  getTotalCartPrice() {
+    let totalPrice = 0;
+    for (let index = 0; index < this.$cart().length; index++) {
+      totalPrice += this.$cart()[index].price * this.$cart()[index].quantity;
+    }
+
+    return totalPrice
+  }
+
+  getSimpleCartData() {
+    return this.simplifyCart(this.$cart());
   }
 
   removeFromCart(productId: string) {
@@ -146,18 +161,7 @@ export class CartService {
     this.updateCart(newList);
   }  
 
-  getTotalCartPrice(cart?: any) {
-    let totalPrice = 0;
-    for (let index = 0; index < this.$cart().length; index++) {
-      totalPrice += this.$cart()[index].price * this.$cart()[index].quantity;
-    }
-
-    return totalPrice
-  }
-
-  getSimpleCartData() {
-    return this.simplifyCart(this.$cart());
-  }
+  
 
   clearCart() {
     this.updateCart([]);

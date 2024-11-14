@@ -2,8 +2,10 @@
     <div class="header">
         <div class="navigation">
             <div class="links">
-                <div class="logo" (click)="redirectTo('home')">
-                    <p>ctrlShop</p>
+                <div class="logo">
+                    <a href="/home">
+                        <p>ctrlShop</p>
+                    </a>
                 </div>
                 <div
                 class="selections"
@@ -38,6 +40,7 @@
                 [class.hideCart]="hideCart"
 
                 class="hideCart"
+                id="nav-cart-button"
                 >
                     <img src="icons/general/cart.svg">
                 </button>

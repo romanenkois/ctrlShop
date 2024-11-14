@@ -26,7 +26,7 @@ export class FirstStepComponent {
     this.cartService.removeOneFromCart(item);
   }
 
-  getTotal(items: any): number {
-    return this.cartService.getTotalCartPrice(items);
+  getTotal(): number {
+    return this.cartService.getTotalCartPrice();
   }
 }
