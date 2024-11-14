@@ -34,7 +34,7 @@ export class ClothesFeedComponent {
         sorting = 'price-desc';
       }
 
-      this.clothesList.set([]); // problem is here
+      this.clothesList.set([{}, {}]);
 
       this.clothesService.getClothesData(this.category(), this.pageNumber(), sorting).subscribe(
         response => {
