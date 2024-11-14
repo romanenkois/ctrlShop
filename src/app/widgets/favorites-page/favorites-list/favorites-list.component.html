@@ -4,15 +4,14 @@
         <p>ми сповістимо вас, якщо збережений одяг, якого зараз немає в наявності, з'явиться на складі</p>
     </div>
     
-    @if (this.favoritesData.length > 0) {
+    @if (this.favoritesData().length > 0) {
 
         <div class="favorite-list">
-        @for (item of this.favoritesData; track $index) {
+        @for (item of this.favoritesData(); track $index) {
             <div class="item">
                 <div class="picture">
                     <a href="product/{{item._id}}">
                         <img [src]="item.image[0]">
-                        <!-- <img src="assets/reyechka.png"> -->
                     </a>
                 </div>
                 <div class="not-picture">
@@ -34,7 +33,7 @@
         }
         </div>
     }
-    @if (this.favoritesData.length === 0) {
+    @if (this.favoritesData().length === 0) {
         <div class="empty-list">
             <p>ви ще не зберегли жодного товару</p>
             <a href="clothes"><button>пререглянути одяг</button></a>

@@ -1,7 +1,6 @@
-import { effect, inject, Injectable, signal, WritableSignal } from '@angular/core';
+import { inject, Injectable, signal, WritableSignal } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,16 +10,27 @@ export class FavoritesService {
 
   private BASE_URL: string = 'https://ctrl-shop-back.vercel.app/';
 
-  private favoritesObject = new BehaviorSubject<any[]>(JSON.parse(localStorage.getItem('favorites') || '[]'));
-  $favoritesList = this.favoritesObject.asObservable();
+  $favoritesList: WritableSignal<any> = signal([]);
 
+  constructor() {
+    this.$favoritesList.set(JSON.parse(localStorage.getItem('favorites') || '[]'))
+  }
 
-  private updateFavorites(newList: any[]) {
-    this.favoritesObject.next(newList);
+  public getFavoritesList() {
+    return this.$favoritesList();
+  }
+
+  public getFavoritesData() {
+    return this.fetchFavoritesData(this.$favoritesList());
+  }
+
+  private setFavoritesList(newList: any[]) {
+    console.log(newList);
+    this.$favoritesList.set(newList);
     localStorage.setItem('favorites', JSON.stringify(newList));
   }
   
-  getFavoritesData(favorites: any) {
+  private fetchFavoritesData(favorites: any) {
     let result: any = [];
 
     for (let i = 0; i < favorites.length; i++) {
@@ -37,7 +47,7 @@ export class FavoritesService {
   }
 
   addToFavorites(productId: string) {
-    const currentList = this.favoritesObject.value;
+    const currentList = this.$favoritesList();
     const productInFavorites = currentList.find((product: any) => product.productId === productId);
     
     if (!productInFavorites) {
@@ -48,13 +58,13 @@ export class FavoritesService {
       }
 
       newList[currentList.length] = {productId: productId};
-      this.updateFavorites(newList);
+      this.setFavoritesList(newList);
     }
     
   }
 
   removeFromFavorites(productId: string) {
-    const currentList = this.favoritesObject.value;
+    const currentList = this.$favoritesList();
     const productInFavorites = currentList.find((product: any) => product.productId === productId);
     if (productInFavorites) {
       const newList: any = [];
@@ -67,7 +77,7 @@ export class FavoritesService {
 
       console.log(newList);
 
-      this.updateFavorites(newList);
+      this.setFavoritesList(newList);
     }    
   }
 }

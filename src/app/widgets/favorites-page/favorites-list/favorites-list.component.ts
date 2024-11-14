@@ -1,4 +1,4 @@
-import { Component, effect, inject, OnInit, signal, WritableSignal } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { FavoritesService } from '../../../shared/favorites/favorites.service';
 import { CartService } from '../../../shared/cart/cart.service';
 
@@ -9,21 +9,12 @@ import { CartService } from '../../../shared/cart/cart.service';
   templateUrl: './favorites-list.component.html',
   styleUrl: './favorites-list.component.scss'
 })
-export class FavoritesListComponent implements OnInit {
+export class FavoritesListComponent {
   private favoritesService: FavoritesService = inject(FavoritesService)
   private cartService: CartService = inject(CartService);
 
-  favoritesList: any = [];
-  favoritesData: any = [];
-
-  // constructor() {
-  //   effect(() => {
-  //     // this.favoritesList = this.favoritesService.$favoritesList;
-  //     // this.favoritesData = this.favoritesService.getFavoritesData();
-
-  //     console.log(this.favoritesData());
-  //   })
-  // }
+  favoritesList = computed(() => this.favoritesService.$favoritesList());
+  favoritesData= computed(() => this.favoritesService.getFavoritesData());
 
   addToCart(productId: any) {
     this.cartService.addToCart(productId);
@@ -31,14 +22,5 @@ export class FavoritesListComponent implements OnInit {
 
   removeFromFavorite(productID: any) {
     this.favoritesService.removeFromFavorites(productID);
-  }
-
-  ngOnInit() {
-    // this.favoritesData.set(this.favoritesService.getFavoritesData());
-    this.favoritesService.$favoritesList.subscribe((favorites: any) => {
-      this.favoritesList = favorites;
-
-      this.favoritesData = this.favoritesService.getFavoritesData(favorites);
-    });
   }
 }
