@@ -25,16 +25,7 @@ export class FormComponent {
   hideFourthStep = true;
   hideFifthStep = true;
 
-  // used for validation
-  completedFirstStep = computed(() => {
-    return this.cartService.getCartData().length > 0;
-  });
-  completedSecondStep = computed(() => {
-    return this.customerData.valid;
-  })
-  completedThirdStep = computed(() => {
-    return this.deliveryData.valid;
-  });
+  // used for validation 
   completedFourthStep: WritableSignal<boolean> = signal(true); // no payment system yet
 
   // used to avoid duplicate requests
@@ -52,6 +43,7 @@ export class FormComponent {
     inputPostOffice: ['', Validators.required],
   });
 
+  // is disabled because of no payment system yet
   paymentData: FormGroup = this.fb.group({
     inputCardNumber: [{value: '', disabled: true}, Validators.required],
     inputCardExpiration: [{value: '', disabled: true}, Validators.required],
@@ -66,17 +58,17 @@ export class FormComponent {
   openNextStep(step: number) {
     switch (step) {
       case 2:
-        if (this.completedFirstStep()) {  
+        if (this.cartService.getCartData().length > 0) {  
           this.hideSecondStep = false;
         }
         break;
       case 3:
-        if (this.completedSecondStep()) {
+        if (this.customerData.valid) {
           this.hideThirdStep = false;
         }
         break;
       case 4:
-        if (this.completedThirdStep()) {
+        if (this.deliveryData.valid) {
           this.hideFourthStep = false;
         }
         break;
@@ -89,18 +81,21 @@ export class FormComponent {
   }
 
   createOrder() {
+    // checks if all requirements are met
     if (
-    this.completedFirstStep()
-    && this.completedSecondStep()
-    && this.completedThirdStep()
+    this.cartService.getCartData().length > 0
+    && this.customerData.valid
+    && this.deliveryData.valid
     && this.completedFourthStep()
     && this.notSendingOrder()) {
 
+      // set to true, so we cant send another request
       this.notSendingOrder.set(false);
 
+      // we send the request using the function from service
       this.uploadService.uploadOrder(
         new Date().toISOString(),
-        '1',
+        '1', // user id, not implemented yet
         this.cartService.getSimpleCartData(),
         this.customerData.value,
         this.deliveryData.value,
@@ -110,11 +105,10 @@ export class FormComponent {
         this.cartService.clearCart();
         window.location.href = '/';
       });
-
-    } else if (!this.completedFirstStep()) {
-      window.alert('чєл, корзина пуста');
+    } else if (this.cartService.getCartData().length < 1) {
+      window.alert('схоже корзина пуста');
     } else {
-      window.alert('заповни всі поля попуск');
+      window.alert('спершу необхідно заповнити всі поля');
     }
   }
 }
