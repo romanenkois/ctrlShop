@@ -10,8 +10,8 @@
         }
         
     </div>
-    <div class="null-placeholder" *ngIf="this.itemsCount() == 0">
-        <p>Не знайшлося товарів за данною категорією((</p>
+    <div class="null-placeholder" *ngIf="this.itemsCount() < 1">
+        <p>Не знайшлося товарів за данною категорією </p>
     </div>
     <div class="pagination">
         
