@@ -1,0 +1,23 @@
+# Editor configuration, see https://editorconfig.org
+root = true
+
+[*]
+charset = utf-8
+indent_style = space
+indent_size = 4
+insert_final_newline = true
+trim_trailing_whitespace = true
+quote_type = single
+
+[*.{html,css,scss,less}]
+indent_size = 4
+indent_style = space
+
+[*.ts]
+quote_type = single
+ij_typescript_use_double_quotes = false
+indent_size = 2
+
+[*.md]
+max_line_length = off
+trim_trailing_whitespace = false

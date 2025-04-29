@@ -11,7 +11,7 @@ import { CartService } from '../../../../../shared/cart/cart.service';
 export class FirstStepComponent {
   private cartService: CartService = inject(CartService);
 
-  itemsInCart = computed(() => this.cartService.getCartData().length > 0);
+  itemsInCart = computed(() => this.cartService.getCartData().items.length > 0);
   cartList = computed(() => this.cartService.getCartData());
 
   addToCart(item: any) {

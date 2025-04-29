@@ -1,67 +1,73 @@
-import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, signal, WritableSignal } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpClient } from "@angular/common/http";
+import { inject, Injectable, signal, WritableSignal } from "@angular/core";
+import { Cart, CartItem, CartSimple, Product } from "@types";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class CartService {
   private http: HttpClient = inject(HttpClient);
 
-  private BASE_URL: string = 'https://ctrl-shop-back.vercel.app/';
+  private BASE_URL: string = "https://ctrl-shop-back.vercel.app/";
 
-  // used for addNewItem(), so it wouldn`t be accesible until the previous request result
+  // used for addNewItem(), so the method wouldn`t be accesible until the previous request result
   public addingNewItem: WritableSignal<boolean> = signal(false);
 
-  private $cart: WritableSignal<Array<any>> = signal([]);
+  private $cart: WritableSignal<Cart> = signal({ items: [] });
 
   constructor() {
-    this.loadCartData();
+    this.loadCartFromLS();
   }
 
-  public getCartData() {
+  public getCartData(): Cart {
     return this.$cart();
   }
 
-  private simplifyCart(cartData: Array<any>): Array<any> {
-    let simpleCart: Array<any> = [];
+  private simplifyCart(cartData: Cart): CartSimple {
+    let simpleCart: CartSimple = { items: [] };
 
-    for (let index = 0; index < cartData.length; index++) {
-      simpleCart.push({
-        "productId": cartData[index]._id,
-        "productQuantity": cartData[index].quantity
-      })
+    for (let index = 0; index < cartData.items.length; index++) {
+      simpleCart.items.push({
+        productId: cartData.items[index].item._id,
+        productQuantity: cartData.items[index].quantity,
+      });
     }
 
     return simpleCart;
   }
 
   private updateLS() {
-    let cartToSave;
-    if (this.$cart().length === 0) {
-      cartToSave = [];
+    if (this.$cart().items.length === 0) {
+      localStorage.removeItem("cart");
     } else {
-      cartToSave = this.simplifyCart(this.$cart());
+      const cartToSave = this.simplifyCart(this.$cart());
+      localStorage.setItem("cart ", JSON.stringify(cartToSave));
     }
-    
-    localStorage.setItem('cart', JSON.stringify(cartToSave));
   }
- 
-  private updateCart(newList: Array<any>) {
-    this.$cart.set(newList);
+
+  private updateCartItems(items: Cart["items"]) {
+    const cart = this.$cart();
+    cart.items = items;
+
+    this.$cart.set(cart);
     this.updateLS();
   }
 
-  private loadCartData() {
+  private setCart(cart: Cart) {
+    this.$cart.set(cart);
+    this.updateLS();
+  }
+
+  private loadCartFromLS() {
     let currentList;
     let result: any = [];
 
     // loading data from ls, catch for corupted data in ls
     try {
-      currentList = JSON.parse(localStorage.getItem('cart') || '[]');
+      currentList = JSON.parse(localStorage.getItem("cart") || "[]");
     } catch (e) {
       currentList = [];
-    }    
+    }
 
     // if local storage cart is empty, so will be the cart object,
     // so we just skip other part of loading
@@ -73,17 +79,19 @@ export class CartService {
     // rendering of each product in cart
     // should be rewriten, when back is ready
     for (let i = 0; i < currentList.length; i++) {
-      this.http.get(this.BASE_URL + 'product/' + currentList[i].productId).subscribe((res: any) => {
-        res.quantity = currentList[i].productQuantity
-        result.push(res);
-      });
+      this.http
+        .get(this.BASE_URL + "product/" + currentList[i].productId)
+        .subscribe((res: any) => {
+          res.quantity = currentList[i].productQuantity;
+          result.push(res);
+        });
     }
 
     // updating the cart directly, otherwise it would earase data in LS
     this.$cart.set(result);
   }
-  
-  addToCart(productId: string) {
+
+  addToCart(product: Product) {
     // function isnt accesible when user made request
     // to add new item, when it wasnt resolved yet
     if (this.addingNewItem()) {
@@ -91,81 +99,91 @@ export class CartService {
     }
     this.addingNewItem.set(true);
 
-    let productInCart = this.$cart().find((product: any) => product._id === productId);
-    let result = this.$cart();
+    const productInCart = this.$cart().items.find(
+      (item: CartItem) => item.item._id === product._id
+    );
+    const newCart = this.$cart();
 
     if (productInCart) {
-      for (let index = 0; index < result.length; index++) {
-        if (result[index]._id === productId) {
-          result[index].quantity += 1;
+      for (let index = 0; index < newCart.items.length; index++) {
+        if (newCart.items[index].item._id === product._id) {
+          newCart.items[index].quantity += 1;
         }
       }
 
-      this.updateCart(result);
-      setTimeout(() => { // has to do with how signals work, otherwise it woudnt properly notify consumers
-        this.addingNewItem.set(false);
-      }, 1);    
-    } else {
-      this.http.get(this.BASE_URL + 'product/' + productId).subscribe((res: any) => {
-        res.quantity = 1;
-        result.push(res);
+      this.updateCartItems(newCart["items"]);
 
-        this.updateCart(result);
+      setTimeout(() => {
+        // has to do with how signals work, otherwise it woudnt properly notify consumers
         this.addingNewItem.set(false);
-      });
+      }, 1);
+    } else {
+      newCart.items.push({ item: product, quantity: 1 });
+      this.updateCartItems(newCart["items"]);
     }
   }
 
   getTotalCartPrice() {
     let totalPrice = 0;
-    for (let index = 0; index < this.$cart().length; index++) {
-      totalPrice += this.$cart()[index].price * this.$cart()[index].quantity;
+    for (let index = 0; index < this.$cart().items.length; index++) {
+      totalPrice +=
+        this.$cart().items[index].item.price *
+        this.$cart().items[index].quantity;
     }
 
-    return totalPrice
+    return totalPrice;
   }
 
   getSimpleCartData() {
-    return this.simplifyCart(this.$cart());
+    // return this.simplifyCart(this.$cart());
   }
 
-  removeFromCart(productId: string) {
-    let productInCart = this.$cart().find((product: any) => product._id === productId);
-    let newList: Array<any> = [];
-    if (!productInCart) { return; }
+  removeFromCart(params: { productId: string } | { product: Product }) {
+    const id = "productId" in params ? params.productId : params.product._id;
+    const productInCart = this.$cart().items.find(
+      (product: any) => product._id === id
+    );
+    if (!productInCart) {
+      return;
+    }
 
-    for (let index = 0; index < this.$cart().length; index++) {
-      if (this.$cart()[index]._id != productId) {
-        newList.push(this.$cart()[index]);
+    let newList: Array<any> = [];
+    for (let index = 0; index < this.$cart().items.length; index++) {
+      if (this.$cart().items[index].item._id != id) {
+        newList.push(this.$cart().items[index]);
       }
     }
 
-    this.updateCart(newList);
+    this.updateCartItems(newList);
   }
 
-  removeOneFromCart(productId: string) {
-    let productInCart = this.$cart().find((product: any) => product._id === productId);
-    let newList: Array<any> = [];
-    if (!productInCart) { return; }
+  removeOneFromCart(params: { productId: string } | { product: Product }) {
+    const id = "productId" in params ? params.productId : params.product._id;
+    const productInCart = this.$cart().items.find(
+      (item: CartItem) => item.item._id === id
+    );
+    if (!productInCart) {
+      return;
+    }
+    const newCart: Cart = { items: [] };
+    
 
-    for (let index = 0; index < this.$cart().length; index++) {
-      if (this.$cart()[index]._id != productId) {
-        newList.push(this.$cart()[index]);
+    for (let index = 0; index < this.$cart().items.length; index++) {
+      if (this.$cart().items[index].item._id != id) {
+        newCart.items.push(this.$cart().items[index]);
       } else {
-        if (this.$cart()[index].quantity > 1) {
-          let item = this.$cart()[index]
+        if (this.$cart().items[index].quantity > 1) {
+          const item = this.$cart().items[index];
           item.quantity -= 1;
-          newList.push(item)
+          newCart.items.push(item);
         }
       }
     }
 
-    this.updateCart(newList);
-  }  
-
-  
+    this.updateCartItems(newCart["items"]);
+  }
 
   clearCart() {
-    this.updateCart([]);
+    this.setCart({ items: [] });
   }
 }

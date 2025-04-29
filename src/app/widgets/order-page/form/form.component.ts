@@ -58,7 +58,7 @@ export class FormComponent {
   openNextStep(step: number) {
     switch (step) {
       case 2:
-        if (this.cartService.getCartData().length > 0) {  
+        if (this.cartService.getCartData().items.length > 0) {  
           this.hideSecondStep = false;
         }
         break;
@@ -83,7 +83,7 @@ export class FormComponent {
   createOrder() {
     // checks if all requirements are met
     if (
-    this.cartService.getCartData().length > 0
+    this.cartService.getCartData().items.length > 0
     && this.customerData.valid
     && this.deliveryData.valid
     && this.completedFourthStep()
@@ -105,7 +105,7 @@ export class FormComponent {
         this.cartService.clearCart();
         window.location.href = '/';
       });
-    } else if (this.cartService.getCartData().length < 1) {
+    } else if (this.cartService.getCartData().items.length < 1) {
       window.alert('схоже корзина пуста');
     } else {
       window.alert('спершу необхідно заповнити всі поля');

@@ -3,51 +3,57 @@
         <p>твоя корзина</p>
     </div>
     
-    <div class="content" *ngIf="this.cartList().length > 0">
-        @for (item of this.cartList(); track $index) {
-            <div class="item">
-                <div class="picture">
-                    <img [src]="item.image[0]">
+    @if (this.cartList().items.length > 0) {
+        <div class="content">
+            @for (item of this.cartList().items; track $index) {
+                <div class="item">
+                    <div class="picture">
+                        <img [src]="item.item.image[0]">
+                    </div>
+                    <div class="other">
+                        <div class="info">
+                            <div class="name">
+                                <a href="product/{{item.item._id}}">
+                                    <p>{{item.item.name}}</p>
+                                </a>
+                            </div>
+                            <div class="price">
+                                <p>{{item.item.price * item.quantity}} ({{item.item.price}}) грн.</p>
+                            </div>
+                            <div class="quantity">
+                                <p>{{item.quantity}} шт.</p>
+                            </div>
+                        </div>
+                        <div class="item-actions">
+                            <button (click)="addToCart(item.item._id)">
+                                <img src="icons/general/plus.svg">
+                            </button>
+                            <button (click)="removeOneFromCart(item.item._id)">
+                                <img src="icons/general/dash.svg">
+                            </button>
+                            <button (click)="removeFromCart(item.item._id)">
+                                <img src="icons/general/delete.svg">
+                            </button>
+                        </div>
+                    </div>   
                 </div>
-                <div class="other">
-                    <div class="info">
-                        <div class="name">
-                            <a href="product/{{item._id}}">
-                                <p>{{item.name}}</p>
-                            </a>
-                        </div>
-                        <div class="price">
-                            <p>{{item.price * item.quantity}} ({{item.price}}) грн.</p>
-                        </div>
-                        <div class="quantity">
-                            <p>{{item.quantity}} шт.</p>
-                        </div>
-                    </div>
-                    <div class="item-actions">
-                        <button (click)="addToCart(item._id)">
-                            <img src="icons/general/plus.svg">
-                        </button>
-                        <button (click)="removeOneFromCart(item._id)">
-                            <img src="icons/general/dash.svg">
-                        </button>
-                        <button (click)="removeFromCart(item._id)">
-                            <img src="icons/general/delete.svg">
-                        </button>
-                    </div>
-                </div>   
-            </div>
-        }
-    </div>
+            }
+        </div>
+    }
+    
 
     <div class="actions">
-        <div *ngIf="cartList().length > 0">
-            <p>загальна сума корзини: {{getTotal(cartList)}} грн.</p>
-            <a href="cart"><button>замовити</button></a>
-        </div>
+        @if (cartList().items.length > 0) {
+            <div>
+                <p>загальна сума корзини: {{getTotal(cartList)}} грн.</p>
+                <a href="cart"><button>замовити</button></a>
+            </div>
+        } @else{
+            <div>
+                <p>в твоїй корзині ще нічого немає</p>
+                <a href="clothes"><button>перейти до одягу</button></a>
+            </div>
+        }
         
-        <div *ngIf="cartList().length === 0">
-            <p>в твоїй корзині ще нічого немає</p>
-            <a href="clothes"><button>перейти до одягу</button></a>
-        </div>
     </div>
 </div>

@@ -21,8 +21,8 @@ export class ClothesCardComponent {
   addToCart(productId: any, button: HTMLElement) {
     this.cartService.addToCart(productId);
 
-    button.classList.add('click-animation');
-    setTimeout(() => button.classList.remove('click-animation'), 1000);
+    // button.classList.add('click-animation');
+    // setTimeout(() => button.classList.remove('click-animation'), 1000);
   }
 
   /**

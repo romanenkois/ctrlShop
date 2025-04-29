@@ -14,8 +14,8 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/product/product.component')
     },
     {
-        path: 'cart',
-        loadComponent: () => import('./pages/cart/cart.component')
+        path: 'order',
+        loadComponent: () => import('./pages/order/order.component')
     },
     {
         path: 'favorites',
@@ -57,5 +57,5 @@ export const routes: Routes = [
     {
         path: '**',
         redirectTo: 'error404'
-    }    
+    }
 ];
