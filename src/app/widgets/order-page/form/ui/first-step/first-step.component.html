@@ -4,7 +4,7 @@
         @for (item of this.cartList().items; track $index) {
         <div class="item">
             <div class="picture">
-                <a routerLink="product/{{ item.item._id }}">
+                <a routerLink="/product/{{ item.item._id }}">
                     <!-- <img src="assets/reyechka.png"> -->
                     <img [src]="item.item.image[0]" />
                 </a>
@@ -12,7 +12,7 @@
             <div class="other">
                 <div class="info">
                     <div class="name">
-                        <a routerLink="product/{{ item.item._id }}">
+                        <a routerLink="/product/{{ item.item._id }}">
                             <p>{{ item.item.name }}</p>
                         </a>
                     </div>

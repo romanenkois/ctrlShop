@@ -1,6 +1,6 @@
 import { inject, Injectable, signal, WritableSignal } from '@angular/core';
-
 import { HttpClient } from '@angular/common/http';
+import { $appConfig } from 'src/enviroments';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 export class FavoritesService {
   private http: HttpClient = inject(HttpClient);
 
-  private BASE_URL: string = 'https://ctrl-shop-back.vercel.app/';
+  private BASE_URL: string = $appConfig.api.BASE_API_URL;
 
   $favoritesList: WritableSignal<any> = signal([]);
   $favoritesData: WritableSignal<any> = signal([]);
@@ -16,9 +16,9 @@ export class FavoritesService {
   constructor() {
     this.$favoritesList.set(JSON.parse(localStorage.getItem('favorites') || '[]'))
   }
- 
+
   /**
-   * Returns a list of favs, in simple format of 
+   * Returns a list of favs, in simple format of
    * [{productId: string}, ..]
    */
   public getFavoritesList() {
@@ -26,7 +26,7 @@ export class FavoritesService {
   }
 
   /**
-   * Returns a list of favs, in full format of 
+   * Returns a list of favs, in full format of
    * [{_id: string, name: string, ..}, ..]
    */
   public getFavoritesData() {
@@ -47,7 +47,7 @@ export class FavoritesService {
     this.$favoritesList.set(newList);
     localStorage.setItem('favorites', JSON.stringify(newList));
   }
-  
+
   // used to fetch data from the API of items in the favorites list
   private fetchFavoritesData(favorites: any) {
     let result: any = [];
@@ -55,7 +55,7 @@ export class FavoritesService {
     for (let i = 0; i < favorites.length; i++) {
       let id: any = favorites[i].productId;
       console.log(id);
-    
+
       this.http.get(this.BASE_URL + 'product/' + id).subscribe((res) => {
         result.push(res);
       });
@@ -68,7 +68,7 @@ export class FavoritesService {
   addToFavorites(productId: string) {
     const currentList = this.$favoritesList();
     const productInFavorites = currentList.find((product: any) => product.productId === productId);
-    
+
     if (!productInFavorites) {
       const newList: any = [];
 
@@ -79,7 +79,7 @@ export class FavoritesService {
       newList[currentList.length] = {productId: productId};
       this.setFavoritesList(newList);
     }
-    
+
   }
 
   removeFromFavorites(productId: string) {
@@ -97,6 +97,6 @@ export class FavoritesService {
       console.log(newList);
 
       this.setFavoritesList(newList);
-    }    
+    }
   }
 }

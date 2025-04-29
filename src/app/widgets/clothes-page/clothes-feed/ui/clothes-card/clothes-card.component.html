@@ -1,61 +1,62 @@
 @if (this.product() && this.product()._id) {
-
-
 <div class="card">
     <div class="picture">
-        <a routerLink="product/{{this.product()._id}}">
+        <a routerLink="/product/{{ this.product()._id }}">
             <img
-            [src]="this.product().image[0]"
-            [alt]="this.product().name"
-            loading="lazy"
-            >
+                [src]="this.product().image[0]"
+                [alt]="this.product().name"
+                loading="lazy"
+            />
         </a>
         <div class="actions">
             <button
-            #favoritesButton
-            (click)="addToFavorites(this.product()._id, favoritesButton)"
-            [class.click-animation]="this.productInFavorites()">
-                <img src="icons/general/heart.svg">
+                #favoritesButton
+                (click)="addToFavorites(this.product()._id, favoritesButton)"
+                [class.click-animation]="this.productInFavorites()"
+            >
+                <img src="icons/general/heart.svg" />
             </button>
             <button
-            #cartButton
-            (click)="addToCart(this.product()._id, cartButton)">
-                <img src="icons/general/cart.svg">
+                #cartButton
+                (click)="addToCart(this.product()._id, cartButton)"
+            >
+                <img src="icons/general/cart.svg" />
             </button>
         </div>
     </div>
     <div class="info">
         <div class="name">
-            <a routerLink="product/{{this.product()._id}}">
-                <p>{{this.product().name}}</p>
+            <a routerLink="/product/{{ this.product()._id }}">
+                <p>{{ this.product().name }}</p>
             </a>
         </div>
         <div class="other">
-            <p class="category">{{this.product().category | translateType }}</p>
-            <p class="price">{{this.product().price}} грн.</p>
+            <p class="category">
+                {{ this.product().category | translateType }}
+            </p>
+            <p class="price">{{ this.product().price }} грн.</p>
         </div>
     </div>
 </div>
 }
 <!-- skeleton for loading card -->
 @else {
-    <div class="card loading-card">
-        <div class="picture">
+<div class="card loading-card">
+    <div class="picture">
+        <a>
+            <div class="img-placeholder"></div>
+        </a>
+    </div>
+    <div class="info">
+        <div class="name">
             <a>
-                <div class="img-placeholder"></div>
+                <p></p>
             </a>
         </div>
-        <div class="info">
-            <div class="name">
-                <a>
-                    <p></p>
-                </a>
-            </div>
-            <div class="other">
-                <p class="category"></p>
-                <p class="price"></p>
-            </div>
+        <div class="other">
+            <p class="category"></p>
+            <p class="price"></p>
         </div>
     </div>
-
+</div>
 }

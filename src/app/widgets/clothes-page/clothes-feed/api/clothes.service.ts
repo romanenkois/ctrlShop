@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { $appConfig } from 'src/enviroments';
 
 @Injectable({
   providedIn: 'root'
@@ -7,8 +8,7 @@ import { inject, Injectable } from '@angular/core';
 export class clothesService {
   private http: HttpClient = inject(HttpClient);
 
-  private BASE_URL: string = 'https://ctrl-shop-back.vercel.app';
-  // private BASE_URL: string = 'http://localhost:3000';
+  private BASE_URL: string = $appConfig.api.BASE_API_URL;
 
   getClothesData(
     category: string,
@@ -22,7 +22,7 @@ export class clothesService {
           urlString += `/${sorting}`;
         }
       }
-      
+
     return this.http.get<any>(urlString);
   }
 }

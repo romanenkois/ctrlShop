@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { $appConfig } from 'src/enviroments';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,7 @@ import { inject, Injectable } from '@angular/core';
 export class productService {
   private http: HttpClient = inject(HttpClient);
 
-  private BASE_URL: string = 'https://ctrl-shop-back.vercel.app';
+  private BASE_URL: string = $appConfig.api.BASE_API_URL;
 
   getProductData(id: string) {
     return this.http.get(this.BASE_URL + '/product/' + id)

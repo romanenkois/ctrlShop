@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable, signal, WritableSignal } from "@angular/core";
 import { Cart, CartItem, CartSimple, Product } from "@types";
+import { $appConfig } from "src/enviroments";
 
 @Injectable({
   providedIn: "root",
@@ -8,7 +9,7 @@ import { Cart, CartItem, CartSimple, Product } from "@types";
 export class CartService {
   private http: HttpClient = inject(HttpClient);
 
-  private BASE_URL: string = "https://ctrl-shop-back.vercel.app/";
+  private BASE_URL: string = $appConfig.api.BASE_API_URL;
 
   // used for addNewItem(), so the method wouldn`t be accesible until the previous request result
   public addingNewItem: WritableSignal<boolean> = signal(false);
@@ -166,7 +167,7 @@ export class CartService {
       return;
     }
     const newCart: Cart = { items: [] };
-    
+
 
     for (let index = 0; index < this.$cart().items.length; index++) {
       if (this.$cart().items[index].item._id != id) {

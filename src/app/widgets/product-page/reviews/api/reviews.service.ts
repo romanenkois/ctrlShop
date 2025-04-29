@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal, WritableSignal } from '@angular/core';
+import { $appConfig } from 'src/enviroments';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,7 @@ import { inject, Injectable, signal, WritableSignal } from '@angular/core';
 export class ReviewsService {
   private http: HttpClient = inject(HttpClient);
 
-  private BASE_URL: string = 'https://ctrl-shop-back.vercel.app';
+  private BASE_URL: string = $appConfig.api.BASE_API_URL;
 
   productReviews: WritableSignal<any> = signal([]);
 

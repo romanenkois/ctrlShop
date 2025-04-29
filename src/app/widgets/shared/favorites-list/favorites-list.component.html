@@ -10,7 +10,7 @@
         @for (item of this.favoritesData(); track $index) {
             <div class="item">
                 <div class="picture">
-                    <a routerLink="product/{{item._id}}">
+                    <a routerLink="/product/{{item._id}}">
                         <img [src]="item.image[0]">
                     </a>
                 </div>
@@ -36,7 +36,7 @@
     @if (this.favoritesData().length === 0) {
         <div class="empty-list">
             <p>ви ще не зберегли жодного товару</p>
-            <a routerLink="clothes"><button>пререглянути одяг</button></a>
+            <a routerLink="/clothes"><button>пререглянути одяг</button></a>
         </div>
     }
 

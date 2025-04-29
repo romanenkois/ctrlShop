@@ -46,12 +46,12 @@
         @if (this.cartList() && this.cartList().items && this.cartList().items.length > 0) {
             <div>
                 <p>загальна сума корзини: {{getTotal(cartList)}} грн.</p>
-                <a routerLink="cart"><button>замовити</button></a>
+                <a routerLink="/cart"><button>замовити</button></a>
             </div>
         } @else{
             <div>
                 <p>в твоїй корзині ще нічого немає</p>
-                <a routerLink="clothes"><button>перейти до одягу</button></a>
+                <a routerLink="/clothes"><button>перейти до одягу</button></a>
             </div>
         }
 
