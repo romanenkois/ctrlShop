@@ -1,6 +1,6 @@
 import { Component, computed, inject } from '@angular/core';
-import { FavoritesService } from '../../../shared/favorites/favorites.service';
-import { CartService } from '../../../shared/cart/cart.service';
+import { FavoritesService } from '@shared/favorites/favorites.service';
+import { CartService } from '@shared/cart/cart.service';
 import { RouterLink } from '@angular/router';
 
 @Component({

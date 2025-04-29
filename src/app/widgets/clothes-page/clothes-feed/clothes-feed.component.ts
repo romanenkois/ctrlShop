@@ -1,12 +1,11 @@
 import { Component, effect, inject, input, InputSignal, signal, WritableSignal } from '@angular/core';
 import { clothesService } from './api/clothes.service';
 import { ClothesCardComponent } from "./ui/clothes-card/clothes-card.component";
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-clothes-feed',
   standalone: true,
-  imports: [ClothesCardComponent, CommonModule],
+  imports: [ClothesCardComponent],
   templateUrl: './clothes-feed.component.html',
   styleUrl: './clothes-feed.component.scss'
 })

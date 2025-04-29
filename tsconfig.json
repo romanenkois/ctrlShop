@@ -5,10 +5,16 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
+      "@features": ["src/app/features/index.ts"],
+      "@features/*": ["src/app/features/*"],
+
       "@widgets": ["src/app/widgets/index.ts"],
+      "@widgets/*": ["src/app/widgets/*"],
+
       "@pages/*": ["src/app/pages/*"],
 
 
+      "@shared/*": ["src/app/shared/*"],
       "@types": ["src/app/shared/types/index.d.ts"]
     },
     "outDir": "./dist/out-tsc",

@@ -2,14 +2,13 @@ import { Component, computed, inject, OnInit } from '@angular/core';
 import { ReviewsService } from './api/reviews.service';
 import { ActivatedRoute } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 import { ProductReviewsComponent } from "./ui/product-reviews/product-reviews.component";
 import { NewReviewComponent } from "./ui/new-review/new-review.component";
 
 @Component({
   selector: 'app-reviews',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, ProductReviewsComponent, NewReviewComponent],
+  imports: [ReactiveFormsModule, ProductReviewsComponent, NewReviewComponent],
   templateUrl: './reviews.component.html',
   styleUrl: './reviews.component.scss'
 })

@@ -1,7 +1,10 @@
 <div class="wrapper">
     <div class="picture">
         <!-- <img src="assets/reyechka.png"> -->
-        <img *ngIf="product.image" [src]="product.image[0]">
+         @if(product.image && product.image[0]) {
+            <img [src]="product.image[0]">
+         }
+
     </div>
     <div class="info">
         <div class="info-wrapper">

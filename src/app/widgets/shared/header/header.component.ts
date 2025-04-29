@@ -1,6 +1,6 @@
 import { Component, effect, inject, OnInit } from '@angular/core';
-import { CartComponent } from '../../../features/cart/cart.component';
-import { CartService } from '../../../shared/cart/cart.service';
+import { CartComponent } from '@features/cart/cart.component';
+import { CartService } from '@shared/cart/cart.service';
 import { RouterLink, Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
