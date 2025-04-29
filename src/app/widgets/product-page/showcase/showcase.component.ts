@@ -1,9 +1,10 @@
 import { Component, inject, OnInit, Renderer2 } from '@angular/core';
 import { productService } from './api/product.service';
 import { ActivatedRoute } from '@angular/router';
-import { CartService } from '../../../shared/cart/cart.service';
-import { FavoritesService } from '../../../shared/favorites/favorites.service';
-import { TranslateTypePipe } from "../../../shared/pipes/translate-type.pipe";
+import { CartService } from '@shared/cart/cart.service';
+import { FavoritesService } from '@shared/favorites/favorites.service';
+import { TranslateTypePipe } from "@shared/pipes/translate-type.pipe";
+import { Product } from '@shared/types';
 
 @Component({
   selector: 'app-showcase',
@@ -22,8 +23,8 @@ export class ShowcaseComponent implements OnInit {
 
   product: any = [];
 
-  addToCart(productId: any, button: HTMLElement) {
-    this.cartService.addToCart(productId);
+  addToCart(product: Product, button: HTMLElement) {
+    this.cartService.addToCart(product);
 
     // Apply slyles to the button after action has been indeed done
     this.renderer.setProperty(button, 'innerText', 'додано!');

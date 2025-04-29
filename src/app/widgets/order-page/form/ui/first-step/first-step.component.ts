@@ -1,6 +1,7 @@
 import { Component, computed, inject } from '@angular/core';
-import { CartService } from '../../../../../shared/cart/cart.service';
+import { CartService } from '@shared/cart/cart.service';
 import { RouterLink } from '@angular/router';
+import { Product } from '@shared/types';
 
 @Component({
   selector: 'app-first-step',
@@ -15,16 +16,16 @@ export class FirstStepComponent {
   itemsInCart = computed(() => this.cartService.getCartData().items.length > 0);
   cartList = computed(() => this.cartService.getCartData());
 
-  addToCart(item: any) {
+  addToCart(item: Product) {
     this.cartService.addToCart(item);
   }
 
-  removeFromCart(item: any) {
-    this.cartService.removeFromCart(item);
+  removeFromCart(item: Product) {
+    this.cartService.removeFromCart({product: item});
   }
 
-  removeOneFromCart(item: any) {
-    this.cartService.removeOneFromCart(item);
+  removeOneFromCart(item: Product) {
+    this.cartService.removeOneFromCart({product: item});
   }
 
   getTotal(): number {

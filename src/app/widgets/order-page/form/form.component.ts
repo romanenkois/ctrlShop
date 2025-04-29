@@ -1,6 +1,6 @@
 import { Component, computed, inject, signal, WritableSignal } from '@angular/core';
 import { FirstStepComponent } from "./ui/first-step/first-step.component";
-import { CartService } from '../../../shared/cart/cart.service';
+import { CartService } from '@shared/cart/cart.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UploadService } from './api/upload.service';

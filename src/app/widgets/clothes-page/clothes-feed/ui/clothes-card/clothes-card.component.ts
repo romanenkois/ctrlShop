@@ -1,24 +1,27 @@
 import { Component, computed, inject, input, InputSignal } from '@angular/core';
-import { CartService } from '../../../../../shared/cart/cart.service';
-import { FavoritesService } from '../../../../../shared/favorites/favorites.service';
-import { TranslateTypePipe } from "../../../../../shared/pipes/translate-type.pipe";
+import { CartService } from '@shared/cart/cart.service';
+import { FavoritesService } from '@shared/favorites/favorites.service';
+import { TranslateTypePipe } from '@shared/pipes/translate-type.pipe';
 import { RouterLink } from '@angular/router';
+import { Product } from '@shared/types';
 
 @Component({
   selector: 'app-clothes-card',
   standalone: true,
   imports: [TranslateTypePipe, RouterLink],
   templateUrl: './clothes-card.component.html',
-  styleUrl: './clothes-card.component.scss'
+  styleUrl: './clothes-card.component.scss',
 })
 export class ClothesCardComponent {
   private cartService: CartService = inject(CartService);
   private favoritesService: FavoritesService = inject(FavoritesService);
 
   product: InputSignal<any> = input.required();
-  productInFavorites = computed(() => this.favoritesService.isInFavorites(this.product()._id));
+  productInFavorites = computed(() =>
+    this.favoritesService.isInFavorites(this.product()._id)
+  );
 
-  addToCart(productId: any, button: HTMLElement) {
+  addToCart(productId: Product, button: HTMLElement) {
     this.cartService.addToCart(productId);
 
     // button.classList.add('click-animation');

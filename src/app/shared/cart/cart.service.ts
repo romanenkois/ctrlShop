@@ -1,10 +1,10 @@
-import { HttpClient } from "@angular/common/http";
-import { inject, Injectable, signal, WritableSignal } from "@angular/core";
-import { Cart, CartItem, CartSimple, Product } from "@types";
-import { $appConfig } from "src/enviroments";
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable, signal, WritableSignal } from '@angular/core';
+import { Cart, CartItem, CartSimple, Product } from '@types';
+import { $appConfig } from '@environments';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class CartService {
   private http: HttpClient = inject(HttpClient);
@@ -39,14 +39,14 @@ export class CartService {
 
   private updateLS() {
     if (this.$cart().items.length === 0) {
-      localStorage.removeItem("cart");
+      localStorage.removeItem('cart');
     } else {
       const cartToSave = this.simplifyCart(this.$cart());
-      localStorage.setItem("cart ", JSON.stringify(cartToSave));
+      localStorage.setItem('cart ', JSON.stringify(cartToSave));
     }
   }
 
-  private updateCartItems(items: Cart["items"]) {
+  private updateCartItems(items: Cart['items']) {
     const cart = this.$cart();
     cart.items = items;
 
@@ -65,7 +65,7 @@ export class CartService {
 
     // loading data from ls, catch for corupted data in ls
     try {
-      currentList = JSON.parse(localStorage.getItem("cart") || "[]");
+      currentList = JSON.parse(localStorage.getItem('cart') || '[]');
     } catch (e) {
       currentList = [];
     }
@@ -81,7 +81,7 @@ export class CartService {
     // should be rewriten, when back is ready
     for (let i = 0; i < currentList.length; i++) {
       this.http
-        .get(this.BASE_URL + "product/" + currentList[i].productId)
+        .get(this.BASE_URL + 'product/' + currentList[i].productId)
         .subscribe((res: any) => {
           res.quantity = currentList[i].productQuantity;
           result.push(res);
@@ -112,7 +112,7 @@ export class CartService {
         }
       }
 
-      this.updateCartItems(newCart["items"]);
+      this.updateCartItems(newCart['items']);
 
       setTimeout(() => {
         // has to do with how signals work, otherwise it woudnt properly notify consumers
@@ -120,7 +120,7 @@ export class CartService {
       }, 1);
     } else {
       newCart.items.push({ item: product, quantity: 1 });
-      this.updateCartItems(newCart["items"]);
+      this.updateCartItems(newCart['items']);
     }
   }
 
@@ -140,7 +140,7 @@ export class CartService {
   }
 
   removeFromCart(params: { productId: string } | { product: Product }) {
-    const id = "productId" in params ? params.productId : params.product._id;
+    const id = 'productId' in params ? params.productId : params.product._id;
     const productInCart = this.$cart().items.find(
       (product: any) => product._id === id
     );
@@ -159,7 +159,7 @@ export class CartService {
   }
 
   removeOneFromCart(params: { productId: string } | { product: Product }) {
-    const id = "productId" in params ? params.productId : params.product._id;
+    const id = 'productId' in params ? params.productId : params.product._id;
     const productInCart = this.$cart().items.find(
       (item: CartItem) => item.item._id === id
     );
@@ -167,7 +167,6 @@ export class CartService {
       return;
     }
     const newCart: Cart = { items: [] };
-
 
     for (let index = 0; index < this.$cart().items.length; index++) {
       if (this.$cart().items[index].item._id != id) {
@@ -181,7 +180,7 @@ export class CartService {
       }
     }
 
-    this.updateCartItems(newCart["items"]);
+    this.updateCartItems(newCart['items']);
   }
 
   clearCart() {
