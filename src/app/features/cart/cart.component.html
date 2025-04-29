@@ -2,8 +2,8 @@
     <div class="title">
         <p>твоя корзина</p>
     </div>
-    
-    @if (this.cartList().items.length > 0) {
+
+    @if (this.cartList() && this.cartList().items && this.cartList().items.length > 0) {
         <div class="content">
             @for (item of this.cartList().items; track $index) {
                 <div class="item">
@@ -13,7 +13,7 @@
                     <div class="other">
                         <div class="info">
                             <div class="name">
-                                <a href="product/{{item.item._id}}">
+                                <a routerLink="/product/{{item.item._id}}">
                                     <p>{{item.item.name}}</p>
                                 </a>
                             </div>
@@ -35,25 +35,25 @@
                                 <img src="icons/general/delete.svg">
                             </button>
                         </div>
-                    </div>   
+                    </div>
                 </div>
             }
         </div>
     }
-    
+
 
     <div class="actions">
-        @if (cartList().items.length > 0) {
+        @if (this.cartList() && this.cartList().items && this.cartList().items.length > 0) {
             <div>
                 <p>загальна сума корзини: {{getTotal(cartList)}} грн.</p>
-                <a href="cart"><button>замовити</button></a>
+                <a routerLink="cart"><button>замовити</button></a>
             </div>
         } @else{
             <div>
                 <p>в твоїй корзині ще нічого немає</p>
-                <a href="clothes"><button>перейти до одягу</button></a>
+                <a routerLink="clothes"><button>перейти до одягу</button></a>
             </div>
         }
-        
+
     </div>
 </div>

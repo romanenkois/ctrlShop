@@ -1,11 +1,12 @@
 import { Component, computed, inject } from '@angular/core';
 import { FavoritesService } from '../../../shared/favorites/favorites.service';
 import { CartService } from '../../../shared/cart/cart.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-favorites-list',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './favorites-list.component.html',
   styleUrl: './favorites-list.component.scss'
 })

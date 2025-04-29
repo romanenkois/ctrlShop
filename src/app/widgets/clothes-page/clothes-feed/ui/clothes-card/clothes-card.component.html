@@ -1,7 +1,10 @@
-<div class="card" *ngIf="this.product() && this.product()._id">
+@if (this.product() && this.product()._id) {
+
+
+<div class="card">
     <div class="picture">
-        <a href="product/{{this.product()._id}}">
-            <img 
+        <a routerLink="product/{{this.product()._id}}">
+            <img
             [src]="this.product().image[0]"
             [alt]="this.product().name"
             loading="lazy"
@@ -9,7 +12,7 @@
         </a>
         <div class="actions">
             <button
-            #favoritesButton 
+            #favoritesButton
             (click)="addToFavorites(this.product()._id, favoritesButton)"
             [class.click-animation]="this.productInFavorites()">
                 <img src="icons/general/heart.svg">
@@ -23,7 +26,7 @@
     </div>
     <div class="info">
         <div class="name">
-            <a href="product/{{this.product()._id}}">
+            <a routerLink="product/{{this.product()._id}}">
                 <p>{{this.product().name}}</p>
             </a>
         </div>
@@ -33,22 +36,26 @@
         </div>
     </div>
 </div>
+}
 <!-- skeleton for loading card -->
-<div class="card loading-card" *ngIf="!this.product()._id">
-    <div class="picture">
-        <a>
-            <div class="img-placeholder"></div>
-        </a>
-    </div>
-    <div class="info">
-        <div class="name">
+@else {
+    <div class="card loading-card">
+        <div class="picture">
             <a>
-                <p></p>
+                <div class="img-placeholder"></div>
             </a>
         </div>
-        <div class="other">
-            <p class="category"></p>
-            <p class="price"></p>
+        <div class="info">
+            <div class="name">
+                <a>
+                    <p></p>
+                </a>
+            </div>
+            <div class="other">
+                <p class="category"></p>
+                <p class="price"></p>
+            </div>
         </div>
     </div>
-</div>
+
+}

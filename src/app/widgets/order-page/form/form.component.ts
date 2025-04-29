@@ -4,6 +4,7 @@ import { CartService } from '../../../shared/cart/cart.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UploadService } from './api/upload.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form',
@@ -14,9 +15,10 @@ import { UploadService } from './api/upload.service';
 })
 export class FormComponent {
   private fb: FormBuilder = inject(FormBuilder);
-  
+  private router: Router = inject(Router);
+
   private cartService: CartService = inject(CartService);
-  private uploadService: UploadService = inject(UploadService);  
+  private uploadService: UploadService = inject(UploadService);
 
   // used for styles
   hideFirstStep = false;
@@ -25,7 +27,7 @@ export class FormComponent {
   hideFourthStep = true;
   hideFifthStep = true;
 
-  // used for validation 
+  // used for validation
   completedFourthStep: WritableSignal<boolean> = signal(true); // no payment system yet
 
   // used to avoid duplicate requests
@@ -54,11 +56,11 @@ export class FormComponent {
     inputPromoCode: [''],
     inputComment: [''],
   });
-  
+
   openNextStep(step: number) {
     switch (step) {
       case 2:
-        if (this.cartService.getCartData().items.length > 0) {  
+        if (this.cartService.getCartData().items.length > 0) {
           this.hideSecondStep = false;
         }
         break;
@@ -103,7 +105,7 @@ export class FormComponent {
       ).subscribe(() => {
         window.alert('ваше замовлення прийнято\nдякуємо!!');
         this.cartService.clearCart();
-        window.location.href = '/';
+        this.router.navigate(['/']);
       });
     } else if (this.cartService.getCartData().items.length < 1) {
       window.alert('схоже корзина пуста');

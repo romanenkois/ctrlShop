@@ -1,16 +1,16 @@
 <div class="wrapper">
     <div class="links">
         <div class="links-wrapper">
-            <div><p (click)="redirectTo('about-us')">про нас</p></div>
-            <div><p (click)="redirectTo('return-policy')">повернення товару</p></div>
-            <div><p (click)="redirectTo('contacts')">контакти</p></div>
-            <div><p (click)="redirectTo('privacy-policy')">політика конфіденційності</p></div>
+            <div><p routerLink="about-us">про нас</p></div>
+            <div><p routerLink="return-policy">повернення товару</p></div>
+            <div><p routerLink="contacts">контакти</p></div>
+            <div><p routerLink="privacy-policy">політика конфіденційності</p></div>
         </div>
     </div>
     <div class="general-info">
         <p>© ctrlShop, назавжди 2021. всі права захищені</p>
         <p class="address">
-            ctrlShop.ink 
+            ctrlShop.ink
             <span
             class="copy-text"
             (click)="copyText('Shevchenka street 37/9, Kyiv, Ukraine')"

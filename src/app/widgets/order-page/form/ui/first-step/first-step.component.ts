@@ -1,10 +1,11 @@
 import { Component, computed, inject } from '@angular/core';
 import { CartService } from '../../../../../shared/cart/cart.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-first-step',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './first-step.component.html',
   styleUrl: './first-step.component.scss'
 })

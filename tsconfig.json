@@ -5,7 +5,11 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@types": ["src/app/shared/types/index.d.ts"],
+      "@widgets": ["src/app/widgets/index.ts"],
+      "@pages/*": ["src/app/pages/*"],
+
+
+      "@types": ["src/app/shared/types/index.d.ts"]
     },
     "outDir": "./dist/out-tsc",
     "strict": true,
@@ -23,10 +27,7 @@
     "target": "ES2022",
     "module": "ES2022",
     "useDefineForClassFields": false,
-    "lib": [
-      "ES2022",
-      "dom"
-    ]
+    "lib": ["ES2022", "dom"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

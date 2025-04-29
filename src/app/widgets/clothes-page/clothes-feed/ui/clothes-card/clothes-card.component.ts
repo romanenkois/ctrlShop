@@ -2,18 +2,18 @@ import { Component, computed, inject, input, InputSignal } from '@angular/core';
 import { CartService } from '../../../../../shared/cart/cart.service';
 import { FavoritesService } from '../../../../../shared/favorites/favorites.service';
 import { TranslateTypePipe } from "../../../../../shared/pipes/translate-type.pipe";
-import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-clothes-card',
   standalone: true,
-  imports: [TranslateTypePipe, CommonModule],
+  imports: [TranslateTypePipe, RouterLink],
   templateUrl: './clothes-card.component.html',
   styleUrl: './clothes-card.component.scss'
 })
 export class ClothesCardComponent {
   private cartService: CartService = inject(CartService);
-  private favoritesService: FavoritesService = inject(FavoritesService); 
+  private favoritesService: FavoritesService = inject(FavoritesService);
 
   product: InputSignal<any> = input.required();
   productInFavorites = computed(() => this.favoritesService.isInFavorites(this.product()._id));
