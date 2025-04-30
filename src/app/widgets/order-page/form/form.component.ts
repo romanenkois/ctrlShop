@@ -1,17 +1,17 @@
-import { Component, computed, inject, signal, WritableSignal } from '@angular/core';
-import { FirstStepComponent } from "./ui/first-step/first-step.component";
-import { CartService } from '@shared/cart/cart.service';
+import { Component, inject, signal, WritableSignal } from '@angular/core';
+import { CartService } from '@services';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UploadService } from './api/upload.service';
 import { Router } from '@angular/router';
+import { CartListComponent } from '@features/cart-list/cart-list.component';
 
 @Component({
   selector: 'app-form',
   standalone: true,
-  imports: [FirstStepComponent, ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CartListComponent],
   templateUrl: './form.component.html',
-  styleUrl: './form.component.scss'
+  styleUrl: './form.component.scss',
 })
 export class FormComponent {
   private fb: FormBuilder = inject(FormBuilder);
@@ -47,9 +47,9 @@ export class FormComponent {
 
   // is disabled because of no payment system yet
   paymentData: FormGroup = this.fb.group({
-    inputCardNumber: [{value: '', disabled: true}, Validators.required],
-    inputCardExpiration: [{value: '', disabled: true}, Validators.required],
-    inputCardCVC: [{value: '', disabled: true}, Validators.required],
+    inputCardNumber: [{ value: '', disabled: true }, Validators.required],
+    inputCardExpiration: [{ value: '', disabled: true }, Validators.required],
+    inputCardCVC: [{ value: '', disabled: true }, Validators.required],
   });
 
   extraData: FormGroup = this.fb.group({
@@ -60,7 +60,7 @@ export class FormComponent {
   openNextStep(step: number) {
     switch (step) {
       case 2:
-        if (this.cartService.getCartData().items.length > 0) {
+        if (this.cartService.getCart().items.length > 0) {
           this.hideSecondStep = false;
         }
         break;
@@ -85,29 +85,31 @@ export class FormComponent {
   createOrder() {
     // checks if all requirements are met
     if (
-    this.cartService.getCartData().items.length > 0
-    && this.customerData.valid
-    && this.deliveryData.valid
-    && this.completedFourthStep()
-    && this.notSendingOrder()) {
-
+      this.cartService.getCart().items.length > 0 &&
+      this.customerData.valid &&
+      this.deliveryData.valid &&
+      this.completedFourthStep() &&
+      this.notSendingOrder()
+    ) {
       // set to true, so we cant send another request
       this.notSendingOrder.set(false);
 
       // we send the request using the function from service
-      this.uploadService.uploadOrder(
-        new Date().toISOString(),
-        '1', // user id, not implemented yet
-        this.cartService.getSimpleCartData(),
-        this.customerData.value,
-        this.deliveryData.value,
-        this.extraData.value ? this.extraData.value : {}
-      ).subscribe(() => {
-        window.alert('ваше замовлення прийнято\nдякуємо!!');
-        this.cartService.clearCart();
-        this.router.navigate(['/']);
-      });
-    } else if (this.cartService.getCartData().items.length < 1) {
+      this.uploadService
+        .uploadOrder(
+          new Date().toISOString(),
+          '1', // user id, not implemented yet
+          this.cartService.getSimpleCartData(),
+          this.customerData.value,
+          this.deliveryData.value,
+          this.extraData.value ? this.extraData.value : {}
+        )
+        .subscribe(() => {
+          window.alert('ваше замовлення прийнято\nдякуємо!!');
+          this.cartService.clearCart();
+          this.router.navigate(['/']);
+        });
+    } else if (this.cartService.getCart().items.length < 1) {
       window.alert('схоже корзина пуста');
     } else {
       window.alert('спершу необхідно заповнити всі поля');

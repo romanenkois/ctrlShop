@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, Renderer2 } from '@angular/core';
 import { productService } from './api/product.service';
 import { ActivatedRoute } from '@angular/router';
-import { CartService } from '@shared/cart/cart.service';
+import { CartService } from '@services';
 import { FavoritesService } from '@shared/favorites/favorites.service';
 import { TranslateTypePipe } from "@shared/pipes/translate-type.pipe";
 import { Product } from '@shared/types';

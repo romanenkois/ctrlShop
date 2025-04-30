@@ -1,43 +1,44 @@
 <div class="wrapper">
     <div class="title">
         <p>тут знаходиться ваш збережений одяг</p>
-        <p>ми сповістимо вас, якщо збережений одяг, якого зараз немає в наявності, з'явиться на складі</p>
+        <p>
+            ми сповістимо вас, якщо збережений одяг, якого зараз немає в
+            наявності, з'явиться на складі
+        </p>
     </div>
 
     @if (this.favoritesData().length > 0) {
 
-        <div class="favorite-list">
+    <div class="favorite-list">
         @for (item of this.favoritesData(); track $index) {
-            <div class="item">
-                <div class="picture">
-                    <a routerLink="/product/{{item._id}}">
-                        <img [src]="item.image[0]">
-                    </a>
+        <div class="item">
+            <div class="picture">
+                <a routerLink="/product/{{ item._id }}">
+                    <img [src]="item.image[0]" />
+                </a>
+            </div>
+            <div class="not-picture">
+                <div class="info">
+                    <p>{{ item.name }}</p>
+                    <p>є в наявності</p>
+                    <p>{{ item.price }} грн.</p>
                 </div>
-                <div class="not-picture">
-                    <div class="info">
-                        <p>{{item.name}}</p>
-                        <p>є в наявності</p>
-                        <p>{{item.price}} грн.</p>
-                    </div>
-                    <div class="actions">
-                        <button
-                        (click)="removeFromFavorite(item._id)"
-                        ><p>видалити</p></button>
-                        <button
-                        (click)="addToCart(item._id)"
-                        ><p>в корзину</p></button>
-                    </div>
+                <div class="actions">
+                    <button (click)="removeFromFavorite(item._id)">
+                        <p>видалити</p>
+                    </button>
+                    <!-- <button (click)="addToCart(item._id)">
+                        <p>в корзину</p>
+                    </button> -->
                 </div>
             </div>
+        </div>
         }
-        </div>
+    </div>
+    } @if (this.favoritesData().length === 0) {
+    <div class="empty-list">
+        <p>ви ще не зберегли жодного товару</p>
+        <a routerLink="/clothes"><button>пререглянути одяг</button></a>
+    </div>
     }
-    @if (this.favoritesData().length === 0) {
-        <div class="empty-list">
-            <p>ви ще не зберегли жодного товару</p>
-            <a routerLink="/clothes"><button>пререглянути одяг</button></a>
-        </div>
-    }
-
 </div>

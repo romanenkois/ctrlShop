@@ -1,7 +1,8 @@
 import { Component, computed, inject } from '@angular/core';
 import { FavoritesService } from '@shared/favorites/favorites.service';
-import { CartService } from '@shared/cart/cart.service';
+import { CartService } from '@services';
 import { RouterLink } from '@angular/router';
+import { Product } from '@shared/types';
 
 @Component({
   selector: 'app-favorites-list',
@@ -12,14 +13,14 @@ import { RouterLink } from '@angular/router';
 })
 export class FavoritesListComponent {
   private favoritesService: FavoritesService = inject(FavoritesService)
-  private cartService: CartService = inject(CartService);
+  // private cartService: CartService = inject(CartService);
 
   favoritesList = computed(() => this.favoritesService.$favoritesList());
   favoritesData= computed(() => this.favoritesService.getFavoritesData());
 
-  addToCart(productId: any) {
-    this.cartService.addToCart(productId);
-  }
+  // addToCart(product: Product) {
+  //   this.cartService.addToCart(product);
+  // }
 
   removeFromFavorite(productID: any) {
     this.favoritesService.removeFromFavorites(productID);

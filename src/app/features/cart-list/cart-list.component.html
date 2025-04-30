@@ -1,0 +1,50 @@
+<div class="wrapper">
+    @if (this.cartList().items.length > 0) {
+    <div class="content">
+        @for (item of this.cartList().items; track $index) {
+        <div class="item">
+            <div class="picture">
+                <a routerLink="/product/{{ item.item._id }}">
+                    <!-- <img src="assets/reyechka.png"> -->
+                    <img [src]="item.item.image[0]" />
+                </a>
+            </div>
+            <div class="other">
+                <div class="info">
+                    <div class="name">
+                        <a routerLink="/product/{{ item.item._id }}">
+                            <p>{{ item.item.name }}</p>
+                        </a>
+                    </div>
+                    <div class="price">
+                        <p>
+                            {{ item.item.price * item.quantity }} ({{
+                                item.item.price
+                            }}) грн.
+                        </p>
+                    </div>
+                    <div class="quantity">
+                        <p>{{ item.quantity }} шт.</p>
+                    </div>
+                </div>
+                <div class="item-actions">
+                    <button (click)="this.addToCart(item.item)">
+                        <img src="icons/general/plus.svg" />
+                    </button>
+                    <button (click)="this.removeOneFromCart(item.item)">
+                        <img src="icons/general/dash.svg" />
+                    </button>
+                    <button (click)="this.removeFromCart(item.item)">
+                        <img src="icons/general/delete.svg" />
+                    </button>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+    } @else {
+    <div class="empty-cart">
+        <p>схоже ваш кошик порожній</p>
+    </div>
+    }
+</div>

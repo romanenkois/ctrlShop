@@ -3,27 +3,27 @@
         <div class="title">
             <p>перший крок</p>
         </div>
-    
+
         <div class="content">
             <div class="caption">
                 <p>перевірте вашу корзину</p>
             </div>
             <div class="cart-wrapper">
-                <app-first-step></app-first-step>
+                <app-cart-list></app-cart-list>
             </div>
             <div class="actions">
                 <button
                 (click)="openNextStep(2)"
                 >далі</button>
             </div>
-        </div>    
+        </div>
     </div>
 
     <div class="step second-step">
         <div class="title">
             <p>другий крок</p>
         </div>
-    
+
         <div
         class="content"
         [class.hideStep]="hideSecondStep">
@@ -58,7 +58,7 @@
         <div class="title">
             <p>третій крок</p>
         </div>
-    
+
         <div
         class="content"
         [class.hideStep]="hideThirdStep">
@@ -93,14 +93,14 @@
         <div class="title">
             <p>четвертий крок</p>
         </div>
-    
+
         <div
         class="content"
         [class.hideStep]="hideFourthStep">
             <div class="caption">
                 <p>введіть дані оплати</p>
             </div>
-            <form 
+            <form
             class="form-wrapper"
             [formGroup]="paymentData">
                 <div class="form">
@@ -131,7 +131,7 @@
         <div class="title">
             <p>п'ятий крок</p>
         </div>
-    
+
         <div
         class="content"
         [class.hideStep]="hideFifthStep">

@@ -11,10 +11,12 @@
       "@widgets/*": ["src/app/widgets/*"],
       "@pages/*": ["src/app/pages/*"],
 
+      "@services": ["src/app/services/index.ts"],
+
       "@shared/*": ["src/app/shared/*"],
       "@types": ["src/app/shared/types/index.d.ts"],
 
-      "@environments": ["src/environments/index.ts"],
+      "@environments": ["src/environments/index.ts"]
     },
     "outDir": "./dist/out-tsc",
     "strict": true,

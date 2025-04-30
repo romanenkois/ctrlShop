@@ -3,48 +3,7 @@
         <p>твоя корзина</p>
     </div>
 
-    @if (this.cartList() && this.cartList().items &&
-    this.cartList().items.length > 0) {
-    <div class="content">
-        @for (item of this.cartList().items; track $index) {
-        <div class="item">
-            <div class="picture">
-                <img [src]="item.item.image[0]" />
-            </div>
-            <div class="other">
-                <div class="info">
-                    <div class="name">
-                        <a routerLink="/product/{{ item.item._id }}">
-                            <p>{{ item.item.name }}</p>
-                        </a>
-                    </div>
-                    <div class="price">
-                        <p>
-                            {{ item.item.price * item.quantity }} ({{
-                                item.item.price
-                            }}) грн.
-                        </p>
-                    </div>
-                    <div class="quantity">
-                        <p>{{ item.quantity }} шт.</p>
-                    </div>
-                </div>
-                <div class="item-actions">
-                    <button (click)="this.addToCart(item.item)">
-                        <img src="icons/general/plus.svg" />
-                    </button>
-                    <button (click)="this.removeOneFromCart(item.item)">
-                        <img src="icons/general/dash.svg" />
-                    </button>
-                    <button (click)="this.removeFromCart(item.item)">
-                        <img src="icons/general/delete.svg" />
-                    </button>
-                </div>
-            </div>
-        </div>
-        }
-    </div>
-    }
+    <app-cart-list></app-cart-list>
 
     <div class="actions">
         @if (this.cartList() && this.cartList().items &&

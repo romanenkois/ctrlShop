@@ -21,7 +21,7 @@ export class CartService {
     this.loadCartFromLS();
   }
 
-  public getCartData(): Cart {
+  public getCart(): Cart {
     return this.$cart();
   }
 
@@ -51,15 +51,16 @@ export class CartService {
     }
   }
 
-  private updateCartItems(items: Cart['items']) {
+  private setCartItems(items: Cart['items']) {
     const cart = this.$cart();
     cart.items = items;
 
-    this.$cart.set(cart);
-    this.updateLS();
+    this.setCart(cart);
   }
 
   private setCart(cart: Cart) {
+    console.log('SETTING CART', cart);
+    console.table(cart.items);
     this.$cart.set(cart);
     this.updateLS();
   }
@@ -92,9 +93,7 @@ export class CartService {
     // should be rewriten, when back is ready
     for (let i = 0; i < currentList.items.length; i++) {
       this.http
-        .get<Product>(
-          this.BASE_URL + '/product/' + currentList.items[i].productId
-        )
+        .get<Product>(this.BASE_URL + '/product/' + currentList.items[i].productId)
         .subscribe((res: Product) => {
           result.items.push({
             item: res,
@@ -129,7 +128,7 @@ export class CartService {
         }
       }
 
-      this.updateCartItems(newCart['items']);
+      this.setCartItems(newCart['items']);
       console.log('cart', newCart);
 
       setTimeout(() => {
@@ -138,7 +137,7 @@ export class CartService {
       }, 1);
     } else {
       newCart.items.push({ item: product, quantity: 1 });
-      this.updateCartItems(newCart['items']);
+      this.setCartItems(newCart['items']);
       console.log('cart2', newCart);
     }
   }
@@ -177,7 +176,7 @@ export class CartService {
       }
     }
 
-    this.updateCartItems(newList['items']);
+    this.setCartItems(newList['items']);
   }
 
   removeOneFromCart(params: { productId: string } | { product: Product }) {
@@ -202,7 +201,7 @@ export class CartService {
       }
     }
 
-    this.updateCartItems(newCart['items']);
+    this.setCartItems(newCart['items']);
   }
 
   clearCart() {
