@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
   toggleClothesMenu() {
     this.clothesMenuVisibility = !this.clothesMenuVisibility;
   }
-  togleCart() {
+  toggleCart() {
     this.cartVisibility = !this.cartVisibility;
   }
 

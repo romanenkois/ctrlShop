@@ -29,7 +29,7 @@ export class ClothesCardComponent {
   }
 
   /**
-   * Func adds product to favorites, if it isnt there
+   * Func adds product to favorites, if it isn't there
    * otherwise it removes from it
    */
   addToFavorites(productId: any, button: HTMLElement) {

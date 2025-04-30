@@ -26,7 +26,7 @@ export class ShowcaseComponent implements OnInit {
   addToCart(product: Product, button: HTMLElement) {
     this.cartService.addToCart(product);
 
-    // Apply slyles to the button after action has been indeed done
+    // Apply styles to the button after action has been indeed done
     this.renderer.setProperty(button, 'innerText', 'додано!');
     setTimeout(() => {
       this.renderer.setProperty(button, 'innerText', 'додати в корзини');
@@ -36,7 +36,7 @@ export class ShowcaseComponent implements OnInit {
   addToFavorites(productId: any, button: HTMLElement) {
     this.favoriteService.addToFavorites(productId);
 
-    // Apply slyles to the button after action has been indeed done
+    // Apply styles to the button after action has been indeed done
     this.renderer.setStyle(button, 'transition', 'background 0.5s ease-out');
     this.renderer.setStyle(button, 'background', 'var(--yellow-color)');
     setTimeout(() => {

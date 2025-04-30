@@ -132,7 +132,7 @@ export class CartService {
       console.log('cart', newCart);
 
       setTimeout(() => {
-        // has to do with how signals work, otherwise it woudnt properly notify consumers
+        // has to do with how signals work, otherwise it woudn't properly notify consumers
         this.addingNewItem.set(false);
       }, 1);
     } else {

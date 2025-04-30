@@ -12,7 +12,7 @@ export class CartService {
   private BASE_URL: string = $appConfig.api.BASE_API_URL;
   private cart_local_storage: string = 'cart';
 
-  // used for addNewItem(), so the method wouldn`t be accesible until the previous request result
+  // used for addNewItem(), so the method wouldn`t be accessible until the previous request result
   public addingNewItem: WritableSignal<boolean> = signal(false);
 
   private $cart: WritableSignal<Cart> = signal({ items: [] });
@@ -103,7 +103,7 @@ export class CartService {
         });
     }
 
-    // updating the cart directly, otherwise it would earase data in LS
+    // updating the cart directly, otherwise it would erase data in LS
     this.$cart.set(result);
   }
 
@@ -133,7 +133,7 @@ export class CartService {
       console.log('cart', newCart);
 
       setTimeout(() => {
-        // has to do with how signals work, otherwise it woudnt properly notify consumers
+        // has to do with how signals work, otherwise it wouldn't properly notify consumers
         this.addingNewItem.set(false);
       }, 1);
     } else {
